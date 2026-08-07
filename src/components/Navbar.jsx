@@ -6,7 +6,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenPresets }) {
     <header className="sticky top-0 z-50 bg-slate-950/95 backdrop-blur-2xl border-b-2 border-slate-800">
       <div className="max-w-6xl mx-auto px-3 sm:px-10">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 py-3 sm:py-4">
-          
+
           {/* Brand Logo & Mobile Preset Launcher */}
           <div className="flex items-center justify-between w-full sm:w-auto gap-3">
             <div className="flex items-center gap-2.5">
@@ -24,7 +24,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenPresets }) {
                     ADVISOR
                   </span>
                 </div>
-                <p className="text-[11px] font-semibold text-slate-300 hidden md:block">AI-Assisted Cloud Resource & Architecture Recommender</p>
+                <p className="text-[11px] font-semibold text-slate-300 hidden md:block"> Cloud Resource & Architecture Recommender</p>
               </div>
             </div>
 
@@ -42,11 +42,10 @@ export default function Navbar({ activeTab, setActiveTab, onOpenPresets }) {
           <nav className="flex items-center justify-center gap-1.5 sm:gap-3 w-full sm:w-auto overflow-x-auto no-scrollbar py-1 sm:py-0">
             <button
               onClick={() => setActiveTab('calculator')}
-              className={`flex items-center gap-1.5 px-3 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-extrabold transition-all border-2 shrink-0 ${
-                activeTab === 'calculator'
+              className={`flex items-center gap-1.5 px-3 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-extrabold transition-all border-2 shrink-0 ${activeTab === 'calculator'
                   ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400 shadow-lg shadow-cyan-500/15'
                   : 'bg-slate-900/60 text-slate-300 border-slate-800 hover:text-white hover:border-slate-700'
-              }`}
+                }`}
             >
               <Sliders className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400" />
               <span>Engine</span>
@@ -54,11 +53,10 @@ export default function Navbar({ activeTab, setActiveTab, onOpenPresets }) {
 
             <button
               onClick={() => setActiveTab('rules')}
-              className={`flex items-center gap-1.5 px-3 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-extrabold transition-all border-2 shrink-0 ${
-                activeTab === 'rules'
+              className={`flex items-center gap-1.5 px-3 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-extrabold transition-all border-2 shrink-0 ${activeTab === 'rules'
                   ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400 shadow-lg shadow-cyan-500/15'
                   : 'bg-slate-900/60 text-slate-300 border-slate-800 hover:text-white hover:border-slate-700'
-              }`}
+                }`}
             >
               <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400" />
               <span>Rule Manager</span>
@@ -66,11 +64,10 @@ export default function Navbar({ activeTab, setActiveTab, onOpenPresets }) {
 
             <button
               onClick={() => setActiveTab('catalog')}
-              className={`flex items-center gap-1.5 px-3 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-extrabold transition-all border-2 shrink-0 ${
-                activeTab === 'catalog'
+              className={`flex items-center gap-1.5 px-3 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-extrabold transition-all border-2 shrink-0 ${activeTab === 'catalog'
                   ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400 shadow-lg shadow-cyan-500/15'
                   : 'bg-slate-900/60 text-slate-300 border-slate-800 hover:text-white hover:border-slate-700'
-              }`}
+                }`}
             >
               <Server className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400" />
               <span>Server Catalog</span>
