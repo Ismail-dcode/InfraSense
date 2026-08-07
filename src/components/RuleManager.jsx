@@ -35,7 +35,7 @@ export default function RuleManager({ rules, onToggleRule, onAddCustomRule }) {
   };
 
   return (
-    <div className="glass-panel p-7 sm:p-10 space-y-8">
+    <div className="glass-panel p-4 sm:p-8 lg:p-10 space-y-6 sm:space-y-8">
       
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">

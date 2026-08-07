@@ -98,12 +98,12 @@ export default function PresetSelector({ isOpen, onClose, onSelectPreset }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fadeIn">
-      <div className="glass-panel w-full max-w-2xl border border-slate-700/80 p-6 shadow-2xl relative">
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-5">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md animate-fadeIn">
+      <div className="glass-panel w-full max-w-2xl max-h-[85vh] flex flex-col border border-slate-700/80 p-4 sm:p-6 shadow-2xl relative">
+        <div className="flex items-center justify-between border-b border-slate-800 pb-3 sm:pb-4 mb-3 sm:mb-5">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-cyan-400" />
-            <h3 className="text-lg font-bold text-white">Select Architecture Preset</h3>
+            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
+            <h3 className="text-base sm:text-lg font-bold text-white">Select Architecture Preset</h3>
           </div>
           <button
             onClick={onClose}
@@ -113,11 +113,11 @@ export default function PresetSelector({ isOpen, onClose, onSelectPreset }) {
           </button>
         </div>
 
-        <p className="text-sm text-slate-300 mb-4">
+        <p className="text-xs sm:text-sm text-slate-300 mb-3 sm:mb-4">
           Choose a pre-configured architecture blueprint to instantly populate hardware, memory, IOPS, and workload parameters into the recommendation engine.
         </p>
 
-        <div className="grid grid-cols-1 gap-3 max-h-[60vh] overflow-y-auto pr-1">
+        <div className="grid grid-cols-1 gap-2.5 overflow-y-auto pr-1">
           {PRESET_OPTIONS.map(preset => {
             const IconComponent = preset.icon;
             return (
@@ -127,7 +127,7 @@ export default function PresetSelector({ isOpen, onClose, onSelectPreset }) {
                   onSelectPreset(preset.input);
                   onClose();
                 }}
-                className="group glass-panel p-4 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-900/90 cursor-pointer transition-all flex items-center justify-between"
+                className="group glass-panel p-3.5 sm:p-4 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-900/90 cursor-pointer transition-all flex items-center justify-between gap-3"
               >
                 <div className="flex items-start gap-3.5">
                   <div className="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center group-hover:border-cyan-400/50 group-hover:bg-cyan-500/10 text-cyan-400 transition-colors">

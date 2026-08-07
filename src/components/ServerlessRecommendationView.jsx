@@ -10,18 +10,18 @@ export default function ServerlessRecommendationView() {
   const srv = primary.service;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-10 animate-fadeIn">
+    <div className="max-w-4xl mx-auto space-y-6 sm:space-y-10 animate-fadeIn">
       
       {/* Selector */}
-      <div className="glass-panel p-8 sm:p-12 space-y-6">
-        <div className="border-b border-slate-800 pb-5">
-          <span className="px-3.5 py-1 text-xs font-extrabold font-mono rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 uppercase tracking-wider">
+      <div className="glass-panel p-4 sm:p-8 lg:p-12 space-y-6">
+        <div className="border-b border-slate-800 pb-4 sm:pb-5">
+          <span className="px-3 py-1 text-[10px] sm:text-xs font-extrabold font-mono rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 uppercase tracking-wider">
             SERVERLESS & CONTAINER ADVISOR
           </span>
-          <h2 className="text-3xl font-extrabold text-white mt-2">
+          <h2 className="text-xl sm:text-3xl font-extrabold text-white mt-2">
             Serverless & Container Host Recommendation
           </h2>
-          <p className="text-sm text-slate-300 mt-1">
+          <p className="text-xs sm:text-sm text-slate-300 mt-1">
             Compare AWS Lambda, Fargate Docker containers, App Runner, and Google Cloud Run for zero-server deployments.
           </p>
         </div>

@@ -48,16 +48,16 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
   const ramQuickPresets = [2, 4, 8, 16, 32, 64, 128];
 
   return (
-    <div className="max-w-4xl mx-auto space-y-10">
+    <div className="max-w-4xl mx-auto space-y-6 sm:space-y-10">
       
       {/* STEP 1: Application Profile */}
-      <div className="glass-panel p-8 sm:p-12 space-y-8 shadow-2xl">
-        <div className="flex items-center justify-between border-b border-slate-800/80 pb-6">
+      <div className="glass-panel p-4 sm:p-8 lg:p-12 space-y-6 sm:space-y-8 shadow-2xl">
+        <div className="flex items-center justify-between border-b border-slate-800/80 pb-4 sm:pb-6">
           <div>
-            <span className="px-3.5 py-1 text-xs font-extrabold font-mono rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 uppercase tracking-wider">
+            <span className="px-3 py-1 text-[10px] sm:text-xs font-extrabold font-mono rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 uppercase tracking-wider">
               STEP 1 OF 5
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+            <h2 className="text-xl sm:text-3xl font-extrabold text-white mt-2">
               What kind of project are you hosting?
             </h2>
           </div>
@@ -65,36 +65,36 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
           <button
             type="button"
             onClick={onReset}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-cyan-400 hover:bg-slate-900 transition-colors shrink-0"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-cyan-400 hover:bg-slate-900 transition-colors shrink-0"
           >
-            <RefreshCw className="w-4 h-4" />
+            <RefreshCw className="w-3.5 h-3.5" />
             <span>Reset</span>
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6">
           {WORKLOAD_PROFILES.map(profile => {
             const isSelected = input.workload === profile.id;
             return (
               <div
                 key={profile.id}
                 onClick={() => handleWorkloadSelect(profile.id)}
-                className={`p-6 rounded-3xl border-2 cursor-pointer transition-all flex flex-col justify-between space-y-4 ${
+                className={`p-4 sm:p-6 rounded-2xl sm:rounded-3xl border-2 cursor-pointer transition-all flex flex-col justify-between space-y-3 sm:space-y-4 ${
                   isSelected
                     ? 'bg-gradient-to-br from-cyan-500/15 via-blue-600/10 to-indigo-600/15 border-cyan-400 shadow-2xl shadow-cyan-500/10 scale-[1.01]'
                     : 'bg-slate-900/40 border-slate-800/80 text-slate-300 hover:border-slate-700 hover:bg-slate-900/80'
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <h3 className="font-extrabold text-lg text-white">
+                  <h3 className="font-extrabold text-base sm:text-lg text-white">
                     {profile.name}
                   </h3>
                   {isSelected ? (
-                    <div className="w-7 h-7 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center font-bold shadow-lg shadow-cyan-400/50 shrink-0">
-                      <CheckCircle2 className="w-4 h-4" />
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center font-bold shadow-lg shadow-cyan-400/50 shrink-0">
+                      <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </div>
                   ) : (
-                    <div className="w-7 h-7 rounded-full border border-slate-700 shrink-0" />
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-slate-700 shrink-0" />
                   )}
                 </div>
 
@@ -108,7 +108,7 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
       </div>
 
       {/* STEP 2: Target Server Instance Quantity */}
-      <div className="glass-panel p-8 sm:p-12 space-y-8 shadow-2xl">
+      <div className="glass-panel p-4 sm:p-8 lg:p-12 space-y-6 sm:space-y-8 shadow-2xl">
         <div>
           <span className="px-3.5 py-1 text-xs font-extrabold font-mono rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 uppercase tracking-wider">
             STEP 2 OF 5 • INSTANCE QUANTITY
@@ -252,24 +252,24 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
       )}
 
       {/* STEP 4: CPU Cores (vCPU) & System Memory (RAM) Sliders */}
-      <div className="glass-panel p-8 sm:p-12 space-y-8 shadow-2xl">
+      <div className="glass-panel p-4 sm:p-8 lg:p-12 space-y-6 sm:space-y-8 shadow-2xl">
         <div>
           <span className="px-3.5 py-1 text-xs font-extrabold font-mono rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">
             STEP 4 OF 5 • CPU & MEMORY POWER
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+          <h2 className="text-xl sm:text-3xl font-extrabold text-white mt-2">
             Processor Cores (vCPU) & System Memory (RAM)
           </h2>
-          <p className="text-sm text-slate-300 mt-1">Adjust capacity sliders to customize CPU and RAM requirements.</p>
+          <p className="text-xs sm:text-sm text-slate-300 mt-1">Adjust capacity sliders to customize CPU and RAM requirements.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           
           {/* vCPU Slider */}
-          <div className="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div className="bg-slate-900/60 p-4 sm:p-6 rounded-2xl border border-slate-800 space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-bold text-slate-100 flex items-center gap-2">
-                <Cpu className="w-5 h-5 text-cyan-400" />
+              <span className="text-xs sm:text-sm font-bold text-slate-100 flex items-center gap-2">
+                <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
                 Processor Cores (vCPU)
               </span>
               <div className="flex items-center gap-1.5">
@@ -279,9 +279,9 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                   max="64"
                   value={input.vcpu}
                   onChange={(e) => onChange({ ...input, vcpu: Math.max(1, parseInt(e.target.value) || 1) })}
-                  className="w-20 px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-xl text-center text-sm font-mono text-cyan-300 focus:outline-none focus:border-cyan-500"
+                  className="w-16 sm:w-20 px-2.5 sm:px-3 py-1 bg-slate-950 border border-slate-700 rounded-xl text-center text-xs sm:text-sm font-mono text-cyan-300 focus:outline-none focus:border-cyan-500"
                 />
-                <span className="text-xs text-slate-400">cores</span>
+                <span className="text-[11px] sm:text-xs text-slate-400">cores</span>
               </div>
             </div>
 
@@ -294,7 +294,7 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
               onChange={(e) => onChange({ ...input, vcpu: parseInt(e.target.value) })}
               className="w-full"
             />
-            <div className="flex justify-between text-[11px] font-mono text-slate-500">
+            <div className="flex justify-between text-[10px] sm:text-[11px] font-mono text-slate-500">
               <span>1 vCPU</span>
               <span>4 vCPU</span>
               <span>8 vCPU</span>
@@ -304,10 +304,10 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
           </div>
 
           {/* RAM Slider */}
-          <div className="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div className="bg-slate-900/60 p-4 sm:p-6 rounded-2xl border border-slate-800 space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-bold text-slate-100 flex items-center gap-2">
-                <Zap className="w-5 h-5 text-indigo-400" />
+              <span className="text-xs sm:text-sm font-bold text-slate-100 flex items-center gap-2">
+                <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-400" />
                 System Memory (RAM)
               </span>
               <div className="flex items-center gap-1.5">
@@ -317,9 +317,9 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                   max="512"
                   value={input.ram}
                   onChange={(e) => onChange({ ...input, ram: Math.max(0.5, parseFloat(e.target.value) || 0.5) })}
-                  className="w-20 px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-xl text-center text-sm font-mono text-indigo-300 focus:outline-none focus:border-indigo-500"
+                  className="w-16 sm:w-20 px-2.5 sm:px-3 py-1 bg-slate-950 border border-slate-700 rounded-xl text-center text-xs sm:text-sm font-mono text-indigo-300 focus:outline-none focus:border-indigo-500"
                 />
-                <span className="text-xs text-slate-400">GB</span>
+                <span className="text-[11px] sm:text-xs text-slate-400">GB</span>
               </div>
             </div>
 
@@ -334,13 +334,13 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
             />
 
             <div className="flex items-center gap-1.5 flex-wrap pt-1">
-              <span className="text-[11px] text-slate-400">Quick Select:</span>
+              <span className="text-[10px] sm:text-[11px] text-slate-400">Quick Select:</span>
               {ramQuickPresets.map(presetRam => (
                 <button
                   key={presetRam}
                   type="button"
                   onClick={() => onChange({ ...input, ram: presetRam })}
-                  className={`px-2.5 py-1 text-[11px] font-mono rounded-lg border transition-colors ${
+                  className={`px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-mono rounded-lg border transition-colors ${
                     input.ram === presetRam
                       ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/50 font-bold'
                       : 'bg-slate-950 text-slate-400 border-slate-800 hover:text-slate-200'
@@ -356,12 +356,12 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
       </div>
 
       {/* STEP 5: Security, Monitoring & Cloud Provider */}
-      <div className="glass-panel p-8 sm:p-12 space-y-8 shadow-2xl">
+      <div className="glass-panel p-4 sm:p-8 lg:p-12 space-y-6 sm:space-y-8 shadow-2xl">
         <div>
           <span className="px-3.5 py-1 text-xs font-extrabold font-mono rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/30 uppercase tracking-wider">
             STEP 5 OF 5 • SECURITY & PROVIDER
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+          <h2 className="text-xl sm:text-3xl font-extrabold text-white mt-2">
             Security, Monitoring & Cloud Provider Preference
           </h2>
         </div>

@@ -131,7 +131,7 @@ export default function App() {
       />
 
       {/* Main Content Container */}
-      <main className="max-w-6xl mx-auto px-6 sm:px-10 pt-10">
+      <main className="max-w-6xl mx-auto px-4 sm:px-10 pt-6 sm:pt-10">
         
         {/* Preset Selector Modal */}
         <PresetSelector
@@ -145,20 +145,20 @@ export default function App() {
         />
 
         {activeTab === 'calculator' && (
-          <div className="space-y-12">
+          <div className="space-y-8 sm:space-y-12">
             
             {/* Hero Banner Header Section */}
-            <div className="text-center max-w-3xl mx-auto space-y-5 pt-4">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-xs font-bold font-mono">
-                <Sparkles className="w-4 h-4" />
+            <div className="text-center max-w-3xl mx-auto space-y-4 sm:space-y-5 pt-2 sm:pt-4">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-[11px] sm:text-xs font-bold font-mono">
+                <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 AI CLOUD RESOURCE RECOMMENDATION SYSTEM
               </div>
 
-              <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
+              <h1 className="text-2xl sm:text-4xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight px-2">
                 Find the <span className="gradient-text">Perfect Cloud Resource</span> for Your Workload
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-medium">
+              <p className="text-sm sm:text-lg text-slate-300 leading-relaxed font-medium px-2">
                 Select a cloud service category below to calculate exact server sizes, managed database specs, object storage costs, and serverless architectures.
               </p>
             </div>
@@ -166,13 +166,13 @@ export default function App() {
             {/* PROMINENT SERVICE SELECTOR CARDS (Placed directly after Hero section) */}
             <div className="space-y-4 pt-2">
               <div className="text-center space-y-1">
-                <span className="text-xs font-mono font-extrabold text-cyan-400 uppercase tracking-widest block">
+                <span className="text-[10px] sm:text-xs font-mono font-extrabold text-cyan-400 uppercase tracking-widest block">
                   STEP 1 • SELECT CLOUD SERVICE TYPE
                 </span>
-                <h2 className="text-2xl font-extrabold text-white">What cloud resource do you need help with?</h2>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-white">What cloud resource do you need help with?</h2>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                 {serviceCategories.map(cat => {
                   const isSelected = activeCategory === cat.id;
                   const IconComponent = cat.icon;
@@ -181,26 +181,26 @@ export default function App() {
                     <div
                       key={cat.id}
                       onClick={() => setActiveCategory(cat.id)}
-                      className={`p-6 rounded-3xl border-2 cursor-pointer transition-all flex flex-col justify-between space-y-4 ${
+                      className={`p-4 sm:p-6 rounded-2xl sm:rounded-3xl border-2 cursor-pointer transition-all flex flex-col justify-between space-y-3 sm:space-y-4 ${
                         isSelected
-                          ? `bg-gradient-to-br ${cat.color} ${cat.borderColor} shadow-2xl scale-[1.02]`
+                          ? `bg-gradient-to-br ${cat.color} ${cat.borderColor} shadow-2xl scale-[1.01]`
                           : 'bg-slate-900/60 border-slate-800 text-slate-300 hover:border-slate-700 hover:bg-slate-900'
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <div className={`p-3 rounded-2xl bg-slate-950 border border-slate-800 ${cat.textColor}`}>
-                          <IconComponent className="w-6 h-6" />
+                        <div className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-950 border border-slate-800 ${cat.textColor}`}>
+                          <IconComponent className="w-5 h-5 sm:w-6 sm:h-6" />
                         </div>
                         {isSelected && (
-                          <div className="w-7 h-7 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center font-bold shadow-lg shrink-0">
-                            <CheckCircle2 className="w-4 h-4" />
+                          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center font-bold shadow-lg shrink-0">
+                            <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                           </div>
                         )}
                       </div>
 
                       <div className="space-y-1">
-                        <h3 className="font-extrabold text-base text-white">{cat.title}</h3>
-                        <p className="text-xs text-slate-400 leading-relaxed font-medium">{cat.desc}</p>
+                        <h3 className="font-extrabold text-sm sm:text-base text-white">{cat.title}</h3>
+                        <p className="text-[11px] sm:text-xs text-slate-400 leading-relaxed font-medium">{cat.desc}</p>
                       </div>
                     </div>
                   );

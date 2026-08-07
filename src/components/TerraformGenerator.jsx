@@ -94,15 +94,15 @@ output "instance_public_ip" {
   };
 
   return (
-    <div className="glass-panel p-6 sm:p-8 border border-slate-800 space-y-4">
+    <div className="glass-panel p-4 sm:p-8 border border-slate-800 space-y-4">
       
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
         <div>
-          <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block">
+          <span className="text-[10px] sm:text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block">
             INFRASTRUCTURE AS CODE (IaC)
           </span>
-          <h3 className="text-xl font-extrabold text-white flex items-center gap-2 mt-0.5">
+          <h3 className="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2 mt-0.5">
             <Code2 className="w-5 h-5 text-cyan-400" />
             Terraform Blueprint Generator (`main.tf`)
           </h3>
@@ -127,7 +127,7 @@ output "instance_public_ip" {
         </div>
       </div>
 
-      <pre className="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs font-mono text-cyan-300 overflow-x-auto max-h-72">
+      <pre className="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800 text-[11px] sm:text-xs font-mono text-cyan-300 overflow-x-auto max-h-72 no-scrollbar">
         {terraformCode}
       </pre>
 

@@ -25,8 +25,13 @@ export default function ArchitectureDiagram({ instanceName, provider = 'aws', wo
         Automated architectural flow displaying how traffic routes through DNS, Load Balancers, Compute Nodes ({instanceName}), Database, and Monitoring.
       </p>
 
+      {/* Touch swipe hint for mobile devices */}
+      <span className="block sm:hidden text-[10px] font-mono text-cyan-400/80 text-center">
+        ← Swipe horizontally to view topology flow →
+      </span>
+
       {/* Visual Diagram Box */}
-      <div className="bg-slate-950/80 p-6 sm:p-8 rounded-2xl border border-slate-800/80 relative overflow-x-auto">
+      <div className="bg-slate-950/80 p-4 sm:p-8 rounded-2xl border border-slate-800/80 relative overflow-x-auto no-scrollbar">
         <div className="min-w-[650px] flex items-center justify-between gap-4 text-center">
           
           {/* Step 1: Internet & Route 53 */}
