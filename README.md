@@ -14,6 +14,13 @@
 
 ---
 
+## 🎬 InfraSense Demo
+
+<p align="center">
+  <img src="./images/demo.gif" alt="InfraSense Demo" width="900">
+</p>
+
+
 ## 📌 Table of Contents
 
 - [Key Features](#-key-features)
