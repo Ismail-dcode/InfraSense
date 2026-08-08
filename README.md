@@ -13,7 +13,7 @@
 ---
 <br>
 
-![Alt text](./images/Architecture-Phase1.png)     
+![Alt text](./images/Architecture-Phase1.png/)     
 
 
 ---
