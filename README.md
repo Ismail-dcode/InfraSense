@@ -9,7 +9,7 @@
 **InfraSense** is an enterprise-grade cloud infrastructure recommendation platform and decision engine. Designed for Cloud Architects, DevOps Engineers, and System Administrators, InfraSense dynamically evaluates workload requirements, calculates compute, database, storage, and serverless specifications across cloud providers (AWS, GCP, Azure), applies custom heuristic rule engines, scores infrastructure health, and exports copy-pasteable **Terraform IaC (Infrastructure as Code)** configurations.  
 
 ---
- ## 🚀 Live Demo 🔗 [Visit InfraSense](https://infrasence.vercel.app/)
+ ## 🚀 Live Demo 🔗 [Visit InfraSense](https://infrasence.ismailshaikh.in/)
 ---
 <br>
 
