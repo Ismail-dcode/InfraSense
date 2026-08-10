@@ -15,7 +15,7 @@ import { Sparkles, Cpu, Database, HardDrive, Zap, CheckCircle2 } from 'lucide-re
 
 const INITIAL_INPUT = {
   vcpu: 2,
-  ram: 8,
+  ram: 2,
   storageGB: 100,
   storageType: 'gp3',
   iops: 3000,

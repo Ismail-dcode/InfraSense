@@ -6,13 +6,26 @@
 [![Terraform](https://img.shields.io/badge/Terraform-IaC_Ready-7B42BC.svg?logo=terraform)](https://www.terraform.io/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-**InfraSense** is an enterprise-grade cloud infrastructure recommendation platform and decision engine. Designed for Cloud Architects, DevOps Engineers, and System Administrators, InfraSense dynamically evaluates workload requirements, calculates compute, database, storage, and serverless specifications across cloud providers (AWS, GCP, Azure), applies custom heuristic rule engines, scores infrastructure health, and exports copy-pasteable **Terraform IaC (Infrastructure as Code)** configurations.
+**InfraSense** is an enterprise-grade cloud infrastructure recommendation platform and decision engine. Designed for Cloud Architects, DevOps Engineers, and System Administrators, InfraSense dynamically evaluates workload requirements, calculates compute, database, storage, and serverless specifications across cloud providers (AWS, GCP, Azure), applies custom heuristic rule engines, scores infrastructure health, and exports copy-pasteable **Terraform IaC (Infrastructure as Code)** configurations.  
 
+---
+ ## 🚀 Live Demo 🔗 [Visit InfraSense](https://infrasence.ismailshaikh.in/)
+---
+<br>
 
+<<<<<<< HEAD
 ![InfraSense High-Level Architecture](./images/Architecture-Phase1.png)     
+=======
+![Alt text](./images/Architecture-Phase1.png/)     
+>>>>>>> 96b3f822c30b139cb7b5f8b800e99f45d7f43e85
 
 
 ---
+
+## 🎬 InfraSense Demo
+![Alt text](./images/Architecture-Phase1.png/)
+![Alt text](./images/Architecture-Phase1.png/)
+![Alt text](./images/Architecture-Phase1.png/)
 
 ## 📌 Table of Contents
 
@@ -165,7 +178,7 @@ Follow this step-by-step visual workflow to see how InfraSense analyzes workload
 ![Server Configuration](./images/server-conf.png)
 
 * **Target Instance Quantity**: Select how many server instances you plan to run (Single Server, Dual Active-Active, 3–5 Node Cluster, or 5+ Microservices).
-* **vCPU & RAM Sliders**: Fine-tune processor core requirements (defaults to **2 vCPU cores**) and system memory (RAM GB) tailored to your application load.
+* **vCPU & RAM Sliders**: Fine-tune processor core requirements (defaults to **2 vCPU cores** and **2 GB RAM**) tailored to your application load.
 * **Storage Speed & IOPS**: Set required IOPS and SSD disk parameters for high read/write operations.
 
 ---
