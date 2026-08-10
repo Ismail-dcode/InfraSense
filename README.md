@@ -9,7 +9,7 @@
 **InfraSense** is an enterprise-grade cloud infrastructure recommendation platform and decision engine. Designed for Cloud Architects, DevOps Engineers, and System Administrators, InfraSense dynamically evaluates workload requirements, calculates compute, database, storage, and serverless specifications across cloud providers (AWS, GCP, Azure), applies custom heuristic rule engines, scores infrastructure health, and exports copy-pasteable **Terraform IaC (Infrastructure as Code)** configurations.
 
 
-![Alt text](./images/Architecture-Phase1.png)     
+![InfraSense High-Level Architecture](./images/Architecture-Phase1.png)     
 
 
 ---
@@ -19,6 +19,7 @@
 - [Key Features](#-key-features)
 - [System Architecture & Workflow](#-system-architecture--workflow)
 - [Architecture Diagram Snippets](#-architecture-diagram-snippets)
+- [Application Screenshots & Step-by-Step Walkthrough](#-application-screenshots--step-by-step-walkthrough)
 - [Project Directory Structure](#-project-directory-structure)
 - [Tech Stack](#-tech-stack)
 - [Getting Started](#-getting-started)
@@ -145,6 +146,45 @@ sequenceDiagram
     ASG-->>CW: Emit CPU, RAM, & Network Metrics
     CW-->>ASG: Trigger Auto Scaling Policy if CPU > 70%
 ```
+
+---
+
+## 📸 Application Screenshots & Step-by-Step Walkthrough
+
+Follow this step-by-step visual workflow to see how InfraSense analyzes workload requirements and generates cloud resource recommendations:
+
+### 1️⃣ Step 1: Select Cloud Service Category & Workload Type
+![Home Page](./images/Home-Page.png)
+
+* **Overview**: Select the cloud infrastructure domain you need help sizing: **Virtual Servers (EC2 / VMs)**, **Managed Databases**, **Cloud Storage & S3**, or **Serverless & Docker**.
+* **Quick Presets**: Click **Quick Presets** in the top navigation bar to instantly populate the calculator with pre-configured workload profiles (e.g., High-Traffic E-Commerce, Microservice API, AI/ML Inference, or Low-Cost MVP).
+
+---
+
+### 2️⃣ Step 2: Configure Server Instances & Hardware Specs
+![Server Configuration](./images/server-conf.png)
+
+* **Target Instance Quantity**: Select how many server instances you plan to run (Single Server, Dual Active-Active, 3–5 Node Cluster, or 5+ Microservices).
+* **vCPU & RAM Sliders**: Fine-tune processor core requirements (defaults to **2 vCPU cores**) and system memory (RAM GB) tailored to your application load.
+* **Storage Speed & IOPS**: Set required IOPS and SSD disk parameters for high read/write operations.
+
+---
+
+### 3️⃣ Step 3: Set Security, Monitoring & Cloud Provider Preferences
+![Provider Selection](./images/Provider-selection.png)
+
+* **Enterprise Hardening**: Toggle options for 24/7 CloudWatch Monitoring & Alarms, Multi-AZ High Availability & Disaster Recovery, and KMS Data Encryption at Rest.
+* **Multi-Cloud Target**: Choose your preferred cloud provider (**AWS**, **Azure**, **GCP**, or **All Clouds Compare**).
+* **Budget Priority**: Control scoring algorithms by selecting **Lowest Monthly Bill**, **Balanced Performance**, or **Max Power**.
+
+---
+
+### 4️⃣ Step 4: View Intelligent Recommendations & Infrastructure Insights
+![Suggested Result](./images/Suggested-result.png)
+
+* **Top Recommended Instance**: View the top-scored instance match (e.g., `t3.small` / `t3.medium`) along with hourly rates and estimated monthly costs.
+* **Architectural Justifications**: Read clear heuristic explanations of why the server size was chosen based on your input parameters.
+* **Alternative Options & IaC Export**: Compare **Lowest Cost Fit** vs **Maximum Power Fit**, inspect Infrastructure Health Scores, and generate production-ready **Terraform IaC** HCL templates.
 
 ---
 

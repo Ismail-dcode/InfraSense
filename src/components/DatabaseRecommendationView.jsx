@@ -4,7 +4,7 @@ import { Database, Sparkles, CheckCircle2, ShieldCheck, DollarSign, Cpu, Zap, Ha
 
 export default function DatabaseRecommendationView() {
   const [dbEngine, setDbEngine] = useState('postgres');
-  const [vcpu, setVcpu] = useState(4);
+  const [vcpu, setVcpu] = useState(2);
   const [ram, setRam] = useState(16);
   const [dataSizeGB, setDataSizeGB] = useState(250);
   const [multiAZ, setMultiAZ] = useState(true);

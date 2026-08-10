@@ -123,7 +123,7 @@ export function evaluateCloudRequirements(input, activeRules = []) {
 export function evaluateDatabaseRequirements(input) {
   const {
     dbEngine = 'postgres',
-    vcpu = 4,
+    vcpu = 2,
     ram = 16,
     dataSizeGB = 100,
     multiAZ = true,
