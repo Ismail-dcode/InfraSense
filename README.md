@@ -15,11 +15,6 @@
 
 
 ![InfraSense High-Level Architecture](./images/Architecture-Phase1.png)     
-=======
-![Alt text](./images/Architecture-Phase1.png/)     
->>>>>>> 96b3f822c30b139cb7b5f8b800e99f45d7f43e85
-
-
 ---
 
 ## 📸 Application Screenshots & Step-by-Step Walkthrough
