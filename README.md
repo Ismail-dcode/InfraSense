@@ -19,11 +19,9 @@
 ---
 
 ## 🎬 InfraSense Demo
-
-<p align="center">
-  <img src="./images/demo.gif" alt="InfraSense Demo" width="900">
-</p>
-
+![Alt text](./images/Architecture-Phase1.png/)
+![Alt text](./images/Architecture-Phase1.png/)
+![Alt text](./images/Architecture-Phase1.png/)
 
 ## 📌 Table of Contents
 
