@@ -136,11 +136,11 @@ export default function RuleManager({ rules, onToggleRule, onAddCustomRule }) {
                   onChange={(e) => setNewRuleTargetFamily(e.target.value)}
                   className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-cyan-500"
                 >
-                  <option value="general">General Purpose (M6i / T3)</option>
-                  <option value="memory">Memory Optimized (R6i / E-series)</option>
-                  <option value="compute">Compute Optimized (C6i)</option>
-                  <option value="storage">Storage / Local NVMe SSD (I3en)</option>
-                  <option value="gpu">GPU / Accelerated AI (G4dn)</option>
+                  <option value="general">General Purpose (AWS M6i/T3, Azure D/B-series, GCP E2/N2)</option>
+                  <option value="memory">Memory Optimized (AWS R6i, Azure E-series, GCP N2 HighMem)</option>
+                  <option value="compute">Compute Optimized (AWS C6i, Azure F-series, GCP C2)</option>
+                  <option value="storage">Storage / NVMe SSD (AWS gp3/NVMe, Azure L-series, GCP N2D SSD)</option>
+                  <option value="gpu">GPU / Accelerated AI (AWS G4dn, Azure NC-series, GCP G2)</option>
                 </select>
               </div>
 

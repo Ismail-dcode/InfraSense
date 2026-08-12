@@ -4,10 +4,178 @@ import { Code2, Copy, Check, Download } from 'lucide-react';
 export default function TerraformGenerator({ instanceName = 't3.large', provider = 'aws' }) {
   const [copied, setCopied] = useState(false);
 
-  const terraformCode = `
+  const normalizedProvider = provider.toLowerCase();
+
+  const getTerraformCode = () => {
+    if (normalizedProvider === 'azure') {
+      return `
 # ==============================================================================
-# INFRASENCE GENERATED TERRAFORM IAC TEMPLATE
-# Provider: AWS | Recommended Instance: ${instanceName}
+# INFRASENCE GENERATED TERRAFORM IAC TEMPLATE (AZURE)
+# Recommended VM Size: ${instanceName}
+# ==============================================================================
+
+terraform {
+  required_version = ">= 1.5.0"
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.0"
+    }
+  }
+}
+
+provider "azurerm" {
+  features {}
+}
+
+# 1. Resource Group
+resource "azurerm_resource_group" "rg" {
+  name     = "infrasence-rg"
+  location = "East US"
+}
+
+# 2. Network Security Group
+resource "azurerm_network_security_group" "nsg" {
+  name                = "infrasence-web-nsg"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  security_rule {
+    name                       = "HTTPS"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "HTTP"
+    priority                   = 110
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "80"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+}
+
+# 3. Azure Virtual Machine (${instanceName})
+resource "azurerm_linux_virtual_machine" "web_vm" {
+  name                = "infrasence-${instanceName.toLowerCase().replace(/_/g, '-')}"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  size                = "${instanceName}"
+  admin_username      = "azureuser"
+
+  admin_ssh_key {
+    username   = "azureuser"
+    public_key = file("~/.ssh/id_rsa.pub")
+  }
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Premium_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts"
+    version   = "latest"
+  }
+
+  tags = {
+    Environment = "Production"
+    ManagedBy   = "Terraform"
+  }
+}
+
+output "vm_public_ip" {
+  value       = azurerm_linux_virtual_machine.web_vm.public_ip_address
+  description = "Public IP of the Azure VM"
+}
+      `.trim();
+    }
+
+    if (normalizedProvider === 'gcp') {
+      return `
+# ==============================================================================
+# INFRASENCE GENERATED TERRAFORM IAC TEMPLATE (GOOGLE CLOUD)
+# Recommended Machine Type: ${instanceName}
+# ==============================================================================
+
+terraform {
+  required_version = ">= 1.5.0"
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 5.0"
+    }
+  }
+}
+
+provider "google" {
+  project = "infrasence-gcp-project"
+  region  = "us-central1"
+  zone    = "us-central1-a"
+}
+
+# 1. Cloud Firewall Rule
+resource "google_compute_firewall" "web_firewall" {
+  name    = "infrasence-allow-web"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80", "443"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+}
+
+# 2. GCP Compute Engine Instance (${instanceName})
+resource "google_compute_instance" "web_node" {
+  name         = "infrasence-${instanceName}"
+  machine_type = "${instanceName}"
+  zone         = "us-central1-a"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-11"
+      type  = "pd-ssd"
+      size  = 100
+    }
+  }
+
+  network_interface {
+    network = "default"
+    access_config {}
+  }
+
+  labels = {
+    environment = "production"
+    managed_by  = "terraform"
+  }
+}
+
+output "gcp_instance_ip" {
+  value       = google_compute_instance.web_node.network_interface[0].access_config[0].nat_ip
+  description = "External NAT IP of the Google Cloud Instance"
+}
+      `.trim();
+    }
+
+    // Default AWS
+    return `
+# ==============================================================================
+# INFRASENCE GENERATED TERRAFORM IAC TEMPLATE (AWS)
+# Recommended Instance: ${instanceName}
 # ==============================================================================
 
 terraform {
@@ -75,7 +243,10 @@ output "instance_public_ip" {
   value       = aws_instance.web_server.public_ip
   description = "Public IP of the recommended instance"
 }
-`.trim();
+    `.trim();
+  };
+
+  const terraformCode = getTerraformCode();
 
   const handleCopy = () => {
     navigator.clipboard.writeText(terraformCode);
@@ -87,7 +258,7 @@ output "instance_public_ip" {
     const dataStr = "data:text/plain;charset=utf-8," + encodeURIComponent(terraformCode);
     const downloadAnchor = document.createElement('a');
     downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `main-${instanceName}.tf`);
+    downloadAnchor.setAttribute("download", `main-${provider}-${instanceName}.tf`);
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
@@ -100,7 +271,7 @@ output "instance_public_ip" {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
         <div>
           <span className="text-[10px] sm:text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block">
-            INFRASTRUCTURE AS CODE (IaC)
+            INFRASTRUCTURE AS CODE (IaC) • {provider.toUpperCase()}
           </span>
           <h3 className="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2 mt-0.5">
             <Code2 className="w-5 h-5 text-cyan-400" />
@@ -134,3 +305,4 @@ output "instance_public_ip" {
     </div>
   );
 }
+

@@ -3,7 +3,7 @@ import { Cpu, ShieldCheck, Sparkles, Server, Loader2 } from 'lucide-react';
 
 const EVALUATION_STEPS = [
   '🔍 Analyzing vCPU cores, RAM memory & storage specs...',
-  '🛡️ Testing inputs against 6 active backend rules...',
+  '🛡️ Testing inputs against active backend rules across AWS, Azure & GCP...',
   '⚡ Evaluating hardware ratios across AWS EC2, Azure & GCP...',
   '📊 Calculating monthly cost estimates and match fit scores...',
   '✨ Finalizing optimal cloud server recommendation...'
