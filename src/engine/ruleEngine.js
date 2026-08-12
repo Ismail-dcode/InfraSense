@@ -108,10 +108,22 @@ export function evaluateCloudRequirements(input, activeRules = []) {
   const budgetPick = [...exactFits].sort((a, b) => a.instance.monthlyEstimate - b.instance.monthlyEstimate)[0] || topMatch;
   const perfPick = [...exactFits].sort((a, b) => (b.instance.vCPU + b.instance.ramGB) - (a.instance.vCPU + a.instance.ramGB))[0] || topMatch;
 
+  // Compute top match for each cloud provider
+  const awsMatch = evaluatedResults.find(r => r.instance.provider === 'aws') || null;
+  const azureMatch = evaluatedResults.find(r => r.instance.provider === 'azure') || null;
+  const gcpMatch = evaluatedResults.find(r => r.instance.provider === 'gcp') || null;
+
+  const providerComparison = {
+    aws: awsMatch,
+    azure: azureMatch,
+    gcp: gcpMatch
+  };
+
   return {
     primary: topMatch,
     budgetPick,
     perfPick,
+    providerComparison,
     allMatches: evaluatedResults,
     totalEvaluated: evaluatedResults.length
   };
@@ -139,16 +151,16 @@ export function evaluateDatabaseRequirements(input) {
     // Rule 1: Engine Alignment Rule
     if (dbEngine === 'redis' && db.serviceType.includes('Cache')) {
       score += 30;
-      reasons.push('⚡ Rule Matched (In-Memory Cache): ElastiCache Redis stores all keys in RAM for sub-millisecond speed.');
+      reasons.push(`⚡ Rule Matched (In-Memory Cache): ${db.name} stores all keys in RAM for sub-millisecond speed.`);
     } else if (dbEngine === 'nosql' && db.serviceType.includes('NoSQL')) {
       score += 30;
-      reasons.push('📱 Rule Matched (Serverless NoSQL): DynamoDB handles massive concurrent reads & writes with zero server tuning.');
+      reasons.push(`📱 Rule Matched (Serverless NoSQL): ${db.name} handles massive concurrent reads & writes with zero server tuning.`);
     } else if (dbEngine === 'aurora' && db.serviceType.includes('Serverless')) {
       score += 30;
-      reasons.push('🔄 Rule Matched (Auto-Scaling Serverless): Aurora Serverless v2 scales vCPUs and RAM up/down dynamically.');
+      reasons.push(`🔄 Rule Matched (Auto-Scaling Serverless): ${db.name} scales vCPUs and RAM up/down dynamically based on traffic.`);
     } else if (dbEngine === 'postgres' && db.serviceType.includes('Relational')) {
       score += 20;
-      reasons.push('🛡️ Rule Matched (Managed Relational DB): Handles automated daily backups, multi-AZ failover, and point-in-time recovery.');
+      reasons.push(`🛡️ Rule Matched (Managed Relational DB): ${db.name} handles automated backups, multi-AZ failover, and point-in-time recovery.`);
     }
 
     // Rule 2: Hardware Capacity Rule (vCPU & RAM fit)
@@ -168,13 +180,13 @@ export function evaluateDatabaseRequirements(input) {
     // Rule 3: Multi-AZ High Availability Rule
     if (multiAZ && db.multiAZ) {
       score += 15;
-      reasons.push('🛡️ Rule Matched (Multi-AZ Failover): Replicates data synchronously to a secondary Availability Zone for 99.99% SLA.');
+      reasons.push('🛡️ Rule Matched (Multi-AZ Failover): Replicates data synchronously to a secondary zone for high availability.');
     }
 
     // Rule 4: Data Storage Capacity Rule
-    if (dataSizeGB >= 500 && db.serviceType.includes('Aurora')) {
+    if (dataSizeGB >= 500 && (db.serviceType.includes('Aurora') || db.serviceType.includes('Spanner'))) {
       score += 15;
-      reasons.push('💾 Rule Matched (Distributed Storage): Aurora distributed storage auto-expands up to 128 TB without downtime.');
+      reasons.push('💾 Rule Matched (Distributed Storage): Distributed database storage auto-expands with data growth without downtime.');
     }
 
     return {
@@ -206,15 +218,15 @@ export function evaluateStorageRequirements(input) {
 
     const monthlyCost = st.costPerGB * volumeGB;
 
-    if (accessFrequency === 'hot' && st.name.includes('Standard')) {
+    if (accessFrequency === 'hot' && (st.storageCategory.includes('Object Storage (Files') || st.name.includes('Standard') || st.name.includes('Hot'))) {
       score += 25;
-      reasons.push('⚡ Rule Matched (Hot Access): Standard S3 tier provides millisecond retrieval for active user files.');
-    } else if (accessFrequency === 'archive' && st.name.includes('Glacier')) {
+      reasons.push(`⚡ Rule Matched (Hot Access): ${st.name} provides millisecond retrieval for active user files.`);
+    } else if (accessFrequency === 'archive' && (st.storageCategory.includes('Cold Archive') || st.name.includes('Glacier') || st.name.includes('Archive'))) {
       score += 30;
-      reasons.push('💵 Rule Matched (Cold Archive): Glacier cuts monthly storage costs by over 80% for compliance backups.');
-    } else if (storageTypeNeeded === 'nfs' && st.name.includes('EFS')) {
+      reasons.push(`💵 Rule Matched (Cold Archive): ${st.name} cuts monthly storage costs by over 80% for compliance backups.`);
+    } else if (storageTypeNeeded === 'nfs' && (st.storageCategory.includes('Shared Network') || st.name.includes('NFS') || st.name.includes('EFS'))) {
       score += 25;
-      reasons.push('📁 Rule Matched (Shared NFS): EFS allows thousands of server nodes to share the same file system.');
+      reasons.push(`📁 Rule Matched (Shared NFS): ${st.name} allows server nodes to share the same persistent file system.`);
     }
 
     return {
@@ -237,20 +249,20 @@ export function evaluateStorageRequirements(input) {
  * 4. Serverless & Container Service Evaluator
  */
 export function evaluateServerlessRequirements(input) {
-  const { workloadType = 'api' } = input;
+  const { workloadType = 'api', provider = 'all' } = input;
 
-  const catalog = SERVERLESS_SERVICES;
+  const catalog = SERVERLESS_SERVICES.filter(srv => provider === 'all' || srv.provider === provider);
 
   const scored = catalog.map(srv => {
     let score = 75;
     const reasons = [];
 
-    if (workloadType === 'function' && srv.name.includes('Lambda')) {
+    if (workloadType === 'function' && srv.serviceCategory.includes('Event-Driven Functions')) {
       score += 20;
-      reasons.push('⚡ Rule Matched (Event-Driven Functions): Lambda executes code per request with zero server maintenance.');
-    } else if (workloadType === 'container' && (srv.name.includes('Fargate') || srv.name.includes('Cloud Run'))) {
+      reasons.push(`⚡ Rule Matched (Event-Driven Functions): ${srv.name} executes code per request with zero server maintenance.`);
+    } else if (workloadType === 'container' && (srv.serviceCategory.includes('Container') || srv.serviceCategory.includes('App Platform'))) {
       score += 20;
-      reasons.push('🐳 Rule Matched (Serverless Docker): Runs containers without managing EC2 clusters or Kubernetes nodes.');
+      reasons.push(`🐳 Rule Matched (Serverless Containers): ${srv.name} runs containers without managing VM clusters or Kubernetes nodes.`);
     }
 
     return {
