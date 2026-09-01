@@ -270,11 +270,11 @@ output "instance_public_ip" {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
         <div>
-          <span className="text-[10px] sm:text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block">
+          <span className="text-[10px] sm:text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest block">
             INFRASTRUCTURE AS CODE (IaC) • {provider.toUpperCase()}
           </span>
           <h3 className="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2 mt-0.5">
-            <Code2 className="w-5 h-5 text-cyan-400" />
+            <Code2 className="w-5 h-5 text-emerald-400" />
             Terraform Blueprint Generator (`main.tf`)
           </h3>
         </div>
@@ -298,7 +298,7 @@ output "instance_public_ip" {
         </div>
       </div>
 
-      <pre className="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800 text-[11px] sm:text-xs font-mono text-cyan-300 overflow-x-auto max-h-72 no-scrollbar">
+      <pre className="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800 text-[11px] sm:text-xs font-mono text-emerald-300 overflow-x-auto max-h-72 no-scrollbar">
         {terraformCode}
       </pre>
 

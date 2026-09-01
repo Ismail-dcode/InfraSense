@@ -68,7 +68,7 @@ export default function DatabaseRecommendationView() {
           <div className="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-sm font-bold text-slate-100 flex items-center gap-2">
-                <Cpu className="w-5 h-5 text-cyan-400" />
+                <Cpu className="w-5 h-5 text-emerald-400" />
                 Database CPU Cores (vCPU)
               </span>
               <div className="flex items-center gap-1.5">
@@ -78,7 +78,7 @@ export default function DatabaseRecommendationView() {
                   max="64"
                   value={vcpu}
                   onChange={(e) => setVcpu(Math.max(2, parseInt(e.target.value) || 2))}
-                  className="w-20 px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-xl text-center text-sm font-mono text-cyan-300 focus:outline-none focus:border-cyan-500"
+                  className="w-20 px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-xl text-center text-sm font-mono text-emerald-300 focus:outline-none focus:border-emerald-500"
                 />
                 <span className="text-xs text-slate-400">cores</span>
               </div>

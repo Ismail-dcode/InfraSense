@@ -102,7 +102,7 @@ export default function PresetSelector({ isOpen, onClose, onSelectPreset }) {
       <div className="glass-panel w-full max-w-2xl max-h-[85vh] flex flex-col border border-slate-700/80 p-4 sm:p-6 shadow-2xl relative">
         <div className="flex items-center justify-between border-b border-slate-800 pb-3 sm:pb-4 mb-3 sm:mb-5">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
+            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
             <h3 className="text-base sm:text-lg font-bold text-white">Select Architecture Preset</h3>
           </div>
           <button
@@ -127,15 +127,15 @@ export default function PresetSelector({ isOpen, onClose, onSelectPreset }) {
                   onSelectPreset(preset.input);
                   onClose();
                 }}
-                className="group glass-panel p-3.5 sm:p-4 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-900/90 cursor-pointer transition-all flex items-center justify-between gap-3"
+                className="group glass-panel p-3.5 sm:p-4 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-900/90 cursor-pointer transition-all flex items-center justify-between gap-3"
               >
                 <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center group-hover:border-cyan-400/50 group-hover:bg-cyan-500/10 text-cyan-400 transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center group-hover:border-emerald-400/50 group-hover:bg-emerald-500/10 text-emerald-400 transition-colors">
                     <IconComponent className="w-5 h-5" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <h4 className="font-semibold text-slate-100 text-sm group-hover:text-cyan-300 transition-colors">
+                      <h4 className="font-semibold text-slate-100 text-sm group-hover:text-emerald-300 transition-colors">
                         {preset.name}
                       </h4>
                       <span className="px-2 py-0.5 text-[10px] rounded-full bg-slate-800 text-slate-300 border border-slate-700">
@@ -146,7 +146,7 @@ export default function PresetSelector({ isOpen, onClose, onSelectPreset }) {
                   </div>
                 </div>
 
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
               </div>
             );
           })}
