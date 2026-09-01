@@ -17,9 +17,9 @@ export default function SecurityAndMonitoringAdvisor({ userQuestions = {} }) {
       key: 'needMonitoring',
       serviceName: 'AWS CloudWatch Alarms & SNS Alerts',
       icon: Activity,
-      color: 'text-cyan-400',
-      bgColor: 'bg-cyan-500/10',
-      borderColor: 'border-cyan-500/30',
+      color: 'text-emerald-400',
+      bgColor: 'bg-emerald-500/10',
+      borderColor: 'border-emerald-500/30',
       whySuggested: 'Why Suggested? You answered YES to 24/7 Monitoring. CloudWatch monitors your server CPU & Disk metrics 24/7, while SNS sends instant SMS/email alerts if server utilization exceeds 80%.'
     },
     {
@@ -66,11 +66,11 @@ export default function SecurityAndMonitoringAdvisor({ userQuestions = {} }) {
       {/* Header */}
       <div className="flex items-center justify-between border-b border-slate-800 pb-4">
         <div>
-          <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block">
+          <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest block">
             ARCHITECTURAL REASONS & EXPLANATIONS
           </span>
           <h3 className="text-xl font-extrabold text-white flex items-center gap-2 mt-0.5">
-            <HelpCircle className="w-5 h-5 text-cyan-400" />
+            <HelpCircle className="w-5 h-5 text-emerald-400" />
             Why Was Each Cloud Component Suggested?
           </h3>
         </div>
@@ -91,7 +91,7 @@ export default function SecurityAndMonitoringAdvisor({ userQuestions = {} }) {
               <div className="flex items-center gap-2.5">
                 <IconComp className={`w-5 h-5 ${item.color}`} />
                 <h4 className="font-extrabold text-sm text-slate-100">{item.serviceName}</h4>
-                <span className="px-2.5 py-0.5 text-[10px] font-mono rounded bg-slate-800 text-cyan-300 font-bold border border-slate-700">
+                <span className="px-2.5 py-0.5 text-[10px] font-mono rounded bg-slate-800 text-emerald-300 font-bold border border-slate-700">
                   MATCHED BY USER ANSWER
                 </span>
               </div>
@@ -106,7 +106,7 @@ export default function SecurityAndMonitoringAdvisor({ userQuestions = {} }) {
       {/* Region Selector */}
       <div className="space-y-3 pt-4 border-t border-slate-800">
         <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5 font-mono">
-          <MapPin className="w-4 h-4 text-cyan-400" />
+          <MapPin className="w-4 h-4 text-emerald-400" />
           Recommended AWS Deployment Region
         </label>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -116,12 +116,12 @@ export default function SecurityAndMonitoringAdvisor({ userQuestions = {} }) {
               onClick={() => setSelectedRegion(reg.id)}
               className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
                 selectedRegion === reg.id
-                  ? 'bg-cyan-500/15 border-cyan-400 text-white'
+                  ? 'bg-emerald-500/15 border-emerald-400 text-white'
                   : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:border-slate-700'
               }`}
             >
               <div className="font-extrabold text-xs text-slate-100">{reg.name}</div>
-              <div className="text-[11px] font-mono text-cyan-300 mt-1">{reg.id} • {reg.latency}</div>
+              <div className="text-[11px] font-mono text-emerald-300 mt-1">{reg.id} • {reg.latency}</div>
             </div>
           ))}
         </div>

@@ -25,7 +25,7 @@ export default function InstanceCatalog() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
         <div>
           <h2 className="text-lg font-bold text-white flex items-center gap-2">
-            <Server className="w-5 h-5 text-cyan-400" />
+            <Server className="w-5 h-5 text-emerald-400" />
             Cloud Hardware Instance Catalog
           </h2>
           <p className="text-xs text-slate-400">
@@ -41,7 +41,7 @@ export default function InstanceCatalog() {
             placeholder="Search t3.large, r6i, GPU..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-9 pr-4 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-200 focus:outline-none focus:border-cyan-500"
+            className="w-full pl-9 pr-4 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
           />
         </div>
       </div>
@@ -59,7 +59,7 @@ export default function InstanceCatalog() {
             onClick={() => setSelectedProvider(p)}
             className={`px-2.5 py-1 rounded-md text-xs font-mono font-semibold transition-colors uppercase ${
               selectedProvider === p
-                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40'
+                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
                 : 'bg-slate-900 text-slate-400 border border-slate-800 hover:text-slate-200'
             }`}
           >
@@ -104,7 +104,7 @@ export default function InstanceCatalog() {
                 <span className="px-2 py-0.5 text-[10px] font-mono uppercase rounded bg-slate-800 text-slate-300 border border-slate-700">
                   {inst.provider}
                 </span>
-                <span className="text-xs font-mono font-bold text-cyan-400">
+                <span className="text-xs font-mono font-bold text-emerald-400">
                   ${inst.monthlyEstimate.toFixed(2)}/mo
                 </span>
               </div>
@@ -118,7 +118,7 @@ export default function InstanceCatalog() {
               {/* Hardware Pill Specs */}
               <div className="grid grid-cols-2 gap-2 text-xs font-mono text-slate-300 pt-2 border-t border-slate-800/80">
                 <div className="flex items-center gap-1.5">
-                  <Cpu className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                  <Cpu className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span>{inst.vCPU} vCPU</span>
                 </div>
                 <div className="flex items-center gap-1.5">

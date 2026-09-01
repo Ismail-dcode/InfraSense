@@ -54,7 +54,7 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
       <div className="glass-panel p-4 sm:p-8 lg:p-12 space-y-6 sm:space-y-8 shadow-2xl">
         <div className="flex items-center justify-between border-b border-slate-800/80 pb-4 sm:pb-6">
           <div>
-            <span className="px-3 py-1 text-[10px] sm:text-xs font-extrabold font-mono rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 uppercase tracking-wider">
+            <span className="px-3 py-1 text-[10px] sm:text-xs font-extrabold font-mono rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">
               STEP 1 OF 5
             </span>
             <h2 className="text-xl sm:text-3xl font-extrabold text-white mt-2">
@@ -65,7 +65,7 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
           <button
             type="button"
             onClick={onReset}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-cyan-400 hover:bg-slate-900 transition-colors shrink-0"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-emerald-400 hover:bg-slate-900 transition-colors shrink-0"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             <span>Reset</span>
@@ -81,7 +81,7 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                 onClick={() => handleWorkloadSelect(profile.id)}
                 className={`p-4 sm:p-6 rounded-2xl sm:rounded-3xl border-2 cursor-pointer transition-all flex flex-col justify-between space-y-3 sm:space-y-4 ${
                   isSelected
-                    ? 'bg-gradient-to-br from-cyan-500/15 via-blue-600/10 to-indigo-600/15 border-cyan-400 shadow-2xl shadow-cyan-500/10 scale-[1.01]'
+                    ? 'bg-gradient-to-br from-emerald-500/15 via-blue-600/10 to-indigo-600/15 border-emerald-400 shadow-2xl shadow-emerald-500/10 scale-[1.01]'
                     : 'bg-slate-900/40 border-slate-800/80 text-slate-300 hover:border-slate-700 hover:bg-slate-900/80'
                 }`}
               >
@@ -90,7 +90,7 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                     {profile.name}
                   </h3>
                   {isSelected ? (
-                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center font-bold shadow-lg shadow-cyan-400/50 shrink-0">
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-emerald-400 text-slate-950 flex items-center justify-center font-bold shadow-lg shadow-emerald-400/50 shrink-0">
                       <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </div>
                   ) : (
@@ -124,10 +124,10 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
         <div className="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-sm font-extrabold text-white flex items-center gap-2">
-              <Server className="w-5 h-5 text-cyan-400" />
+              <Server className="w-5 h-5 text-emerald-400" />
               Target Server Quantity
             </span>
-            <span className="text-lg font-mono font-extrabold text-cyan-300">
+            <span className="text-lg font-mono font-extrabold text-emerald-300">
               {instanceCount} {instanceCount === 1 ? 'Instance' : 'Instances'}
             </span>
           </div>
@@ -145,7 +145,7 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                 onClick={() => handleInstanceCountChange(item.count)}
                 className={`py-3.5 px-3 rounded-2xl text-xs font-extrabold border-2 transition-all ${
                   instanceCount === item.count || (item.count === 4 && instanceCount >= 3 && instanceCount <= 5) || (item.count === 8 && instanceCount > 5)
-                    ? 'bg-slate-800 text-cyan-300 border-cyan-400 shadow-xl scale-[1.02]'
+                    ? 'bg-slate-800 text-emerald-300 border-emerald-400 shadow-xl scale-[1.02]'
                     : 'bg-slate-950/60 text-slate-400 border-slate-800 hover:text-slate-200'
                 }`}
               >
@@ -269,7 +269,7 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
           <div className="bg-slate-900/60 p-4 sm:p-6 rounded-2xl border border-slate-800 space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-xs sm:text-sm font-bold text-slate-100 flex items-center gap-2">
-                <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
+                <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
                 Processor Cores (vCPU)
               </span>
               <div className="flex items-center gap-1.5">
@@ -279,7 +279,7 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                   max="64"
                   value={input.vcpu}
                   onChange={(e) => onChange({ ...input, vcpu: Math.max(1, parseInt(e.target.value) || 1) })}
-                  className="w-16 sm:w-20 px-2.5 sm:px-3 py-1 bg-slate-950 border border-slate-700 rounded-xl text-center text-xs sm:text-sm font-mono text-cyan-300 focus:outline-none focus:border-cyan-500"
+                  className="w-16 sm:w-20 px-2.5 sm:px-3 py-1 bg-slate-950 border border-slate-700 rounded-xl text-center text-xs sm:text-sm font-mono text-emerald-300 focus:outline-none focus:border-emerald-500"
                 />
                 <span className="text-[11px] sm:text-xs text-slate-400">cores</span>
               </div>
@@ -371,7 +371,7 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
           {/* Q1: Monitoring */}
           <div className="bg-slate-900/60 p-5 rounded-2xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-start gap-3">
-              <Activity className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
+              <Activity className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
               <div>
                 <h4 className="text-sm font-extrabold text-slate-100">Do you want 24/7 Monitoring & Alarms?</h4>
                 <p className="text-xs text-slate-400 mt-0.5">Recommends AWS CloudWatch CPU/Disk alarms & SNS notifications</p>
@@ -384,7 +384,7 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                 onClick={() => setQuestionValue('needMonitoring', true)}
                 className={`px-6 py-2.5 rounded-xl text-xs font-extrabold border transition-all ${
                   input.questions?.needMonitoring === true
-                    ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400 shadow-md font-mono'
+                    ? 'bg-emerald-500/20 text-emerald-300 border-emerald-400 shadow-md font-mono'
                     : 'bg-slate-950 text-slate-500 border-slate-800'
                 }`}
               >
@@ -493,7 +493,7 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                 onClick={() => onChange({ ...input, provider: prov.id })}
                 className={`py-4 px-4 rounded-2xl text-xs sm:text-sm font-extrabold border-2 transition-all ${
                   input.provider === prov.id
-                    ? 'bg-slate-800 text-cyan-300 border-cyan-400 shadow-xl'
+                    ? 'bg-slate-800 text-emerald-300 border-emerald-400 shadow-xl'
                     : 'bg-slate-900/40 text-slate-400 border-slate-800 hover:bg-slate-800/60 hover:text-slate-200'
                 }`}
               >
@@ -530,7 +530,7 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
         <button
           type="button"
           onClick={onSubmit}
-          className="w-full py-6 px-8 rounded-3xl font-extrabold text-lg sm:text-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white shadow-2xl shadow-cyan-500/30 flex items-center justify-center gap-3 transition-all hover:scale-[1.01] active:scale-[0.99]"
+          className="w-full py-6 px-8 rounded-3xl font-extrabold text-lg sm:text-xl bg-gradient-to-r from-emerald-500 via-blue-600 to-indigo-600 hover:from-emerald-400 hover:to-indigo-500 text-white shadow-2xl shadow-emerald-500/30 flex items-center justify-center gap-3 transition-all hover:scale-[1.01] active:scale-[0.99]"
         >
           <Sparkles className="w-6 h-6" />
           <span>Get Recommended Server Suggestion</span>

@@ -29,7 +29,7 @@ export default function DeploymentChecklist() {
       
       <div className="flex items-center justify-between border-b border-slate-800 pb-4">
         <div>
-          <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block">
+          <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest block">
             PRE-LAUNCH READINESS
           </span>
           <h3 className="text-xl font-extrabold text-white flex items-center gap-2 mt-0.5">

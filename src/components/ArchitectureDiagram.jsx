@@ -36,11 +36,11 @@ export default function ArchitectureDiagram({ instanceName, provider = 'aws', wo
       {/* Header */}
       <div className="flex items-center justify-between border-b border-slate-800 pb-4">
         <div>
-          <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block">
+          <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest block">
             VISUAL TOPOLOGY DIAGRAM
           </span>
           <h3 className="text-xl font-extrabold text-white flex items-center gap-2 mt-0.5">
-            <Layers className="w-5 h-5 text-cyan-400" />
+            <Layers className="w-5 h-5 text-emerald-400" />
             Recommended Cloud Architecture Blueprint
           </h3>
         </div>
@@ -54,7 +54,7 @@ export default function ArchitectureDiagram({ instanceName, provider = 'aws', wo
       </p>
 
       {/* Touch swipe hint for mobile devices */}
-      <span className="block sm:hidden text-[10px] font-mono text-cyan-400/80 text-center">
+      <span className="block sm:hidden text-[10px] font-mono text-emerald-400/80 text-center">
         ← Swipe horizontally to view topology flow →
       </span>
 
@@ -64,7 +64,7 @@ export default function ArchitectureDiagram({ instanceName, provider = 'aws', wo
           
           {/* Step 1: Internet & DNS */}
           <div className="flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shadow-lg">
+            <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-lg">
               <Cloud className="w-7 h-7" />
             </div>
             <span className="text-xs font-bold text-slate-200">Internet Users</span>
@@ -85,11 +85,11 @@ export default function ArchitectureDiagram({ instanceName, provider = 'aws', wo
           <ArrowRight className="w-5 h-5 text-slate-600 shrink-0" />
 
           {/* Step 3: Compute Cluster */}
-          <div className="flex flex-col items-center gap-2 bg-slate-900/90 p-4 rounded-2xl border border-cyan-500/40">
-            <div className="w-14 h-14 rounded-2xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300 shadow-xl">
+          <div className="flex flex-col items-center gap-2 bg-slate-900/90 p-4 rounded-2xl border border-emerald-500/40">
+            <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-emerald-300 shadow-xl">
               <Server className="w-7 h-7" />
             </div>
-            <span className="text-xs font-extrabold text-cyan-300 font-mono">{instanceName}</span>
+            <span className="text-xs font-extrabold text-emerald-300 font-mono">{instanceName}</span>
             <span className="text-[10px] font-mono text-slate-300">{specs.cluster}</span>
           </div>
 
