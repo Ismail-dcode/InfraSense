@@ -98,22 +98,22 @@ export default function PresetSelector({ isOpen, onClose, onSelectPreset }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md animate-fadeIn">
-      <div className="glass-panel w-full max-w-2xl max-h-[85vh] flex flex-col border border-slate-700/80 p-4 sm:p-6 shadow-2xl relative">
-        <div className="flex items-center justify-between border-b border-slate-800 pb-3 sm:pb-4 mb-3 sm:mb-5">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm animate-fadeIn">
+      <div className="bg-white rounded-3xl w-full max-w-2xl max-h-[85vh] flex flex-col border border-slate-200 p-5 sm:p-7 shadow-2xl relative">
+        <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
-            <h3 className="text-base sm:text-lg font-bold text-white">Select Architecture Preset</h3>
+            <Sparkles className="w-5 h-5 text-blue-600" />
+            <h3 className="text-lg font-bold text-slate-900">Select Architecture Preset</h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-1 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <p className="text-xs sm:text-sm text-slate-300 mb-3 sm:mb-4">
+        <p className="text-xs sm:text-sm text-slate-500 mb-4 font-normal">
           Choose a pre-configured architecture blueprint to instantly populate hardware, memory, IOPS, and workload parameters into the recommendation engine.
         </p>
 
@@ -127,26 +127,26 @@ export default function PresetSelector({ isOpen, onClose, onSelectPreset }) {
                   onSelectPreset(preset.input);
                   onClose();
                 }}
-                className="group glass-panel p-3.5 sm:p-4 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-900/90 cursor-pointer transition-all flex items-center justify-between gap-3"
+                className="group p-4 rounded-2xl border border-slate-200 hover:border-blue-300 hover:bg-blue-50/40 bg-slate-50/60 cursor-pointer transition-all flex items-center justify-between gap-3"
               >
                 <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center group-hover:border-emerald-400/50 group-hover:bg-emerald-500/10 text-emerald-400 transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center group-hover:border-blue-300 group-hover:bg-blue-600 group-hover:text-white text-blue-600 transition-colors shadow-xs">
                     <IconComponent className="w-5 h-5" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <h4 className="font-semibold text-slate-100 text-sm group-hover:text-emerald-300 transition-colors">
+                      <h4 className="font-bold text-slate-900 text-sm group-hover:text-blue-600 transition-colors">
                         {preset.name}
                       </h4>
-                      <span className="px-2 py-0.5 text-[10px] rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+                      <span className="px-2 py-0.5 text-[10px] rounded-full bg-white text-slate-700 border border-slate-200 font-semibold shadow-xs">
                         {preset.category}
                       </span>
                     </div>
-                    <p className="text-xs text-slate-400 mt-1">{preset.description}</p>
+                    <p className="text-xs text-slate-500 mt-0.5 font-normal">{preset.description}</p>
                   </div>
                 </div>
 
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
+                <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
               </div>
             );
           })}

@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import ToolNavbar from './ToolNavbar';
 import RequirementForm from './RequirementForm';
 import RecommendationResult from './RecommendationResult';
@@ -41,9 +41,9 @@ const SERVICE_CATEGORIES = [
     subtitle: 'EC2 / VMs',
     desc: 'Instance sizing, vCPU, RAM & IOPS',
     icon: Cpu,
-    color: 'from-emerald-500/20 to-green-500/20',
-    borderColor: 'border-emerald-400',
-    textColor: 'text-emerald-300',
+    color: 'from-blue-500/10 to-indigo-500/10',
+    borderColor: 'border-blue-500',
+    textColor: 'text-blue-600',
   },
   {
     id: 'database',
@@ -51,9 +51,9 @@ const SERVICE_CATEGORIES = [
     subtitle: 'RDS / Aurora',
     desc: 'RDS, Aurora, Redis & DynamoDB',
     icon: Database,
-    color: 'from-emerald-400/20 to-teal-500/20',
-    borderColor: 'border-emerald-400',
-    textColor: 'text-emerald-300',
+    color: 'from-indigo-500/10 to-purple-500/10',
+    borderColor: 'border-indigo-500',
+    textColor: 'text-indigo-600',
   },
   {
     id: 'storage',
@@ -61,9 +61,9 @@ const SERVICE_CATEGORIES = [
     subtitle: 'S3 / EBS',
     desc: 'S3 buckets, EBS SSD & Glacier',
     icon: HardDrive,
-    color: 'from-teal-500/20 to-emerald-500/20',
-    borderColor: 'border-emerald-400',
-    textColor: 'text-emerald-300',
+    color: 'from-sky-500/10 to-blue-500/10',
+    borderColor: 'border-sky-500',
+    textColor: 'text-sky-600',
   },
   {
     id: 'serverless',
@@ -71,13 +71,13 @@ const SERVICE_CATEGORIES = [
     subtitle: 'Lambda / Fargate',
     desc: 'Lambda, Fargate, App Runner & Cloud Run',
     icon: Zap,
-    color: 'from-green-500/20 to-emerald-500/20',
-    borderColor: 'border-emerald-400',
-    textColor: 'text-emerald-300',
+    color: 'from-blue-500/10 to-sky-500/10',
+    borderColor: 'border-blue-500',
+    textColor: 'text-blue-600',
   },
 ];
 
-export default function CalculatorApp() {
+export default function CalculatorApp({ initialPreset, onClearInitialPreset }) {
   const [activeCategory, setActiveCategory] = useState('compute');
   const [activeTab, setActiveTab] = useState('calculator');
   const [userInput, setUserInput] = useState(INITIAL_INPUT);
@@ -87,6 +87,19 @@ export default function CalculatorApp() {
   const [hasCalculated, setHasCalculated] = useState(false);
 
   const resultRef = useRef(null);
+
+  // Handle incoming initial preset from Landing Page
+  useEffect(() => {
+    if (initialPreset) {
+      setUserInput((prev) => ({ ...prev, ...initialPreset }));
+      setActiveCategory('compute');
+      setActiveTab('calculator');
+      handleSubmitForm();
+      if (onClearInitialPreset) {
+        onClearInitialPreset();
+      }
+    }
+  }, [initialPreset, onClearInitialPreset]);
 
   const recommendationResult = useMemo(() => {
     return evaluateCloudRequirements(userInput, activeRules);
@@ -112,7 +125,7 @@ export default function CalculatorApp() {
       setTimeout(() => {
         resultRef.current?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
-    }, 1200);
+    }, 1100);
   };
 
   const handleResetForm = () => {
@@ -122,14 +135,14 @@ export default function CalculatorApp() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative pb-16">
       <ToolNavbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onOpenPresets={() => setIsPresetModalOpen(true)}
       />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
         <PresetSelector
           isOpen={isPresetModalOpen}
           onClose={() => setIsPresetModalOpen(false)}
@@ -142,15 +155,15 @@ export default function CalculatorApp() {
 
         {activeTab === 'calculator' && (
           <div className="space-y-8 sm:space-y-10">
-            {/* Service category selector */}
+            {/* Service Category Selector */}
             <ScrollReveal>
               <div className="space-y-4">
                 <div className="text-center space-y-1">
-                  <span className="text-[10px] sm:text-xs font-mono font-semibold text-emerald-400 uppercase tracking-widest block">
+                  <span className="text-[11px] font-mono font-bold text-blue-600 uppercase tracking-widest block">
                     Step 1 — Select Cloud Service
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">
-                    What resource do you need to size?
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900">
+                    What cloud resource do you need to size?
                   </h3>
                 </div>
 
@@ -164,28 +177,28 @@ export default function CalculatorApp() {
                         key={cat.id}
                         type="button"
                         onClick={() => setActiveCategory(cat.id)}
-                        className={`p-4 sm:p-5 rounded-2xl border text-left transition-all flex flex-col justify-between space-y-3 ${
+                        className={`p-4 sm:p-5 rounded-2xl text-left transition-all flex flex-col justify-between space-y-3 cursor-pointer ${
                           isSelected
-                            ? `bg-gradient-to-br ${cat.color} ${cat.borderColor} shadow-lg shadow-emerald-500/10 scale-[1.01]`
-                            : 'bg-white/[0.02] border-white/[0.06] text-slate-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.03]'
+                            ? `bg-blue-50/70 border-2 ${cat.borderColor} shadow-lg shadow-blue-500/10 scale-[1.01]`
+                            : 'bg-white border border-slate-200 text-slate-600 hover:border-slate-300 hover:shadow-sm'
                         }`}
                       >
                         <div className="flex items-center justify-between">
                           <div
-                            className={`p-2.5 rounded-xl bg-[#07090e] border border-white/[0.06] ${cat.textColor}`}
+                            className={`p-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs ${cat.textColor}`}
                           >
                             <IconComponent className="w-5 h-5" />
                           </div>
                           {isSelected && (
-                            <div className="w-6 h-6 rounded-full bg-emerald-400 text-[#07090e] flex items-center justify-center shrink-0">
+                            <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-xs">
                               <CheckCircle2 className="w-3.5 h-3.5" />
                             </div>
                           )}
                         </div>
                         <div className="space-y-0.5">
-                          <h4 className="font-bold text-sm text-white">{cat.title}</h4>
-                          <p className="text-[10px] font-mono text-emerald-400/70">{cat.subtitle}</p>
-                          <p className="text-[11px] text-slate-500 leading-relaxed">{cat.desc}</p>
+                          <h4 className="font-bold text-sm text-slate-900">{cat.title}</h4>
+                          <p className="text-[10px] font-mono font-semibold text-blue-600">{cat.subtitle}</p>
+                          <p className="text-[11px] text-slate-500 leading-relaxed font-normal">{cat.desc}</p>
                         </div>
                       </button>
                     );
@@ -207,13 +220,13 @@ export default function CalculatorApp() {
                   {isCalculating && <RuleEvaluationLoader />}
 
                   {!isCalculating && hasCalculated && (
-                    <div className="space-y-8">
-                      <div className="text-center">
-                        <span className="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-widest block mb-1">
-                          Recommendation Result
+                    <div className="space-y-8 animate-fadeIn">
+                      <div className="text-center space-y-1">
+                        <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-widest block">
+                          RECOMMENDATION RESULT
                         </span>
-                        <h3 className="text-2xl sm:text-3xl font-bold text-white">
-                          Suggested Server Instance Architecture
+                        <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+                          Optimal Server Instance Blueprint
                         </h3>
                       </div>
                       <RecommendationResult result={recommendationResult} userInput={userInput} />

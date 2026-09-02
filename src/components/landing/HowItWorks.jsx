@@ -1,79 +1,108 @@
 import React from 'react';
-import { Sliders, Cpu, FileOutput, Rocket } from 'lucide-react';
+import { Cpu, Database, HardDrive, Zap, ArrowRight, Layers, Sliders, FileCode2 } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 
-const STEPS = [
+const LOOP_CARDS = [
   {
     step: '01',
-    icon: Sliders,
-    title: 'Define Your Workload',
-    description:
-      'Select a cloud category — compute, database, storage, or serverless. Configure vCPU, RAM, IOPS, traffic patterns, and enterprise options like Multi-AZ or encryption.',
+    icon: Cpu,
+    category: 'compute',
+    title: 'Compute Sizing',
+    description: 'EC2, Azure VMs, and GCP Compute Engine instance matching with vCPU, RAM, and IOPS analysis.',
+    tag: 'Virtual Servers',
   },
   {
     step: '02',
-    icon: Cpu,
-    title: 'Run the Rule Engine',
-    description:
-      'InfraSense evaluates your inputs against 15+ heuristic rules — penalizing burstable instances for sustained load, boosting memory-optimized families for databases, and more.',
+    icon: Database,
+    category: 'database',
+    title: 'Database Advisor',
+    description: 'RDS, Aurora Serverless v2, DynamoDB, and Redis recommendations based on connections and IOPS.',
+    tag: 'Managed DBs',
   },
   {
     step: '03',
-    icon: FileOutput,
-    title: 'Review Recommendations',
-    description:
-      'See ranked instance matches with cost estimates, architectural justifications, health scores, and visual topology diagrams showing DNS → ALB → EC2 → RDS flow.',
+    icon: HardDrive,
+    category: 'storage',
+    title: 'Storage Optimizer',
+    description: 'S3 tiering (Standard, Intelligent, Glacier) and EBS volume sizing with gp3 vs io2 comparison.',
+    tag: 'Object & Block',
   },
   {
     step: '04',
-    icon: Rocket,
-    title: 'Export & Deploy',
-    description:
-      'Copy Terraform HCL configurations, follow the deployment checklist, and customize rules in the Rule Manager to match your team\'s standards.',
+    icon: Zap,
+    category: 'serverless',
+    title: 'Serverless & IaC',
+    description: 'Lambda vs ECS Fargate vs App Runner — plus one-click copyable Terraform HCL exports.',
+    tag: 'Zero-Server',
   },
 ];
 
-export default function HowItWorks() {
+export default function HowItWorks({ onSelectCategory }) {
   return (
-    <section id="how-it-works" className="relative py-24 sm:py-32">
-      <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-16 sm:py-24 bg-gradient-to-b from-transparent via-blue-50/30 to-transparent">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header (Taplio Style) */}
         <ScrollReveal>
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-widest">
-              How It Works
+          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+            <span className="text-xs font-bold font-mono text-blue-600 uppercase tracking-widest block mb-2">
+              ONE ENGINE, THE WHOLE CLOUD STACK
             </span>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              From requirements to production-ready architecture
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              You bring the requirements. <br className="hidden sm:block" />
+              <span className="gradient-text-blue">InfraSense handles the growth.</span>
             </h2>
-            <p className="mt-4 text-slate-400">
-              Four steps. No account required. Start sizing in under a minute.
+            <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+              Most tools hand you a blank form and wish you luck. InfraSense guides you through every step — so sizing cloud infrastructure finally feels easy.
             </p>
           </div>
         </ScrollReveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
-          {STEPS.map((item, i) => (
-            <ScrollReveal key={item.step} delay={i * 100}>
-              <div className="relative h-full">
-                {i < STEPS.length - 1 && (
-                  <div className="hidden lg:block absolute top-10 left-[calc(100%+0.5rem)] w-[calc(100%-1rem)] h-px bg-gradient-to-r from-emerald-500/40 to-transparent z-0" />
-                )}
-                <div className="relative glass-panel p-6 h-full group hover:border-emerald-500/20 transition-all">
-                  <div className="flex items-center gap-3 mb-5">
-                    <span className="text-xs font-mono font-bold text-emerald-400">{item.step}</span>
-                    <div className="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/15 transition-colors">
-                      <item.icon className="w-4.5 h-4.5 text-emerald-400" />
+        {/* 4 Loop Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {LOOP_CARDS.map((card, i) => {
+            const Icon = card.icon;
+            return (
+              <ScrollReveal key={card.step} delay={i * 80}>
+                <div
+                  onClick={() => onSelectCategory && onSelectCategory(card.category)}
+                  className="group relative bg-white border border-slate-200/90 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-300 transition-all duration-300 flex flex-col justify-between h-full cursor-pointer hover:-translate-y-1"
+                >
+                  <div>
+                    {/* Top Row: Icon & Step Number */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <span className="text-xs font-mono font-bold text-slate-400 group-hover:text-blue-600 transition-colors">
+                        {card.step}
+                      </span>
                     </div>
+
+                    <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                      {card.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      {card.description}
+                    </p>
                   </div>
-                  <h3 className="text-base font-bold text-white mb-2">{item.title}</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">{item.description}</p>
+
+                  {/* Explore Link */}
+                  <div className="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between">
+                    <span className="text-xs font-bold text-blue-600 flex items-center gap-1 group-hover:gap-1.5 transition-all">
+                      Explore <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
+                    <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-md bg-slate-100 text-slate-600">
+                      {card.tag}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            );
+          })}
         </div>
+
       </div>
     </section>
   );

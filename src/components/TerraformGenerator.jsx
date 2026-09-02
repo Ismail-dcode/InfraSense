@@ -265,16 +265,16 @@ output "instance_public_ip" {
   };
 
   return (
-    <div className="glass-panel p-4 sm:p-8 border border-slate-800 space-y-4">
+    <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 space-y-4 shadow-sm">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
         <div>
-          <span className="text-[10px] sm:text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest block">
+          <span className="text-[10px] sm:text-xs font-mono font-bold text-blue-600 uppercase tracking-widest block">
             INFRASTRUCTURE AS CODE (IaC) • {provider.toUpperCase()}
           </span>
-          <h3 className="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2 mt-0.5">
-            <Code2 className="w-5 h-5 text-emerald-400" />
+          <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 flex items-center gap-2 mt-0.5">
+            <Code2 className="w-5 h-5 text-blue-600" />
             Terraform Blueprint Generator (`main.tf`)
           </h3>
         </div>
@@ -282,15 +282,15 @@ output "instance_public_ip" {
         <div className="flex items-center gap-2">
           <button
             onClick={handleCopy}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-slate-300 hover:text-white border border-slate-800"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-blue-600 text-white hover:bg-blue-700 shadow-xs transition-colors cursor-pointer"
           >
-            {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+            {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
             <span>{copied ? 'Copied HCL!' : 'Copy Code'}</span>
           </button>
 
           <button
             onClick={handleDownload}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-slate-300 hover:text-white border border-slate-800"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:text-slate-900 hover:bg-slate-200 border border-slate-200 transition-colors cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download .tf</span>
@@ -298,11 +298,10 @@ output "instance_public_ip" {
         </div>
       </div>
 
-      <pre className="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800 text-[11px] sm:text-xs font-mono text-emerald-300 overflow-x-auto max-h-72 no-scrollbar">
+      <pre className="bg-slate-950 p-5 rounded-2xl border border-slate-800 text-[11px] sm:text-xs font-mono text-blue-300 overflow-x-auto max-h-72 no-scrollbar leading-relaxed shadow-inner">
         {terraformCode}
       </pre>
 
     </div>
   );
 }
-

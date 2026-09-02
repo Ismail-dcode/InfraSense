@@ -25,20 +25,20 @@ export default function DeploymentChecklist() {
   const completedCount = Object.values(checkedItems).filter(Boolean).length;
 
   return (
-    <div className="glass-panel p-6 sm:p-8 border border-slate-800 space-y-5">
+    <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 space-y-5 shadow-sm">
       
-      <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+      <div className="flex items-center justify-between border-b border-slate-100 pb-4">
         <div>
-          <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest block">
+          <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-widest block">
             PRE-LAUNCH READINESS
           </span>
-          <h3 className="text-xl font-extrabold text-white flex items-center gap-2 mt-0.5">
-            <Shield className="w-5 h-5 text-emerald-400" />
+          <h3 className="text-xl font-extrabold text-slate-900 flex items-center gap-2 mt-0.5">
+            <Shield className="w-5 h-5 text-blue-600" />
             Production Deployment Readiness Checklist
           </h3>
         </div>
 
-        <span className="px-3 py-1 text-xs font-mono rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 font-bold">
+        <span className="px-3.5 py-1 text-xs font-mono rounded-full bg-blue-50 text-blue-700 border border-blue-200 font-bold">
           {completedCount} / {items.length} Ready
         </span>
       </div>
@@ -50,18 +50,18 @@ export default function DeploymentChecklist() {
             <div
               key={item.id}
               onClick={() => toggleItem(item.id)}
-              className={`p-4 rounded-xl border cursor-pointer transition-all flex items-start gap-3.5 ${
+              className={`p-4 rounded-2xl border cursor-pointer transition-all flex items-start gap-3.5 ${
                 isChecked
-                  ? 'bg-emerald-500/10 border-emerald-500/40 text-slate-100'
-                  : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:border-slate-700'
+                  ? 'bg-blue-50/50 border-blue-300 text-slate-900 shadow-xs'
+                  : 'bg-slate-50 border-slate-200 text-slate-600 hover:border-slate-300'
               }`}
             >
-              <div className="text-emerald-400 shrink-0 mt-0.5">
-                {isChecked ? <CheckSquare className="w-5 h-5" /> : <Square className="w-5 h-5 text-slate-600" />}
+              <div className="text-blue-600 shrink-0 mt-0.5">
+                {isChecked ? <CheckSquare className="w-5 h-5" /> : <Square className="w-5 h-5 text-slate-400" />}
               </div>
               <div>
-                <h4 className="text-xs font-extrabold text-slate-100">{item.label}</h4>
-                <p className="text-[11px] text-slate-400 mt-0.5">{item.desc}</p>
+                <h4 className="text-xs font-extrabold text-slate-900">{item.label}</h4>
+                <p className="text-[11px] text-slate-500 mt-0.5 font-normal">{item.desc}</p>
               </div>
             </div>
           );

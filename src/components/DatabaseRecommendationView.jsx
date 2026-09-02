@@ -17,25 +17,25 @@ export default function DatabaseRecommendationView() {
   const ramQuickPresets = [4, 8, 16, 32, 64, 128, 256];
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6 sm:space-y-10 animate-fadeIn">
+    <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8 animate-fadeIn">
       
       {/* Database Sizing Form Controls */}
-      <div className="glass-panel p-4 sm:p-8 lg:p-12 space-y-6 sm:space-y-8 shadow-2xl">
-        <div className="border-b border-slate-800 pb-4 sm:pb-5">
-          <span className="px-3 py-1 text-[10px] sm:text-xs font-extrabold font-mono rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 uppercase tracking-wider">
+      <div className="bg-white border border-slate-200/90 rounded-3xl p-5 sm:p-8 lg:p-10 space-y-6 shadow-sm">
+        <div className="border-b border-slate-100 pb-4 sm:pb-5">
+          <span className="px-3 py-1 text-[10px] sm:text-xs font-extrabold font-mono rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 uppercase tracking-wider">
             MANAGED DATABASE SIZING ADVISOR
           </span>
-          <h2 className="text-xl sm:text-3xl font-extrabold text-white mt-2">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 mt-2">
             Database Engine, CPU & Memory Sizing
           </h2>
-          <p className="text-xs sm:text-sm text-slate-300 mt-1">
+          <p className="text-xs sm:text-sm text-slate-500 mt-1">
             Configure your database engine, processor cores, system RAM, and storage size to receive managed database recommendations.
           </p>
         </div>
 
         {/* 1. DB Engine Selector */}
         <div className="space-y-3">
-          <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
+          <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 font-mono">
             1. SELECT DATABASE ENGINE
           </label>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -50,25 +50,25 @@ export default function DatabaseRecommendationView() {
                 onClick={() => setDbEngine(eng.id)}
                 className={`p-4 rounded-2xl border-2 cursor-pointer transition-all ${
                   dbEngine === eng.id
-                    ? 'bg-indigo-500/15 border-indigo-400 text-white shadow-xl scale-[1.01]'
-                    : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                    ? 'bg-indigo-50/70 border-indigo-500 shadow-md shadow-indigo-500/10 scale-[1.01]'
+                    : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-slate-300 hover:bg-white'
                 }`}
               >
-                <div className="font-extrabold text-sm text-slate-100">{eng.label}</div>
-                <div className="text-xs text-slate-400 font-medium mt-1">{eng.desc}</div>
+                <div className="font-extrabold text-sm text-slate-900">{eng.label}</div>
+                <div className="text-xs text-slate-500 font-normal mt-1">{eng.desc}</div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* 2. vCPU & System RAM Custom Sliders */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-2">
+        {/* 2. vCPU & RAM Sliders */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
           
           {/* DB vCPU */}
-          <div className="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-bold text-slate-100 flex items-center gap-2">
-                <Cpu className="w-5 h-5 text-emerald-400" />
+              <span className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                <Cpu className="w-4 h-4 text-blue-600" />
                 Database CPU Cores (vCPU)
               </span>
               <div className="flex items-center gap-1.5">
@@ -78,9 +78,9 @@ export default function DatabaseRecommendationView() {
                   max="64"
                   value={vcpu}
                   onChange={(e) => setVcpu(Math.max(2, parseInt(e.target.value) || 2))}
-                  className="w-20 px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-xl text-center text-sm font-mono text-emerald-300 focus:outline-none focus:border-emerald-500"
+                  className="w-16 px-2 py-1 bg-white border border-slate-300 rounded-xl text-center text-xs sm:text-sm font-mono font-bold text-blue-700 focus:outline-none focus:border-blue-500"
                 />
-                <span className="text-xs text-slate-400">cores</span>
+                <span className="text-xs text-slate-500">cores</span>
               </div>
             </div>
 
@@ -93,7 +93,7 @@ export default function DatabaseRecommendationView() {
               onChange={(e) => setVcpu(parseInt(e.target.value))}
               className="w-full"
             />
-            <div className="flex justify-between text-[11px] font-mono text-slate-500">
+            <div className="flex justify-between text-[10px] sm:text-[11px] font-mono text-slate-400">
               <span>2 vCPU</span>
               <span>4 vCPU</span>
               <span>8 vCPU</span>
@@ -103,10 +103,10 @@ export default function DatabaseRecommendationView() {
           </div>
 
           {/* DB RAM */}
-          <div className="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-bold text-slate-100 flex items-center gap-2">
-                <Zap className="w-5 h-5 text-indigo-400" />
+              <span className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                <Zap className="w-4 h-4 text-indigo-600" />
                 Database Memory (RAM)
               </span>
               <div className="flex items-center gap-1.5">
@@ -116,9 +116,9 @@ export default function DatabaseRecommendationView() {
                   max="512"
                   value={ram}
                   onChange={(e) => setRam(Math.max(4, parseFloat(e.target.value) || 4))}
-                  className="w-20 px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-xl text-center text-sm font-mono text-indigo-300 focus:outline-none focus:border-indigo-500"
+                  className="w-16 px-2 py-1 bg-white border border-slate-300 rounded-xl text-center text-xs sm:text-sm font-mono font-bold text-indigo-700 focus:outline-none focus:border-indigo-500"
                 />
-                <span className="text-xs text-slate-400">GB</span>
+                <span className="text-xs text-slate-500">GB</span>
               </div>
             </div>
 
@@ -133,16 +133,16 @@ export default function DatabaseRecommendationView() {
             />
 
             <div className="flex items-center gap-1.5 flex-wrap pt-1">
-              <span className="text-[11px] text-slate-400">Quick Select:</span>
+              <span className="text-[11px] text-slate-500">Quick Select:</span>
               {ramQuickPresets.map(presetRam => (
                 <button
                   key={presetRam}
                   type="button"
                   onClick={() => setRam(presetRam)}
-                  className={`px-2.5 py-1 text-[11px] font-mono rounded-lg border transition-colors ${
+                  className={`px-2.5 py-0.5 text-[11px] font-mono rounded-lg border transition-colors cursor-pointer ${
                     ram === presetRam
-                      ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/50 font-bold'
-                      : 'bg-slate-950 text-slate-400 border-slate-800 hover:text-slate-200'
+                      ? 'bg-indigo-600 text-white border-indigo-600 font-bold'
+                      : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
                   }`}
                 >
                   {presetRam} GB
@@ -153,124 +153,99 @@ export default function DatabaseRecommendationView() {
 
         </div>
 
-        {/* 3. Storage Size & Multi-AZ Toggle */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2">
-          
-          <div className="sm:col-span-2 bg-slate-900/60 p-5 rounded-2xl border border-slate-800 space-y-3">
+        {/* 3. Storage Slider & Multi-AZ Toggle */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+          <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-slate-300">Data Storage Capacity</span>
-              <span className="text-sm font-mono font-bold text-indigo-400">{dataSizeGB} GB</span>
+              <span className="text-xs font-bold text-slate-900">Provisioned DB Storage</span>
+              <span className="text-sm font-mono font-bold text-blue-600">{dataSizeGB} GB SSD</span>
             </div>
             <input
               type="range"
-              min="20"
-              max="2000"
-              step="20"
+              min="50"
+              max="5000"
+              step="50"
               value={dataSizeGB}
               onChange={(e) => setDataSizeGB(parseInt(e.target.value))}
               className="w-full"
             />
           </div>
 
-          <div className="bg-slate-900/60 p-5 rounded-2xl border border-slate-800 flex flex-col justify-between">
-            <span className="text-xs font-bold text-slate-300">Multi-AZ High Availability</span>
-            <div className="flex items-center gap-2 pt-2">
-              <button
-                type="button"
-                onClick={() => setMultiAZ(true)}
-                className={`flex-1 py-2 rounded-xl text-xs font-bold border font-mono ${
-                  multiAZ ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/50' : 'bg-slate-950 text-slate-500 border-slate-800'
-                }`}
-              >
-                YES
-              </button>
-              <button
-                type="button"
-                onClick={() => setMultiAZ(false)}
-                className={`flex-1 py-2 rounded-xl text-xs font-bold border font-mono ${
-                  !multiAZ ? 'bg-slate-800 text-rose-300 border-rose-500/50' : 'bg-slate-950 text-slate-500 border-slate-800'
-                }`}
-              >
-                NO
-              </button>
+          <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex items-center justify-between">
+            <div>
+              <h4 className="text-xs font-bold text-slate-900">Multi-AZ Standby Replica</h4>
+              <p className="text-[11px] text-slate-500 mt-0.5">High availability synchronous failover</p>
             </div>
+            <button
+              type="button"
+              onClick={() => setMultiAZ(!multiAZ)}
+              className={`px-4 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
+                multiAZ
+                  ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
+                  : 'bg-white text-slate-600 border-slate-200'
+              }`}
+            >
+              {multiAZ ? 'ENABLED' : 'DISABLED'}
+            </button>
           </div>
-
         </div>
       </div>
 
-      {/* Database Recommendation Result Card */}
-      <div className="glass-panel p-8 sm:p-12 border-2 border-indigo-500/40 relative overflow-hidden shadow-2xl space-y-8">
-        
-        <div className="flex items-center justify-between border-b border-slate-800 pb-5">
-          <div className="flex items-center gap-3">
-            <span className="glow-badge px-3.5 py-1.5 rounded-full text-xs font-bold font-mono tracking-wide flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-indigo-400" />
-              {primary.score}% MATCH SCORE
-            </span>
-            <span className="px-3 py-1 rounded-xl text-xs font-bold uppercase bg-slate-800 text-slate-200 border border-slate-700">
-              {db.provider} Cloud
-            </span>
-          </div>
-
-          <span className="text-xs text-slate-400 font-mono">
-            Service: {db.serviceType}
+      {/* Database Result Card */}
+      <div className="bg-white border-2 border-indigo-400 rounded-3xl p-6 sm:p-10 shadow-lg space-y-6 animate-fadeIn">
+        <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+          <span className="px-3.5 py-1.5 rounded-full text-xs font-bold font-mono tracking-wide flex items-center gap-1.5 bg-indigo-50 text-indigo-700 border border-indigo-200">
+            <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+            {primary.score}% MATCH SCORE
           </span>
+          <span className="text-xs font-mono font-semibold text-slate-500">Tier: {db.familyCategory}</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-          <div className="md:col-span-2 space-y-3">
-            <span className="text-xs font-bold text-indigo-400 tracking-wider uppercase font-mono">
-              RECOMMENDED MANAGED DATABASE TIER
+          <div className="md:col-span-2 space-y-2">
+            <span className="text-xs font-bold text-indigo-600 uppercase font-mono tracking-wider">
+              RECOMMENDED MANAGED DATABASE
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-mono">
-              {db.name}
-            </h2>
-            <p className="text-xs text-slate-300 leading-relaxed pt-1">
-              {db.description}
-            </p>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-mono">{db.name}</h2>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-1 font-normal">{db.description}</p>
           </div>
 
-          <div className="bg-slate-900/90 p-6 rounded-2xl border border-slate-800 text-right md:text-left space-y-1">
-            <span className="text-xs font-bold text-slate-400 uppercase font-mono">Estimated Monthly Bill</span>
-            <div className="text-3xl font-extrabold font-mono text-indigo-300">
-              ${db.monthlyEstimate.toFixed(2)}
-              <span className="text-xs text-slate-400 font-sans font-normal ml-1">/mo</span>
+          <div className="bg-slate-50 p-6 rounded-3xl border border-slate-200 text-left space-y-1 shadow-xs">
+            <span className="text-xs font-bold text-slate-500 uppercase font-mono">Estimated Monthly DB Cost</span>
+            <div className="text-3xl font-extrabold font-mono text-indigo-600">
+              ${primary.estimatedMonthlyCost.toFixed(2)}
+              <span className="text-xs text-slate-500 font-sans font-normal ml-1">/mo</span>
             </div>
-            <p className="text-xs text-slate-400 font-mono">~${db.hourlyRate.toFixed(3)} / hour</p>
+            <p className="text-xs text-slate-500 font-mono">~${db.hourlyRate.toFixed(4)} / hr</p>
           </div>
         </div>
 
-        {/* Hardware Specs Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-slate-800">
-          <div className="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-            <span className="text-xs text-slate-400 font-mono block">CPU Power</span>
-            <span className="text-lg font-bold font-mono text-white">{db.vCPU} Cores</span>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-slate-100">
+          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <span className="text-[10px] text-slate-500 font-mono block uppercase">vCPU Cores</span>
+            <span className="text-lg font-bold text-slate-900 font-mono">{db.vCPU} vCPU</span>
           </div>
-          <div className="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-            <span className="text-xs text-slate-400 font-mono block">Memory RAM</span>
-            <span className="text-lg font-bold font-mono text-white">{db.ramGB} GB</span>
+          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <span className="text-[10px] text-slate-500 font-mono block uppercase">RAM Memory</span>
+            <span className="text-lg font-bold text-slate-900 font-mono">{db.ramGB} GB</span>
           </div>
-          <div className="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-            <span className="text-xs text-slate-400 font-mono block">Storage Capacity</span>
-            <span className="text-sm font-bold font-mono text-emerald-400 leading-7">{dataSizeGB} GB ({db.storageType})</span>
+          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <span className="text-[10px] text-slate-500 font-mono block uppercase">IOPS Capacity</span>
+            <span className="text-lg font-bold text-slate-900 font-mono">{db.maxIops.toLocaleString()}</span>
           </div>
-          <div className="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-            <span className="text-xs text-slate-400 font-mono block">High Availability</span>
-            <span className="text-sm font-bold text-indigo-400 leading-7">
-              {multiAZ && db.multiAZ ? '✓ Multi-AZ Failover' : 'Single AZ'}
-            </span>
+          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <span className="text-[10px] text-slate-500 font-mono block uppercase">Storage Type</span>
+            <span className="text-sm font-bold text-slate-900 font-mono leading-7">{db.defaultStorageType}</span>
           </div>
         </div>
 
-        {/* Rules Reasons */}
         <div className="space-y-3 pt-2">
-          <h4 className="text-sm font-bold text-white flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-indigo-400" />
-            Why this database fits your project (Backend Rules Matched):
+          <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-indigo-600" />
+            Why this database instance fits:
           </h4>
           {primary.reasons.map((r, i) => (
-            <div key={i} className="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 leading-relaxed font-medium">
+            <div key={i} className="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed font-medium">
               {r}
             </div>
           ))}

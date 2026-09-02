@@ -9,10 +9,10 @@ export default function ToolNavbar({ activeTab, setActiveTab, onOpenPresets }) {
   ];
 
   return (
-    <div className="sticky top-16 z-40 bg-[#07090e]/90 backdrop-blur-xl border-b border-white/[0.06]">
+    <div className="sticky top-20 z-40 bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-xs">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-3 py-3 overflow-x-auto no-scrollbar">
-          <nav className="flex items-center gap-1.5">
+          <nav className="flex items-center gap-1.5" aria-label="Tool Navigation">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -20,13 +20,13 @@ export default function ToolNavbar({ activeTab, setActiveTab, onOpenPresets }) {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all shrink-0 ${
+                  className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all shrink-0 ${
                     isActive
-                      ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                      : 'text-slate-400 border border-transparent hover:text-white hover:bg-white/[0.04]'
+                      ? 'bg-blue-50 text-blue-700 border border-blue-200/80 shadow-xs font-bold'
+                      : 'text-slate-600 border border-transparent hover:text-slate-900 hover:bg-slate-100/70'
                   }`}
                 >
-                  <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-blue-600' : 'text-slate-400'}`} />
                   <span className="hidden sm:inline">{tab.label}</span>
                   <span className="sm:hidden">{tab.label.split(' ')[0]}</span>
                 </button>
@@ -36,9 +36,9 @@ export default function ToolNavbar({ activeTab, setActiveTab, onOpenPresets }) {
 
           <button
             onClick={onOpenPresets}
-            className="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-emerald-500 hover:bg-emerald-400 text-[#07090e] transition-all shrink-0"
+            className="flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 transition-all shrink-0 shadow-xs"
           >
-            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <Sparkles className="w-4 h-4 text-blue-600" />
             <span className="hidden sm:inline">Quick Presets</span>
             <span className="sm:hidden">Presets</span>
           </button>
