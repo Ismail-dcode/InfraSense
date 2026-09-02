@@ -20,7 +20,6 @@
 ## 🚀 Live Demo & Links
 
 - 🌐 **Live Web Application:** [https://infrasence.ismailshaikh.in](https://infrasence.ismailshaikh.in/)
-- 💻 **GitHub Repository:** [Ismail-dcode/InfraSense-Cloud-Infrastructure-Recommendation-Platform](https://github.com/Ismail-dcode/InfraSense-Cloud-Infrastructure-Recommendation-Platform)
 - 👨‍💻 **Developer Portfolio:** [https://ismailshaikh.in](https://ismailshaikh.in)
 
 ---
