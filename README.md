@@ -5,7 +5,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC.svg?logo=tailwind-css)](https://tailwindcss.com/)
 [![Terraform](https://img.shields.io/badge/Terraform-IaC_Ready-7B42BC.svg?logo=terraform)](https://www.terraform.io/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Ismail-dcode/Infrasence/pulls)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Ismail-dcode/Infrasense/pulls)
 
 **InfraSense** is an enterprise-grade cloud infrastructure recommendation platform and architecture decision engine. Designed for Cloud Architects, DevOps Engineers, and Developers, InfraSense dynamically evaluates workload specifications, computes instance sizing across **AWS, Azure, and GCP**, applies customizable heuristic rule engines, scores infrastructure health, and exports production-ready **Terraform IaC (Infrastructure as Code)**.
 
@@ -20,7 +20,7 @@
 ## 🚀 Live Demo & Links
 
 - 🌐 **Live Web Application:** [https://infrasence.ismailshaikh.in](https://infrasence.ismailshaikh.in/)
-- 💻 **GitHub Repository:** [Ismail-dcode/Infrasence](https://github.com/Ismail-dcode/Infrasence)
+- 💻 **GitHub Repository:** [Ismail-dcode/Infrasense](https://github.com/Ismail-dcode/Infrasense)
 - 👨‍💻 **Developer Portfolio:** [https://ismailshaikh.in](https://ismailshaikh.in)
 
 ---
@@ -276,8 +276,8 @@ npm -v
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Ismail-dcode/Infrasence.git
-   cd Infrasence
+   git clone https://github.com/Ismail-dcode/Infrasense.git
+   cd Infrasense
    ```
 
 2. **Install project dependencies:**
