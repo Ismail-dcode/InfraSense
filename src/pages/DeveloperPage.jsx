@@ -13,8 +13,7 @@ import {
 } from 'lucide-react';
 import ScrollReveal from '../components/landing/ScrollReveal';
 
-const GITHUB_REPO =
-  'https://github.com/Ismail-dcode/InfraSense-Cloud-Infrastructure-Recommendation-Platform';
+const GITHUB_REPO = 'https://github.com/Ismail-dcode/Infrasence';
 
 const TECH_STACK = [
   'React 18',
@@ -208,7 +207,7 @@ export default function DeveloperPage() {
                 terminal
               </div>
               <pre className="p-4 text-[12px] font-mono text-blue-300 overflow-x-auto leading-relaxed">{`git clone ${GITHUB_REPO}.git
-cd InfraSense-Cloud-Infrastructure-Recommendation-Platform
+cd Infrasence
 npm install
 npm run dev
 # → http://localhost:5173`}</pre>
