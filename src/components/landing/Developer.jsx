@@ -17,7 +17,7 @@ const LINKS = [
   {
     icon: Github,
     label: 'GitHub',
-    href: 'https://github.com/Ismail-dcode/InfraSense-Cloud-Infrastructure-Recommendation-Platform',
+    href: 'https://github.com/Ismail-dcode/Infrasense',
     description: 'Source code & contributions',
   },
   {

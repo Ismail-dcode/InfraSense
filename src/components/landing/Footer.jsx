@@ -3,7 +3,7 @@ import { Github, Globe, Layers, Sparkles } from 'lucide-react';
 import { TABS } from '../../hooks/useAppTabs';
 
 const GITHUB_REPO =
-  'https://github.com/Ismail-dcode/InfraSense-Cloud-Infrastructure-Recommendation-Platform';
+  'https://github.com/Ismail-dcode/Infrasense';
 
 export default function Footer({ activeTab, setActiveTab }) {
   const currentYear = new Date().getFullYear();
