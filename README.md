@@ -7,74 +7,30 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Ismail-dcode/InfraSense-Cloud-Infrastructure-Recommendation-Platform/pulls)
 
-**InfraSense** is an enterprise-grade cloud infrastructure recommendation engine and architecture decision platform. Designed for Cloud Architects, DevOps Engineers, and Developers, InfraSense dynamically evaluates workload specifications, computes instance sizing across **AWS, Azure, and GCP**, applies customizable heuristic rule engines, scores infrastructure health, and exports production-ready **Terraform IaC (Infrastructure as Code)**.
+**InfraSense** is an enterprise-grade cloud infrastructure recommendation platform and architecture decision engine. Designed for Cloud Architects, DevOps Engineers, and Developers, InfraSense dynamically evaluates workload specifications, computes instance sizing across **AWS, Azure, and GCP**, applies customizable heuristic rule engines, scores infrastructure health, and exports production-ready **Terraform IaC (Infrastructure as Code)**.
 
 ---
 
 > ### 📢 Active Development Notice
 > **🤖 AI Recommendation Assistant:** Natural language architecture generation is currently in active development for Phase 2!  
-> **⚡ Fully Functional Now:** Please explore the interactive **Manual Cloud Console**, **15+ Rule Heuristic Engine**, and **Terraform Generator** available right now on the platform.
+> **⚡ Fully Functional Now:** Explore the interactive **Manual Cloud Console**, **15+ Rule Heuristic Engine**, and **Terraform IaC Generator** live right now on the platform.
 
 ---
 
 ## 🚀 Live Demo & Links
 
-- 🌐 **Live Application:** [https://infrasence.ismailshaikh.in](https://infrasence.ismailshaikh.in/)
+- 🌐 **Live Web Application:** [https://infrasence.ismailshaikh.in](https://infrasence.ismailshaikh.in/)
 - 💻 **GitHub Repository:** [Ismail-dcode/InfraSense-Cloud-Infrastructure-Recommendation-Platform](https://github.com/Ismail-dcode/InfraSense-Cloud-Infrastructure-Recommendation-Platform)
 - 👨‍💻 **Developer Portfolio:** [https://ismailshaikh.in](https://ismailshaikh.in)
 
 ---
 
-## 🏛️ High-Level System Architecture
-
-![InfraSense High-Level Architecture](./images/Architecture-Phase1.png)
-
----
-
-## 📸 Application Screenshots & Workflow
-
-Follow this step-by-step visual workflow to see how InfraSense analyzes requirements and outputs production-grade recommendations:
-
-### 1️⃣ Step 1: Select Cloud Category & Workload Profile
-![Home Page](./images/Home-Page.png)
-
-* **Multi-Domain Selection:** Choose between **Virtual Servers (EC2 / Compute Engine / Azure VMs)**, **Managed Databases (RDS / Aurora / DynamoDB)**, **Cloud Storage & S3**, or **Serverless & Containers (Lambda / Fargate / Cloud Run)**.
-* **One-Click Presets:** Instant configuration templates for **High-Traffic Web Apps**, **PostgreSQL Databases**, **AI/ML Inference**, and **Low-Cost MVPs**.
-
----
-
-### 2️⃣ Step 2: Configure Hardware & Traffic Parameters
-![Server Configuration](./images/server-conf.png)
-
-* **Instance Scaling:** Select deployment scope from Single Node to High-Availability Multi-Node Clusters.
-* **Fine-Grained Hardware Sliders:** Adjust vCPU cores, RAM memory, storage capacity, and SSD IOPS throughput.
-* **Workload-Aware Profiling:** Specify application profile (e.g. Memory-Heavy DB, Compute-Intensive Batch, Burstable Web).
-
----
-
-### 3️⃣ Step 3: Enterprise Hardening & Multi-Cloud Target
-![Provider Selection](./images/Provider-selection.png)
-
-* **Cloud Providers:** Filter by **AWS**, **Microsoft Azure**, **Google Cloud Platform (GCP)**, or compare all three side-by-side.
-* **Security & Observability:** Toggle CloudWatch 24/7 Monitoring, Multi-AZ Disaster Recovery, and KMS Encryption at Rest.
-* **Optimization Goal:** Prioritize by **Lowest Monthly Cost**, **Balanced Performance**, or **Maximum Throughput**.
-
----
-
-### 4️⃣ Step 4: Actionable Recommendations, Health Radar & Terraform IaC
-![Suggested Result](./images/Suggested-result.png)
-
-* **Ranked Instance Match:** Displays top-scored instance family with hourly rates, estimated monthly costs, and detailed justification reasons.
-* **Alternative Fits:** View Lowest Cost Alternative vs Maximum Performance Alternative.
-* **Health Radar Scores:** 5-axis metric scoring Cost Efficiency, Performance, Reliability, Security, and Scalability.
-* **1-Click Terraform Export:** Copy-paste complete HCL code defining VPC, subnets, instances, and database configurations.
-
----
-
 ## 📌 Table of Contents
 
+- [Platform Overview](#-platform-overview)
+- [Interactive 4-Step Sizing Workflow](#-interactive-4-step-sizing-workflow)
 - [Key Features](#-key-features)
-- [Architecture & Data Flow](#-architecture--data-flow)
+- [System Architecture & Data Flow](#-system-architecture--data-flow)
 - [Project Directory Structure](#-project-directory-structure)
 - [Tech Stack](#-tech-stack)
 - [Getting Started](#-getting-started)
@@ -83,6 +39,55 @@ Follow this step-by-step visual workflow to see how InfraSense analyzes requirem
 - [🗺️ Future Planning & Roadmap](#️-future-planning--roadmap)
 - [🤝 Contributing](#-contributing)
 - [📄 License & Author](#-license--author)
+
+---
+
+## 💡 Platform Overview
+
+Choosing cloud infrastructure across AWS, Azure, and Google Cloud is notoriously complex: hundreds of instance types, opaque pricing models, and confusing architectural trade-offs often lead to over-provisioned resources and wasted cloud budgets.
+
+**InfraSense solves this by providing:**
+1. **Transparent Heuristic Evaluation:** Rather than relying on black-box estimates, InfraSense evaluates workloads through 15+ benchmark rules with plain-English justification tags.
+2. **Multi-Domain Sizing:** Sizing for Virtual Compute (EC2 / VMs), Managed Databases (RDS / Aurora), Cloud Storage (S3 / EBS), and Serverless / Containers (Lambda / Fargate).
+3. **Instant Infrastructure as Code:** Turn recommendations into fully functional, production-ready Terraform HCL configurations in one click.
+4. **Health Diagnostics:** Real-time 5-axis radar charts scoring Cost Efficiency, Performance, Reliability, Security, and Scalability.
+
+---
+
+## 🔄 Interactive 4-Step Sizing Workflow
+
+```
+┌───────────────────────────┐      ┌───────────────────────────┐
+│ 1. Select Cloud Domain    │ ───► │ 2. Configure Hardware     │
+│    Compute, DB, Storage   │      │    vCPU, RAM, Disk, IOPS  │
+└───────────────────────────┘      └───────────────────────────┘
+              │                                  │
+              ▼                                  ▼
+┌───────────────────────────┐      ┌───────────────────────────┐
+│ 3. Enterprise Hardening   │ ───► │ 4. Output & IaC Export    │
+│    Multi-AZ, Security, HA │      │    Scoring, Radar, .tf    │
+└───────────────────────────┘      └───────────────────────────┘
+```
+
+### 1️⃣ Step 1: Select Cloud Domain & Workload Profile
+* **Category Switcher:** Select between **Virtual Servers (EC2 / VMs)**, **Managed Databases (RDS / Aurora)**, **Cloud Storage & S3**, or **Serverless & Containers (Lambda / Fargate)**.
+* **One-Click Presets:** Instant templates for **High-Traffic Web Apps**, **PostgreSQL Databases**, **AI/ML GPU Inference**, and **Low-Cost MVPs**.
+
+### 2️⃣ Step 2: Configure Hardware & Traffic Parameters
+* **Instance Scale:** Choose single-node dev servers, dual active-active setups, or 5+ node production microservice clusters.
+* **Hardware Precision Sliders:** Adjust vCPU cores (1 to 64), RAM memory (1 to 256 GB), storage capacity, and SSD IOPS throughput.
+* **Workload-Aware Profiling:** Classify workloads (Memory-Heavy DB, Compute-Intensive Batch, Burstable Web, Network-Bound API).
+
+### 3️⃣ Step 3: Multi-Cloud Target & Enterprise Hardening
+* **Multi-Cloud Filtering:** Target AWS, Microsoft Azure, Google Cloud (GCP), or compare all three simultaneously.
+* **Enterprise Features:** Toggle 24/7 CloudWatch Monitoring, Multi-AZ High Availability with automated failover, and KMS Data Encryption at Rest.
+* **Budget Strategy:** Align scoring algorithms with **Lowest Monthly Bill**, **Balanced Performance**, or **Maximum Throughput**.
+
+### 4️⃣ Step 4: Actionable Recommendations, Health Radar & Terraform IaC
+* **Top Instance Match:** Ranked primary recommendation with exact hourly rates, estimated monthly spend, and explicit reasoning.
+* **Alternative Fits:** Compare the Lowest Cost alternative against the Maximum Performance alternative.
+* **Health Radar Scores:** 5-axis metric scoring Cost, Performance, Reliability, Security, and Scalability (0–100%).
+* **1-Click Terraform Export:** Copy-paste ready HashiCorp HCL code with VPC, subnets, instances, and DB configurations.
 
 ---
 
@@ -112,9 +117,9 @@ Follow this step-by-step visual workflow to see how InfraSense analyzes requirem
 
 ---
 
-## 📐 Architecture & Data Flow
+## 📐 System Architecture & Data Flow
 
-### Platform Component Diagram (Mermaid)
+### Platform Component Architecture (Mermaid)
 
 ```mermaid
 graph TD
@@ -162,7 +167,7 @@ graph TD
     ComputeView --> Checklist
 ```
 
-### Cloud Request & Deployment Flow
+### End-to-End Evaluation Flow
 
 ```mermaid
 sequenceDiagram
@@ -193,7 +198,6 @@ infrasence/
 ├── postcss.config.js                        # PostCSS configuration
 ├── tailwind.config.js                       # Tailwind styling tokens & keyframes
 ├── vite.config.js                           # Vite build configuration
-├── images/                                  # Architecture diagrams & screenshots
 └── src/
     ├── App.jsx                              # Global layout & tab navigation router
     ├── main.jsx                             # React DOM bootstrap
