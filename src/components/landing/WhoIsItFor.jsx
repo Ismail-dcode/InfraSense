@@ -42,37 +42,48 @@ const AUDIENCES = [
 
 export default function WhoIsItFor() {
   return (
-    <section className="relative py-24 sm:py-32 bg-white/[0.01]">
+    <section className="relative py-20 sm:py-28 bg-slate-50/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         <ScrollReveal>
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-widest">
+            <span className="text-xs font-bold font-mono text-blue-600 uppercase tracking-widest block mb-2">
               Who Is It For
             </span>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
               Built for everyone who touches cloud infrastructure
             </h2>
+            <p className="mt-3 text-slate-600 text-sm sm:text-base">
+              From solo developers building MVPs to engineering teams scaling enterprise systems.
+            </p>
           </div>
         </ScrollReveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {AUDIENCES.map((audience, i) => (
             <ScrollReveal key={audience.title} delay={i * 70}>
-              <div className="relative p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-emerald-500/20 hover:bg-emerald-500/[0.03] transition-all duration-300 h-full group">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <audience.icon className="w-5 h-5 text-emerald-400" />
+              <div className="relative p-6 rounded-2xl border border-slate-200/80 bg-white hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300 h-full group flex flex-col justify-between">
+                <div>
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 group-hover:scale-105 transition-transform">
+                      <audience.icon className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-mono font-semibold text-blue-700 uppercase tracking-wider px-2.5 py-1 rounded-full bg-blue-50 border border-blue-100">
+                      {audience.tag}
+                    </span>
                   </div>
-                  <span className="text-[10px] font-mono font-semibold text-emerald-400/80 uppercase tracking-wider px-2 py-1 rounded-md bg-emerald-500/10">
-                    {audience.tag}
-                  </span>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                    {audience.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                    {audience.description}
+                  </p>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">{audience.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{audience.description}</p>
               </div>
             </ScrollReveal>
           ))}
         </div>
+
       </div>
     </section>
   );

@@ -1,6 +1,5 @@
 import React from 'react';
 import { WORKLOAD_PROFILES } from '../data/cloudDatabase';
-import { AWS_REGIONS } from './SecurityAndMonitoringAdvisor';
 import { Cpu, HardDrive, Zap, DollarSign, Cloud, Sparkles, RefreshCw, CheckCircle2, MapPin, ShieldCheck, Bell, Network, Lock, Activity, Server, Layers, Info } from 'lucide-react';
 
 export default function RequirementForm({ input, onChange, onSubmit, onReset }) {
@@ -48,57 +47,57 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
   const ramQuickPresets = [2, 4, 8, 16, 32, 64, 128];
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6 sm:space-y-10">
+    <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
       
       {/* STEP 1: Application Profile */}
-      <div className="glass-panel p-4 sm:p-8 lg:p-12 space-y-6 sm:space-y-8 shadow-2xl">
-        <div className="flex items-center justify-between border-b border-slate-800/80 pb-4 sm:pb-6">
+      <div className="bg-white border border-slate-200/90 rounded-3xl p-5 sm:p-8 lg:p-10 space-y-6 shadow-sm">
+        <div className="flex items-center justify-between border-b border-slate-100 pb-4 sm:pb-5">
           <div>
-            <span className="px-3 py-1 text-[10px] sm:text-xs font-extrabold font-mono rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">
+            <span className="px-3 py-1 text-[10px] sm:text-xs font-extrabold font-mono rounded-full bg-blue-50 text-blue-700 border border-blue-200 uppercase tracking-wider">
               STEP 1 OF 5
             </span>
-            <h2 className="text-xl sm:text-3xl font-extrabold text-white mt-2">
-              What kind of project are you hosting?
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 mt-2">
+              What kind of workload are you hosting?
             </h2>
           </div>
 
           <button
             type="button"
             onClick={onReset}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-emerald-400 hover:bg-slate-900 transition-colors shrink-0"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-500 hover:text-blue-600 hover:bg-slate-50 transition-colors shrink-0 border border-slate-200"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             <span>Reset</span>
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
           {WORKLOAD_PROFILES.map(profile => {
             const isSelected = input.workload === profile.id;
             return (
               <div
                 key={profile.id}
                 onClick={() => handleWorkloadSelect(profile.id)}
-                className={`p-4 sm:p-6 rounded-2xl sm:rounded-3xl border-2 cursor-pointer transition-all flex flex-col justify-between space-y-3 sm:space-y-4 ${
+                className={`p-4 sm:p-5 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between space-y-3 ${
                   isSelected
-                    ? 'bg-gradient-to-br from-emerald-500/15 via-blue-600/10 to-indigo-600/15 border-emerald-400 shadow-2xl shadow-emerald-500/10 scale-[1.01]'
-                    : 'bg-slate-900/40 border-slate-800/80 text-slate-300 hover:border-slate-700 hover:bg-slate-900/80'
+                    ? 'bg-blue-50/70 border-blue-500 shadow-md shadow-blue-500/10 scale-[1.01]'
+                    : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50/50'
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <h3 className="font-extrabold text-base sm:text-lg text-white">
+                  <h3 className="font-extrabold text-base text-slate-900">
                     {profile.name}
                   </h3>
                   {isSelected ? (
-                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-emerald-400 text-slate-950 flex items-center justify-center font-bold shadow-lg shadow-emerald-400/50 shrink-0">
-                      <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold shadow-sm shadow-blue-500/30 shrink-0">
+                      <CheckCircle2 className="w-4 h-4" />
                     </div>
                   ) : (
-                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-slate-700 shrink-0" />
+                    <div className="w-6 h-6 rounded-full border border-slate-300 shrink-0" />
                   )}
                 </div>
 
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-medium">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                   {profile.description}
                 </p>
               </div>
@@ -108,45 +107,45 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
       </div>
 
       {/* STEP 2: Target Server Instance Quantity */}
-      <div className="glass-panel p-4 sm:p-8 lg:p-12 space-y-6 sm:space-y-8 shadow-2xl">
+      <div className="bg-white border border-slate-200/90 rounded-3xl p-5 sm:p-8 lg:p-10 space-y-6 shadow-sm">
         <div>
-          <span className="px-3.5 py-1 text-xs font-extrabold font-mono rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 uppercase tracking-wider">
+          <span className="px-3 py-1 text-[10px] sm:text-xs font-extrabold font-mono rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 uppercase tracking-wider">
             STEP 2 OF 5 • INSTANCE QUANTITY
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-2">
             How many server instances do you plan to run?
           </h2>
-          <p className="text-sm text-slate-300 mt-1">
+          <p className="text-xs sm:text-sm text-slate-500 mt-1">
             Running 3+ instances will unlock dedicated Load Balancing & Auto Scaling configuration in Step 3.
           </p>
         </div>
 
-        <div className="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 space-y-4">
+        <div className="bg-slate-50 p-5 sm:p-6 rounded-2xl border border-slate-200/80 space-y-4">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-extrabold text-white flex items-center gap-2">
-              <Server className="w-5 h-5 text-emerald-400" />
-              Target Server Quantity
+            <span className="text-sm font-bold text-slate-900 flex items-center gap-2">
+              <Server className="w-4 h-4 text-blue-600" />
+              Target Server Nodes
             </span>
-            <span className="text-lg font-mono font-extrabold text-emerald-300">
+            <span className="text-sm sm:text-base font-mono font-extrabold text-blue-700 bg-white px-3 py-1 rounded-xl border border-slate-200 shadow-xs">
               {instanceCount} {instanceCount === 1 ? 'Instance' : 'Instances'}
             </span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
             {[
-              { count: 1, label: '1 Instance (Single Server)' },
-              { count: 2, label: '2 Instances (Dual Server)' },
-              { count: 4, label: '3-5 Instances (Multi Node)' },
-              { count: 8, label: '5+ Instances (Cluster)' }
+              { count: 1, label: '1 Node (Single)' },
+              { count: 2, label: '2 Nodes (Dual)' },
+              { count: 4, label: '3-5 Nodes (Multi)' },
+              { count: 8, label: '5+ Nodes (Cluster)' }
             ].map(item => (
               <button
                 key={item.count}
                 type="button"
                 onClick={() => handleInstanceCountChange(item.count)}
-                className={`py-3.5 px-3 rounded-2xl text-xs font-extrabold border-2 transition-all ${
+                className={`py-3 px-2.5 rounded-xl text-xs font-bold border-2 transition-all cursor-pointer ${
                   instanceCount === item.count || (item.count === 4 && instanceCount >= 3 && instanceCount <= 5) || (item.count === 8 && instanceCount > 5)
-                    ? 'bg-slate-800 text-emerald-300 border-emerald-400 shadow-xl scale-[1.02]'
-                    : 'bg-slate-950/60 text-slate-400 border-slate-800 hover:text-slate-200'
+                    ? 'bg-blue-600 text-white border-blue-600 shadow-sm shadow-blue-500/20'
+                    : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50'
                 }`}
               >
                 {item.label}
@@ -158,27 +157,27 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
 
       {/* STEP 3: DEDICATED LOAD BALANCING & AUTO SCALING SECTION (Appears ONLY when instanceCount > 2) */}
       {instanceCount > 2 && (
-        <div className="glass-panel p-8 sm:p-12 space-y-8 shadow-2xl border-2 border-blue-500/40 animate-fadeIn">
+        <div className="bg-white border-2 border-blue-400 rounded-3xl p-5 sm:p-8 lg:p-10 space-y-6 shadow-md animate-fadeIn">
           <div>
-            <span className="px-3.5 py-1 text-xs font-extrabold font-mono rounded-full bg-blue-500/15 text-blue-300 border border-blue-400 uppercase tracking-wider">
+            <span className="px-3 py-1 text-[10px] sm:text-xs font-extrabold font-mono rounded-full bg-blue-50 text-blue-700 border border-blue-200 uppercase tracking-wider">
               STEP 3 OF 5 • MULTI-NODE TRAFFIC & AUTO SCALING
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-2">
               Load Balancer & Capacity Scaling Configuration
             </h2>
-            <p className="text-sm text-slate-300 mt-1">Unlocked for multi-instance deployments (3+ servers).</p>
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">Unlocked for multi-instance deployments (3+ servers).</p>
           </div>
 
-          <div className="space-y-5">
+          <div className="space-y-4">
             
             {/* Dedicated Load Balancer Card */}
-            <div className="bg-slate-900/80 p-6 rounded-2xl border border-blue-500/30 space-y-4">
+            <div className="bg-slate-50 p-5 rounded-2xl border border-blue-200/80 space-y-3">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-start gap-3">
-                  <Network className="w-6 h-6 text-blue-400 shrink-0 mt-0.5" />
+                  <Network className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-base font-extrabold text-white">Does your app get unexpected high traffic or spiky load?</h4>
-                    <p className="text-xs text-slate-300 mt-1">Recommends AWS Application Load Balancer (ALB) to distribute requests evenly.</p>
+                    <h4 className="text-sm font-bold text-slate-900">Does your app get unexpected high traffic or spiky load?</h4>
+                    <p className="text-xs text-slate-500 mt-0.5">Recommends AWS Application Load Balancer (ALB) to distribute requests evenly.</p>
                   </div>
                 </div>
 
@@ -186,10 +185,10 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                   <button
                     type="button"
                     onClick={() => setQuestionValue('needLoadBalancer', true)}
-                    className={`px-6 py-2.5 rounded-xl text-xs font-extrabold border transition-all ${
+                    className={`px-5 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                       input.questions?.needLoadBalancer === true
-                        ? 'bg-blue-500/20 text-blue-300 border-blue-400 shadow-md font-mono'
-                        : 'bg-slate-950 text-slate-500 border-slate-800'
+                        ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
+                        : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                     }`}
                   >
                     YES
@@ -197,10 +196,10 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                   <button
                     type="button"
                     onClick={() => setQuestionValue('needLoadBalancer', false)}
-                    className={`px-6 py-2.5 rounded-xl text-xs font-extrabold border transition-all ${
+                    className={`px-5 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                       input.questions?.needLoadBalancer !== true
-                        ? 'bg-slate-800 text-rose-300 border-rose-500/50 shadow-md font-mono'
-                        : 'bg-slate-950 text-slate-500 border-slate-800'
+                        ? 'bg-slate-800 text-white border-slate-800 shadow-sm'
+                        : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                     }`}
                   >
                     NO
@@ -210,13 +209,13 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
             </div>
 
             {/* Dedicated Auto Scaling Card */}
-            <div className="bg-slate-900/80 p-6 rounded-2xl border border-amber-500/30 space-y-4">
+            <div className="bg-slate-50 p-5 rounded-2xl border border-amber-200/80 space-y-3">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-start gap-3">
-                  <Zap className="w-6 h-6 text-amber-400 shrink-0 mt-0.5" />
+                  <Zap className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-base font-extrabold text-white">Does your app require automatic capacity scaling?</h4>
-                    <p className="text-xs text-slate-300 mt-1">Recommends AWS Auto Scaling Group (ASG) to dynamically scale server nodes.</p>
+                    <h4 className="text-sm font-bold text-slate-900">Does your app require automatic capacity scaling?</h4>
+                    <p className="text-xs text-slate-500 mt-0.5">Recommends AWS Auto Scaling Group (ASG) to dynamically scale server nodes.</p>
                   </div>
                 </div>
 
@@ -224,10 +223,10 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                   <button
                     type="button"
                     onClick={() => setQuestionValue('needAutoScaling', true)}
-                    className={`px-6 py-2.5 rounded-xl text-xs font-extrabold border transition-all ${
+                    className={`px-5 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                       input.questions?.needAutoScaling === true
-                        ? 'bg-amber-500/20 text-amber-300 border-amber-400 shadow-md font-mono'
-                        : 'bg-slate-950 text-slate-500 border-slate-800'
+                        ? 'bg-amber-600 text-white border-amber-600 shadow-sm'
+                        : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                     }`}
                   >
                     YES
@@ -235,10 +234,10 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                   <button
                     type="button"
                     onClick={() => setQuestionValue('needAutoScaling', false)}
-                    className={`px-6 py-2.5 rounded-xl text-xs font-extrabold border transition-all ${
+                    className={`px-5 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                       input.questions?.needAutoScaling !== true
-                        ? 'bg-slate-800 text-rose-300 border-rose-500/50 shadow-md font-mono'
-                        : 'bg-slate-950 text-slate-500 border-slate-800'
+                        ? 'bg-slate-800 text-white border-slate-800 shadow-sm'
+                        : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                     }`}
                   >
                     NO
@@ -252,24 +251,24 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
       )}
 
       {/* STEP 4: CPU Cores (vCPU) & System Memory (RAM) Sliders */}
-      <div className="glass-panel p-4 sm:p-8 lg:p-12 space-y-6 sm:space-y-8 shadow-2xl">
+      <div className="bg-white border border-slate-200/90 rounded-3xl p-5 sm:p-8 lg:p-10 space-y-6 shadow-sm">
         <div>
-          <span className="px-3.5 py-1 text-xs font-extrabold font-mono rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">
+          <span className="px-3 py-1 text-[10px] sm:text-xs font-extrabold font-mono rounded-full bg-blue-50 text-blue-700 border border-blue-200 uppercase tracking-wider">
             STEP 4 OF 5 • CPU & MEMORY POWER
           </span>
-          <h2 className="text-xl sm:text-3xl font-extrabold text-white mt-2">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-2">
             Processor Cores (vCPU) & System Memory (RAM)
           </h2>
-          <p className="text-xs sm:text-sm text-slate-300 mt-1">Adjust capacity sliders to customize CPU and RAM requirements.</p>
+          <p className="text-xs sm:text-sm text-slate-500 mt-1">Adjust capacity sliders to customize CPU and RAM requirements.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           
           {/* vCPU Slider */}
-          <div className="bg-slate-900/60 p-4 sm:p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div className="bg-slate-50 p-5 sm:p-6 rounded-2xl border border-slate-200 space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-xs sm:text-sm font-bold text-slate-100 flex items-center gap-2">
-                <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
+              <span className="text-xs sm:text-sm font-bold text-slate-900 flex items-center gap-2">
+                <Cpu className="w-4 h-4 text-blue-600" />
                 Processor Cores (vCPU)
               </span>
               <div className="flex items-center gap-1.5">
@@ -279,9 +278,9 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                   max="64"
                   value={input.vcpu}
                   onChange={(e) => onChange({ ...input, vcpu: Math.max(1, parseInt(e.target.value) || 1) })}
-                  className="w-16 sm:w-20 px-2.5 sm:px-3 py-1 bg-slate-950 border border-slate-700 rounded-xl text-center text-xs sm:text-sm font-mono text-emerald-300 focus:outline-none focus:border-emerald-500"
+                  className="w-16 px-2 py-1 bg-white border border-slate-300 rounded-xl text-center text-xs sm:text-sm font-mono font-bold text-blue-700 focus:outline-none focus:border-blue-500"
                 />
-                <span className="text-[11px] sm:text-xs text-slate-400">cores</span>
+                <span className="text-xs text-slate-500">cores</span>
               </div>
             </div>
 
@@ -294,7 +293,7 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
               onChange={(e) => onChange({ ...input, vcpu: parseInt(e.target.value) })}
               className="w-full"
             />
-            <div className="flex justify-between text-[10px] sm:text-[11px] font-mono text-slate-500">
+            <div className="flex justify-between text-[10px] sm:text-[11px] font-mono text-slate-400">
               <span>1 vCPU</span>
               <span>4 vCPU</span>
               <span>8 vCPU</span>
@@ -304,10 +303,10 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
           </div>
 
           {/* RAM Slider */}
-          <div className="bg-slate-900/60 p-4 sm:p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div className="bg-slate-50 p-5 sm:p-6 rounded-2xl border border-slate-200 space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-xs sm:text-sm font-bold text-slate-100 flex items-center gap-2">
-                <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-400" />
+              <span className="text-xs sm:text-sm font-bold text-slate-900 flex items-center gap-2">
+                <Zap className="w-4 h-4 text-indigo-600" />
                 System Memory (RAM)
               </span>
               <div className="flex items-center gap-1.5">
@@ -317,9 +316,9 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                   max="512"
                   value={input.ram}
                   onChange={(e) => onChange({ ...input, ram: Math.max(0.5, parseFloat(e.target.value) || 0.5) })}
-                  className="w-16 sm:w-20 px-2.5 sm:px-3 py-1 bg-slate-950 border border-slate-700 rounded-xl text-center text-xs sm:text-sm font-mono text-indigo-300 focus:outline-none focus:border-indigo-500"
+                  className="w-16 px-2 py-1 bg-white border border-slate-300 rounded-xl text-center text-xs sm:text-sm font-mono font-bold text-indigo-700 focus:outline-none focus:border-indigo-500"
                 />
-                <span className="text-[11px] sm:text-xs text-slate-400">GB</span>
+                <span className="text-xs text-slate-500">GB</span>
               </div>
             </div>
 
@@ -334,16 +333,16 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
             />
 
             <div className="flex items-center gap-1.5 flex-wrap pt-1">
-              <span className="text-[10px] sm:text-[11px] text-slate-400">Quick Select:</span>
+              <span className="text-[10px] sm:text-[11px] text-slate-500">Quick Select:</span>
               {ramQuickPresets.map(presetRam => (
                 <button
                   key={presetRam}
                   type="button"
                   onClick={() => onChange({ ...input, ram: presetRam })}
-                  className={`px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-mono rounded-lg border transition-colors ${
+                  className={`px-2.5 py-0.5 text-[10px] sm:text-[11px] font-mono rounded-lg border transition-colors cursor-pointer ${
                     input.ram === presetRam
-                      ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/50 font-bold'
-                      : 'bg-slate-950 text-slate-400 border-slate-800 hover:text-slate-200'
+                      ? 'bg-indigo-600 text-white border-indigo-600 font-bold shadow-xs'
+                      : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
                   }`}
                 >
                   {presetRam} GB
@@ -356,25 +355,25 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
       </div>
 
       {/* STEP 5: Security, Monitoring & Cloud Provider */}
-      <div className="glass-panel p-4 sm:p-8 lg:p-12 space-y-6 sm:space-y-8 shadow-2xl">
+      <div className="bg-white border border-slate-200/90 rounded-3xl p-5 sm:p-8 lg:p-10 space-y-6 shadow-sm">
         <div>
-          <span className="px-3.5 py-1 text-xs font-extrabold font-mono rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/30 uppercase tracking-wider">
+          <span className="px-3 py-1 text-[10px] sm:text-xs font-extrabold font-mono rounded-full bg-purple-50 text-purple-700 border border-purple-200 uppercase tracking-wider">
             STEP 5 OF 5 • SECURITY & PROVIDER
           </span>
-          <h2 className="text-xl sm:text-3xl font-extrabold text-white mt-2">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-2">
             Security, Monitoring & Cloud Provider Preference
           </h2>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3.5">
           
           {/* Q1: Monitoring */}
-          <div className="bg-slate-900/60 p-5 rounded-2xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-start gap-3">
-              <Activity className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+              <Activity className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-sm font-extrabold text-slate-100">Do you want 24/7 Monitoring & Alarms?</h4>
-                <p className="text-xs text-slate-400 mt-0.5">Recommends AWS CloudWatch CPU/Disk alarms & SNS notifications</p>
+                <h4 className="text-sm font-bold text-slate-900">Do you want 24/7 Monitoring & Alarms?</h4>
+                <p className="text-xs text-slate-500 mt-0.5">Recommends AWS CloudWatch CPU/Disk alarms & SNS notifications</p>
               </div>
             </div>
             
@@ -382,10 +381,10 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
               <button
                 type="button"
                 onClick={() => setQuestionValue('needMonitoring', true)}
-                className={`px-6 py-2.5 rounded-xl text-xs font-extrabold border transition-all ${
+                className={`px-5 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                   input.questions?.needMonitoring === true
-                    ? 'bg-emerald-500/20 text-emerald-300 border-emerald-400 shadow-md font-mono'
-                    : 'bg-slate-950 text-slate-500 border-slate-800'
+                    ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
+                    : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                 }`}
               >
                 YES
@@ -393,10 +392,10 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
               <button
                 type="button"
                 onClick={() => setQuestionValue('needMonitoring', false)}
-                className={`px-6 py-2.5 rounded-xl text-xs font-extrabold border transition-all ${
+                className={`px-5 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                   input.questions?.needMonitoring !== true
-                    ? 'bg-slate-800 text-rose-300 border-rose-500/50 shadow-md font-mono'
-                    : 'bg-slate-950 text-slate-500 border-slate-800'
+                    ? 'bg-slate-800 text-white border-slate-800 shadow-sm'
+                    : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                 }`}
               >
                 NO
@@ -405,12 +404,12 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
           </div>
 
           {/* Q4: Multi-AZ */}
-          <div className="bg-slate-900/60 p-5 rounded-2xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-start gap-3">
-              <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+              <ShieldCheck className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-sm font-extrabold text-slate-100">Do you need High Availability & Disaster Recovery?</h4>
-                <p className="text-xs text-slate-400 mt-0.5">Recommends Multi-AZ Databases & Redundant Subnets</p>
+                <h4 className="text-sm font-bold text-slate-900">Do you need High Availability & Disaster Recovery?</h4>
+                <p className="text-xs text-slate-500 mt-0.5">Recommends Multi-AZ Databases & Redundant Subnets</p>
               </div>
             </div>
             
@@ -418,10 +417,10 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
               <button
                 type="button"
                 onClick={() => setQuestionValue('needMultiAZ', true)}
-                className={`px-6 py-2.5 rounded-xl text-xs font-extrabold border transition-all ${
+                className={`px-5 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                   input.questions?.needMultiAZ === true
-                    ? 'bg-emerald-500/20 text-emerald-300 border-emerald-400 shadow-md font-mono'
-                    : 'bg-slate-950 text-slate-500 border-slate-800'
+                    ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
+                    : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                 }`}
               >
                 YES
@@ -429,10 +428,10 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
               <button
                 type="button"
                 onClick={() => setQuestionValue('needMultiAZ', false)}
-                className={`px-6 py-2.5 rounded-xl text-xs font-extrabold border transition-all ${
+                className={`px-5 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                   input.questions?.needMultiAZ !== true
-                    ? 'bg-slate-800 text-rose-300 border-rose-500/50 shadow-md font-mono'
-                    : 'bg-slate-950 text-slate-500 border-slate-800'
+                    ? 'bg-slate-800 text-white border-slate-800 shadow-sm'
+                    : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                 }`}
               >
                 NO
@@ -441,12 +440,12 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
           </div>
 
           {/* Q5: KMS Encryption */}
-          <div className="bg-slate-900/60 p-5 rounded-2xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-start gap-3">
-              <Lock className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
+              <Lock className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-sm font-extrabold text-slate-100">Do you require Data & Disk Encryption at rest?</h4>
-                <p className="text-xs text-slate-400 mt-0.5">Recommends AWS KMS AES-256 Disk Encryption</p>
+                <h4 className="text-sm font-bold text-slate-900">Do you require Data & Disk Encryption at rest?</h4>
+                <p className="text-xs text-slate-500 mt-0.5">Recommends AWS KMS AES-256 Disk Encryption</p>
               </div>
             </div>
             
@@ -454,10 +453,10 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
               <button
                 type="button"
                 onClick={() => setQuestionValue('needEncryption', true)}
-                className={`px-6 py-2.5 rounded-xl text-xs font-extrabold border transition-all ${
+                className={`px-5 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                   input.questions?.needEncryption === true
-                    ? 'bg-purple-500/20 text-purple-300 border-purple-400 shadow-md font-mono'
-                    : 'bg-slate-950 text-slate-500 border-slate-800'
+                    ? 'bg-purple-600 text-white border-purple-600 shadow-sm'
+                    : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                 }`}
               >
                 YES
@@ -465,10 +464,10 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
               <button
                 type="button"
                 onClick={() => setQuestionValue('needEncryption', false)}
-                className={`px-6 py-2.5 rounded-xl text-xs font-extrabold border transition-all ${
+                className={`px-5 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                   input.questions?.needEncryption !== true
-                    ? 'bg-slate-800 text-rose-300 border-rose-500/50 shadow-md font-mono'
-                    : 'bg-slate-950 text-slate-500 border-slate-800'
+                    ? 'bg-slate-800 text-white border-slate-800 shadow-sm'
+                    : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                 }`}
               >
                 NO
@@ -479,22 +478,22 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
         </div>
 
         {/* Cloud Provider & Budget */}
-        <div className="pt-4 space-y-4 border-t border-slate-800">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+        <div className="pt-4 space-y-4 border-t border-slate-100">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { id: 'all', label: '🌐 All Clouds (Compare)' },
-              { id: 'aws', label: 'AWS' },
-              { id: 'azure', label: 'Azure' },
-              { id: 'gcp', label: 'GCP' }
+              { id: 'all', label: '🌐 All Clouds' },
+              { id: 'aws', label: 'AWS EC2' },
+              { id: 'azure', label: 'Azure VM' },
+              { id: 'gcp', label: 'Google Cloud' }
             ].map(prov => (
               <button
                 key={prov.id}
                 type="button"
                 onClick={() => onChange({ ...input, provider: prov.id })}
-                className={`py-4 px-4 rounded-2xl text-xs sm:text-sm font-extrabold border-2 transition-all ${
+                className={`py-3 px-3 rounded-2xl text-xs sm:text-sm font-bold border-2 transition-all cursor-pointer ${
                   input.provider === prov.id
-                    ? 'bg-slate-800 text-emerald-300 border-emerald-400 shadow-xl'
-                    : 'bg-slate-900/40 text-slate-400 border-slate-800 hover:bg-slate-800/60 hover:text-slate-200'
+                    ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
+                    : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-white'
                 }`}
               >
                 {prov.label}
@@ -502,20 +501,20 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
             ))}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
             {[
               { id: 'cost', label: '💵 Lowest Monthly Bill' },
               { id: 'balanced', label: '⚖️ Balanced Performance' },
-              { id: 'performance', label: '🚀 Max Power' }
+              { id: 'performance', label: '🚀 Maximum Power' }
             ].map(bp => (
               <button
                 key={bp.id}
                 type="button"
                 onClick={() => onChange({ ...input, budgetPriority: bp.id })}
-                className={`p-4 rounded-2xl text-center border-2 font-extrabold text-xs sm:text-sm transition-all ${
+                className={`p-3.5 rounded-2xl text-center border-2 font-bold text-xs sm:text-sm transition-all cursor-pointer ${
                   input.budgetPriority === bp.id
-                    ? 'bg-amber-500/15 text-amber-200 border-amber-400 shadow-xl'
-                    : 'bg-slate-900/40 text-slate-400 border-slate-800 hover:text-slate-200'
+                    ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
+                    : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-white'
                 }`}
               >
                 {bp.label}
@@ -526,13 +525,13 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
       </div>
 
       {/* Generate Action Button */}
-      <div className="pt-2 pb-8">
+      <div className="pt-2 pb-4">
         <button
           type="button"
           onClick={onSubmit}
-          className="w-full py-6 px-8 rounded-3xl font-extrabold text-lg sm:text-xl bg-gradient-to-r from-emerald-500 via-blue-600 to-indigo-600 hover:from-emerald-400 hover:to-indigo-500 text-white shadow-2xl shadow-emerald-500/30 flex items-center justify-center gap-3 transition-all hover:scale-[1.01] active:scale-[0.99]"
+          className="w-full py-5 px-8 rounded-2xl font-extrabold text-base sm:text-lg bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 hover:from-blue-700 hover:to-indigo-700 text-white shadow-xl shadow-blue-500/25 flex items-center justify-center gap-3 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
         >
-          <Sparkles className="w-6 h-6" />
+          <Sparkles className="w-5 h-5" />
           <span>Get Recommended Server Suggestion</span>
         </button>
       </div>

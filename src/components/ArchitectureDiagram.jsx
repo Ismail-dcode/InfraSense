@@ -31,88 +31,88 @@ export default function ArchitectureDiagram({ instanceName, provider = 'aws', wo
   const specs = providerSpecs[normProvider] || providerSpecs.aws;
 
   return (
-    <div className="glass-panel p-6 sm:p-8 border border-slate-800 space-y-6">
+    <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
       
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+      <div className="flex items-center justify-between border-b border-slate-100 pb-4">
         <div>
-          <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest block">
+          <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-widest block">
             VISUAL TOPOLOGY DIAGRAM
           </span>
-          <h3 className="text-xl font-extrabold text-white flex items-center gap-2 mt-0.5">
-            <Layers className="w-5 h-5 text-emerald-400" />
+          <h3 className="text-xl font-extrabold text-slate-900 flex items-center gap-2 mt-0.5">
+            <Layers className="w-5 h-5 text-blue-600" />
             Recommended Cloud Architecture Blueprint
           </h3>
         </div>
-        <span className="px-3 py-1 text-xs font-mono rounded-full bg-slate-900 text-slate-300 border border-slate-800 uppercase">
+        <span className="px-3 py-1 text-xs font-mono rounded-full bg-slate-100 text-slate-700 border border-slate-200 uppercase font-semibold">
           {provider} Infrastructure
         </span>
       </div>
 
-      <p className="text-xs text-slate-300">
+      <p className="text-xs sm:text-sm text-slate-600">
         Automated architectural flow displaying how traffic routes through DNS ({specs.dns}), Load Balancers ({specs.lb}), Compute Nodes ({instanceName}), Database ({specs.db}), and Monitoring ({specs.monitoring}).
       </p>
 
-      {/* Touch swipe hint for mobile devices */}
-      <span className="block sm:hidden text-[10px] font-mono text-emerald-400/80 text-center">
+      {/* Touch swipe hint for mobile */}
+      <span className="block sm:hidden text-[10px] font-mono text-blue-600 text-center">
         ← Swipe horizontally to view topology flow →
       </span>
 
       {/* Visual Diagram Box */}
-      <div className="bg-slate-950/80 p-4 sm:p-8 rounded-2xl border border-slate-800/80 relative overflow-x-auto no-scrollbar">
+      <div className="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200/80 relative overflow-x-auto no-scrollbar">
         <div className="min-w-[650px] flex items-center justify-between gap-4 text-center">
           
           {/* Step 1: Internet & DNS */}
           <div className="flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-lg">
+            <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 shadow-sm">
               <Cloud className="w-7 h-7" />
             </div>
-            <span className="text-xs font-bold text-slate-200">Internet Users</span>
-            <span className="text-[10px] font-mono text-slate-400">{specs.dns}</span>
+            <span className="text-xs font-bold text-slate-900">Internet Users</span>
+            <span className="text-[10px] font-mono text-slate-500">{specs.dns}</span>
           </div>
 
-          <ArrowRight className="w-5 h-5 text-slate-600 shrink-0" />
+          <ArrowRight className="w-5 h-5 text-slate-400 shrink-0" />
 
           {/* Step 2: Load Balancer */}
           <div className="flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 shadow-lg">
+            <div className="w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 shadow-sm">
               <Network className="w-7 h-7" />
             </div>
-            <span className="text-xs font-bold text-slate-200">{specs.lb}</span>
-            <span className="text-[10px] font-mono text-slate-400">HTTPS / TLS 1.3</span>
+            <span className="text-xs font-bold text-slate-900">{specs.lb}</span>
+            <span className="text-[10px] font-mono text-slate-500">HTTPS / TLS 1.3</span>
           </div>
 
-          <ArrowRight className="w-5 h-5 text-slate-600 shrink-0" />
+          <ArrowRight className="w-5 h-5 text-slate-400 shrink-0" />
 
           {/* Step 3: Compute Cluster */}
-          <div className="flex flex-col items-center gap-2 bg-slate-900/90 p-4 rounded-2xl border border-emerald-500/40">
-            <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-emerald-300 shadow-xl">
+          <div className="flex flex-col items-center gap-2 bg-white p-4 rounded-2xl border-2 border-blue-500 shadow-md">
+            <div className="w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-sm">
               <Server className="w-7 h-7" />
             </div>
-            <span className="text-xs font-extrabold text-emerald-300 font-mono">{instanceName}</span>
-            <span className="text-[10px] font-mono text-slate-300">{specs.cluster}</span>
+            <span className="text-xs font-extrabold text-blue-700 font-mono">{instanceName}</span>
+            <span className="text-[10px] font-mono text-slate-500">{specs.cluster}</span>
           </div>
 
-          <ArrowRight className="w-5 h-5 text-slate-600 shrink-0" />
+          <ArrowRight className="w-5 h-5 text-slate-400 shrink-0" />
 
           {/* Step 4: Managed Database */}
           <div className="flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shadow-lg">
+            <div className="w-14 h-14 rounded-2xl bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-600 shadow-sm">
               <Database className="w-7 h-7" />
             </div>
-            <span className="text-xs font-bold text-slate-200">{specs.db}</span>
-            <span className="text-[10px] font-mono text-slate-400">Multi-AZ / HA Standby</span>
+            <span className="text-xs font-bold text-slate-900">{specs.db}</span>
+            <span className="text-[10px] font-mono text-slate-500">Multi-AZ / HA Standby</span>
           </div>
 
-          <ArrowRight className="w-5 h-5 text-slate-600 shrink-0" />
+          <ArrowRight className="w-5 h-5 text-slate-400 shrink-0" />
 
           {/* Step 5: Monitoring & Alarms */}
           <div className="flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-lg">
+            <div className="w-14 h-14 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600 shadow-sm">
               <Activity className="w-7 h-7" />
             </div>
-            <span className="text-xs font-bold text-slate-200">{specs.monitoring}</span>
-            <span className="text-[10px] font-mono text-slate-400">Alerts & Metrics</span>
+            <span className="text-xs font-bold text-slate-900">{specs.monitoring}</span>
+            <span className="text-[10px] font-mono text-slate-500">Alerts & Metrics</span>
           </div>
 
         </div>
@@ -121,4 +121,3 @@ export default function ArchitectureDiagram({ instanceName, provider = 'aws', wo
     </div>
   );
 }
-

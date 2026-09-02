@@ -1,15 +1,16 @@
-import React from 'react';
-import { Menu, X, Layers, Terminal, BookOpen, User } from 'lucide-react';
+import React, { useState } from 'react';
+import { Menu, X, Layers, Terminal, BookOpen, User, Sparkles, ArrowRight, Home } from 'lucide-react';
 import { TABS } from '../../hooks/useAppTabs';
 
 const NAV_TABS = [
+  { id: TABS.HOME, label: 'Home', icon: Home },
   { id: TABS.CONSOLE, label: 'Console', icon: Terminal },
   { id: TABS.DOCS, label: 'How It Works', icon: BookOpen },
   { id: TABS.DEVELOPER, label: 'Developer', icon: User },
 ];
 
 export default function SiteNavbar({ activeTab, setActiveTab }) {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleTab = (tab) => {
     setActiveTab(tab);
@@ -17,32 +18,35 @@ export default function SiteNavbar({ activeTab, setActiveTab }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#07090e]/95 backdrop-blur-xl border-b border-white/[0.06] shadow-lg shadow-black/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header className="sticky top-0 z-50 py-3 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="bg-white/85 backdrop-blur-xl border border-slate-200/90 shadow-sm rounded-2xl px-4 sm:px-6 h-16 flex items-center justify-between transition-all">
+          
           {/* Brand */}
           <button
-            onClick={() => handleTab(TABS.CONSOLE)}
+            onClick={() => handleTab(TABS.HOME)}
             className="flex items-center gap-2.5 group shrink-0"
             aria-label="InfraSense home"
           >
-            <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 p-[1px] shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/40 transition-shadow">
-              <div className="w-full h-full rounded-[11px] bg-[#07090e] flex items-center justify-center">
-                <Layers className="w-4.5 h-4.5 text-emerald-400" />
+            <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-500 p-[1.5px] shadow-md shadow-blue-500/20 group-hover:shadow-blue-500/35 transition-shadow">
+              <div className="w-full h-full rounded-[10px] bg-white flex items-center justify-center">
+                <Layers className="w-4.5 h-4.5 text-blue-600 group-hover:scale-105 transition-transform" />
               </div>
             </div>
             <div className="text-left">
-              <span className="font-bold text-lg tracking-tight text-white block leading-tight">
-                Infra<span className="text-emerald-400">Sense</span>
-              </span>
-              <span className="text-[10px] font-mono text-slate-500 hidden sm:block">
-                open source · MIT
-              </span>
+              <div className="flex items-center gap-1.5">
+                <span className="font-extrabold text-lg tracking-tight text-slate-900 leading-tight">
+                  Infra<span className="gradient-text-blue">Sense</span>
+                </span>
+                <span className="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] font-bold font-mono bg-blue-50 text-blue-600 border border-blue-100">
+                  v2.0
+                </span>
+              </div>
             </div>
           </button>
 
-          {/* Desktop tabs */}
-          <nav className="hidden md:flex items-center gap-1 p-1 rounded-xl bg-white/[0.03] border border-white/[0.06]" aria-label="Main navigation">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-1 p-1 rounded-xl bg-slate-100/80 border border-slate-200/60" aria-label="Main navigation">
             {NAV_TABS.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -50,24 +54,36 @@ export default function SiteNavbar({ activeTab, setActiveTab }) {
                 <button
                   key={tab.id}
                   onClick={() => handleTab(tab.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
                     isActive
-                      ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 shadow-sm'
-                      : 'text-slate-400 hover:text-white hover:bg-white/[0.04] border border-transparent'
+                      ? 'bg-white text-blue-600 shadow-sm border border-slate-200/60'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 border border-transparent'
                   }`}
                   aria-current={isActive ? 'page' : undefined}
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-blue-600' : 'text-slate-400'}`} />
                   {tab.label}
                 </button>
               );
             })}
           </nav>
 
-          {/* Mobile toggle */}
+          {/* Right Action Button */}
+          <div className="hidden sm:flex items-center gap-3">
+            <button
+              onClick={() => handleTab(TABS.CONSOLE)}
+              className="relative group inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 hover:from-blue-700 hover:to-indigo-700 shadow-md shadow-blue-500/25 transition-all hover:shadow-lg hover:shadow-blue-500/35 hover:-translate-y-0.5 active:translate-y-0"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Launch Calculator</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+          </div>
+
+          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors"
+            className="md:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
           >
@@ -76,16 +92,13 @@ export default function SiteNavbar({ activeTab, setActiveTab }) {
         </div>
       </div>
 
-      {/* Mobile tabs */}
+      {/* Mobile Drawer */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
-          mobileOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+          mobileOpen ? 'max-h-72 opacity-100 mt-2' : 'max-h-0 opacity-0'
         }`}
       >
-        <nav
-          className="px-4 pb-4 pt-2 space-y-1 border-t border-white/[0.06] bg-[#07090e]/98 backdrop-blur-xl"
-          aria-label="Mobile navigation"
-        >
+        <div className="bg-white/95 backdrop-blur-xl border border-slate-200 shadow-xl rounded-2xl p-3 space-y-1">
           {NAV_TABS.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -93,10 +106,10 @@ export default function SiteNavbar({ activeTab, setActiveTab }) {
               <button
                 key={tab.id}
                 onClick={() => handleTab(tab.id)}
-                className={`flex items-center gap-3 w-full px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
+                className={`flex items-center gap-3 w-full px-4 py-2.5 text-xs font-semibold rounded-xl transition-colors ${
                   isActive
-                    ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/25'
-                    : 'text-slate-300 hover:text-white hover:bg-white/[0.04]'
+                    ? 'bg-blue-50 text-blue-600 border border-blue-100'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -104,7 +117,16 @@ export default function SiteNavbar({ activeTab, setActiveTab }) {
               </button>
             );
           })}
-        </nav>
+          <div className="pt-2 border-t border-slate-100">
+            <button
+              onClick={() => handleTab(TABS.CONSOLE)}
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-md shadow-blue-500/20"
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>Launch Calculator</span>
+            </button>
+          </div>
+        </div>
       </div>
     </header>
   );

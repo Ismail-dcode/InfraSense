@@ -15,31 +15,31 @@ export default function RuleEvaluationLoader() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentStep(prev => (prev < EVALUATION_STEPS.length - 1 ? prev + 1 : prev));
-    }, 240);
+    }, 220);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto glass-panel p-12 text-center space-y-8 border-2 border-emerald-500/40 shadow-2xl shadow-emerald-500/10 animate-fadeIn">
+    <div className="max-w-4xl mx-auto bg-white border-2 border-blue-400 rounded-3xl p-10 sm:p-12 text-center space-y-6 shadow-xl shadow-blue-500/10 animate-fadeIn">
       
       {/* High-tech pulsing loader spinner */}
-      <div className="relative w-20 h-20 mx-auto">
-        <div className="absolute inset-0 rounded-full border-4 border-emerald-500/20 border-t-emerald-400 animate-spin" />
-        <div className="absolute inset-2 rounded-full border-4 border-indigo-500/20 border-b-indigo-400 animate-spin" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }} />
-        <div className="w-full h-full rounded-full flex items-center justify-center bg-slate-950">
-          <Cpu className="w-8 h-8 text-emerald-400 animate-pulse" />
+      <div className="relative w-18 h-18 mx-auto">
+        <div className="absolute inset-0 rounded-full border-4 border-blue-100 border-t-blue-600 animate-spin" />
+        <div className="absolute inset-2 rounded-full border-4 border-indigo-100 border-b-indigo-600 animate-spin" style={{ animationDirection: 'reverse', animationDuration: '1.4s' }} />
+        <div className="w-full h-full rounded-full flex items-center justify-center bg-blue-50">
+          <Cpu className="w-7 h-7 text-blue-600 animate-pulse" />
         </div>
       </div>
 
-      <div className="space-y-2">
-        <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest block">
+      <div className="space-y-1.5">
+        <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-widest block">
           RULE ENGINE IN PROGRESS
         </span>
-        <h3 className="text-2xl font-extrabold text-white">
-          Evaluating Backend Rules & Server Datasets...
+        <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900">
+          Evaluating Backend Rules & Datasets...
         </h3>
-        <p className="text-sm font-mono text-emerald-300 h-6 transition-all">
+        <p className="text-xs sm:text-sm font-mono text-blue-600 h-6 transition-all font-semibold">
           {EVALUATION_STEPS[currentStep]}
         </p>
       </div>
@@ -50,7 +50,7 @@ export default function RuleEvaluationLoader() {
           <div
             key={idx}
             className={`h-2 rounded-full transition-all duration-300 ${
-              idx <= currentStep ? 'w-8 bg-emerald-400' : 'w-2 bg-slate-800'
+              idx <= currentStep ? 'w-8 bg-blue-600' : 'w-2 bg-slate-200'
             }`}
           />
         ))}

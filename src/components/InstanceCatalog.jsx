@@ -19,36 +19,36 @@ export default function InstanceCatalog() {
   });
 
   return (
-    <div className="glass-panel p-4 sm:p-8 space-y-6">
+    <div className="bg-white border border-slate-200/90 rounded-3xl p-5 sm:p-8 space-y-6 shadow-sm">
       
       {/* Header & Search Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
         <div>
-          <h2 className="text-lg font-bold text-white flex items-center gap-2">
-            <Server className="w-5 h-5 text-emerald-400" />
+          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <Server className="w-5 h-5 text-blue-600" />
             Cloud Hardware Instance Catalog
           </h2>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500 mt-0.5">
             Browse complete specs, costs, and hardware profiles across AWS, Azure, and GCP.
           </p>
         </div>
 
         {/* Search Field */}
         <div className="relative w-full sm:w-64">
-          <Search className="w-4 h-4 text-slate-500 absolute left-3 top-2.5" />
+          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
           <input
             type="text"
             placeholder="Search t3.large, r6i, GPU..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-9 pr-4 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+            className="w-full pl-9 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-blue-600 focus:bg-white"
           />
         </div>
       </div>
 
       {/* Filter Chips */}
       <div className="flex flex-wrap items-center gap-2">
-        <span className="text-xs text-slate-400 flex items-center gap-1 mr-2">
+        <span className="text-xs text-slate-500 flex items-center gap-1 mr-2 font-medium">
           <Filter className="w-3.5 h-3.5" /> Filter by:
         </span>
 
@@ -57,17 +57,17 @@ export default function InstanceCatalog() {
           <button
             key={p}
             onClick={() => setSelectedProvider(p)}
-            className={`px-2.5 py-1 rounded-md text-xs font-mono font-semibold transition-colors uppercase ${
+            className={`px-3 py-1 rounded-lg text-xs font-mono font-semibold transition-colors uppercase cursor-pointer ${
               selectedProvider === p
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                : 'bg-slate-900 text-slate-400 border border-slate-800 hover:text-slate-200'
+                ? 'bg-blue-600 text-white shadow-xs'
+                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
             {p}
           </button>
         ))}
 
-        <div className="h-4 w-px bg-slate-800 mx-1" />
+        <div className="h-4 w-px bg-slate-200 mx-1" />
 
         {/* Family Category Filters */}
         {[
@@ -81,10 +81,10 @@ export default function InstanceCatalog() {
           <button
             key={fam.id}
             onClick={() => setSelectedFamily(fam.id)}
-            className={`px-2.5 py-1 rounded-md text-xs font-semibold transition-colors ${
+            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
               selectedFamily === fam.id
-                ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/40'
-                : 'bg-slate-900 text-slate-400 border border-slate-800 hover:text-slate-200'
+                ? 'bg-indigo-600 text-white shadow-xs'
+                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
             {fam.label}
@@ -97,45 +97,45 @@ export default function InstanceCatalog() {
         {filteredInstances.map(inst => (
           <div
             key={inst.id}
-            className="glass-panel p-5 border border-slate-800 hover:border-slate-700 transition-all flex flex-col justify-between space-y-4"
+            className="bg-slate-50/70 border border-slate-200/90 rounded-2xl p-5 hover:border-blue-300 hover:shadow-md hover:bg-white transition-all flex flex-col justify-between space-y-4"
           >
             <div>
               <div className="flex items-center justify-between mb-2">
-                <span className="px-2 py-0.5 text-[10px] font-mono uppercase rounded bg-slate-800 text-slate-300 border border-slate-700">
+                <span className="px-2 py-0.5 text-[10px] font-mono font-bold uppercase rounded bg-white text-slate-700 border border-slate-200 shadow-xs">
                   {inst.provider}
                 </span>
-                <span className="text-xs font-mono font-bold text-emerald-400">
+                <span className="text-xs font-mono font-extrabold text-blue-600">
                   ${inst.monthlyEstimate.toFixed(2)}/mo
                 </span>
               </div>
 
-              <h3 className="text-xl font-bold font-mono text-white mb-1">{inst.name}</h3>
-              <p className="text-xs text-slate-400 font-medium mb-3">{inst.family}</p>
-              <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed mb-4">
+              <h3 className="text-xl font-bold font-mono text-slate-900 mb-0.5">{inst.name}</h3>
+              <p className="text-xs text-slate-500 font-semibold mb-2">{inst.family}</p>
+              <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-4 font-normal">
                 {inst.description}
               </p>
 
-              {/* Hardware Pill Specs */}
-              <div className="grid grid-cols-2 gap-2 text-xs font-mono text-slate-300 pt-2 border-t border-slate-800/80">
+              {/* Hardware Specs */}
+              <div className="grid grid-cols-2 gap-2 text-xs font-mono text-slate-700 pt-2 border-t border-slate-200/80">
                 <div className="flex items-center gap-1.5">
-                  <Cpu className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <Cpu className="w-3.5 h-3.5 text-blue-600 shrink-0" />
                   <span>{inst.vCPU} vCPU</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Zap className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                  <Zap className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
                   <span>{inst.ramGB} GB RAM</span>
                 </div>
                 <div className="flex items-center gap-1.5 col-span-2">
-                  <HardDrive className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <HardDrive className="w-3.5 h-3.5 text-sky-600 shrink-0" />
                   <span>{inst.maxIops.toLocaleString()} IOPS • {inst.defaultStorageType}</span>
                 </div>
               </div>
             </div>
 
             {/* Best Use Case Tags */}
-            <div className="pt-2 border-t border-slate-800/50 flex flex-wrap gap-1">
+            <div className="pt-2 border-t border-slate-200/60 flex flex-wrap gap-1">
               {inst.bestUseCases.slice(0, 3).map((uc, i) => (
-                <span key={i} className="px-2 py-0.5 text-[10px] rounded bg-slate-900 text-slate-400 border border-slate-800">
+                <span key={i} className="px-2 py-0.5 text-[10px] rounded-md bg-white text-slate-600 border border-slate-200 font-medium">
                   {uc}
                 </span>
               ))}
