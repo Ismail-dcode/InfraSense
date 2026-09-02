@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BroadcastBanner from './components/BroadcastBanner';
 import SiteNavbar from './components/landing/SiteNavbar';
 import Footer from './components/landing/Footer';
@@ -12,6 +12,12 @@ export default function App() {
   const { activeTab, setActiveTab } = useAppTabs(TABS.HOME);
   const [initialPreset, setInitialPreset] = useState(null);
   const [showBanner, setShowBanner] = useState(true);
+  const [isDark, setIsDark] = useState(() => localStorage.getItem('infrasense-theme') === 'dark');
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark);
+    localStorage.setItem('infrasense-theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
 
   const handleSelectPresetFromHome = (preset) => {
     setInitialPreset(preset);
@@ -25,7 +31,7 @@ export default function App() {
           onClose={() => setShowBanner(false)}
         />
       )}
-      <SiteNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <SiteNavbar activeTab={activeTab} setActiveTab={setActiveTab} isDark={isDark} onToggleTheme={() => setIsDark((value) => !value)} />
 
       <main className="flex-1">
         {activeTab === TABS.HOME && (
