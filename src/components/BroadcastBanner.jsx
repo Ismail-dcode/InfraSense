@@ -31,7 +31,7 @@ export default function BroadcastBanner({ onOpenConsole, onClose }) {
         </div>
 
         {/* Center: Flowing Marquee / Announcement Text */}
-        <div className="flex-1 overflow-hidden relative group">
+        <div className="flex-1 min-w-0 overflow-hidden relative group">
           {/* Subtle gradient fades on edges for smooth marquee feel */}
           <div className="hidden sm:block absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
           <div className="hidden sm:block absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-slate-900 to-transparent z-10 pointer-events-none" />

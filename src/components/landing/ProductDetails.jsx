@@ -87,7 +87,7 @@ export default function ProductDetails({ onLaunchConsole }) {
                     <span className="w-3 h-3 rounded-full bg-amber-400" />
                     <span className="w-3 h-3 rounded-full bg-emerald-400" />
                   </div>
-                  <div className="flex-1 max-w-xs mx-auto text-center px-3 py-1 rounded-md bg-white border border-slate-200 text-[11px] font-mono text-slate-500 truncate">
+                  <div className="flex-1 min-w-0 max-w-xs mx-auto text-center px-3 py-1 rounded-md bg-white border border-slate-200 text-[11px] font-mono text-slate-500 truncate">
                     app.infrasense.io/console/evaluate
                   </div>
                 </div>
@@ -161,7 +161,7 @@ export default function ProductDetails({ onLaunchConsole }) {
                     <span className="w-3 h-3 rounded-full bg-amber-400" />
                     <span className="w-3 h-3 rounded-full bg-emerald-400" />
                   </div>
-                  <div className="flex-1 max-w-xs mx-auto text-center px-3 py-1 rounded-md bg-white border border-slate-200 text-[11px] font-mono text-slate-500 truncate">
+                  <div className="flex-1 min-w-0 max-w-xs mx-auto text-center px-3 py-1 rounded-md bg-white border border-slate-200 text-[11px] font-mono text-slate-500 truncate">
                     app.infrasense.io/console/terraform
                   </div>
                 </div>
