@@ -83,9 +83,9 @@ export default function Hero({ onLaunchConsole }) {
   return (
     <section className="relative pt-8 pb-20 sm:pt-14 sm:pb-28 overflow-hidden">
       {/* Background Soft Mesh Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[550px] pointer-events-none -z-10">
-        <div className="absolute top-[-10%] left-1/4 w-[500px] h-[350px] bg-blue-400/15 rounded-full blur-[100px] animate-float-slow" />
-        <div className="absolute top-[-5%] right-1/4 w-[450px] h-[350px] bg-indigo-400/15 rounded-full blur-[100px] animate-float-slow-reverse" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[550px] pointer-events-none -z-10 overflow-hidden">
+        <div className="absolute top-[-10%] left-[-10%] sm:left-1/4 w-[120%] sm:w-[500px] h-[350px] bg-blue-400/15 rounded-full blur-[100px] animate-float-slow" />
+        <div className="absolute top-[-5%] right-[-10%] sm:right-1/4 w-[120%] sm:w-[450px] h-[350px] bg-indigo-400/15 rounded-full blur-[100px] animate-float-slow-reverse" />
         <div className="absolute inset-0 bg-grid-pattern opacity-60" />
       </div>
 
@@ -102,7 +102,7 @@ export default function Hero({ onLaunchConsole }) {
 
         {/* Hero Main Headline */}
         <ScrollReveal delay={80}>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.12] tracking-tight max-w-4xl mx-auto">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.12] tracking-tight max-w-4xl mx-auto">
             Let AI size your next <br className="hidden sm:block" />
             <span className="gradient-text-blue">cloud architecture</span> with InfraSense
           </h1>
@@ -136,8 +136,8 @@ export default function Hero({ onLaunchConsole }) {
                 </div>
 
                 {/* Bottom Row Controls */}
-                <div className="flex items-center justify-between pt-2 border-t border-slate-100">
-                  <div className="flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-2 pt-4 sm:pt-2 border-t border-slate-100">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100/90 text-slate-600 text-xs font-semibold border border-slate-200/60">
                       <Cpu className="w-3.5 h-3.5 text-blue-600" />
                       <span>Workload Sizing</span>
@@ -151,7 +151,7 @@ export default function Hero({ onLaunchConsole }) {
                   <button
                     type="button"
                     onClick={() => handleLaunch()}
-                    className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md shadow-blue-500/25 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                    className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md shadow-blue-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto"
                   >
                     <span>Generate Architecture</span>
                     <ArrowRight className="w-4 h-4" />
