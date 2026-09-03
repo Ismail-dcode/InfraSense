@@ -11,6 +11,7 @@ import InstanceCatalog from './InstanceCatalog';
 import PresetSelector from './PresetSelector';
 import { DEFAULT_RULES } from '../data/defaultRules';
 import { evaluateCloudRequirements } from '../engine/ruleEngine';
+import { validateRequirements } from '../engine/validation';
 import { Cpu, Database, HardDrive, Zap, CheckCircle2 } from 'lucide-react';
 import ScrollReveal from './landing/ScrollReveal';
 
@@ -85,6 +86,7 @@ export default function CalculatorApp({ initialPreset, onClearInitialPreset }) {
   const [isPresetModalOpen, setIsPresetModalOpen] = useState(false);
   const [isCalculating, setIsCalculating] = useState(false);
   const [hasCalculated, setHasCalculated] = useState(false);
+  const [validationErrors, setValidationErrors] = useState({});
 
   const resultRef = useRef(null);
 
@@ -105,6 +107,13 @@ export default function CalculatorApp({ initialPreset, onClearInitialPreset }) {
     return evaluateCloudRequirements(userInput, activeRules);
   }, [userInput, activeRules]);
 
+  const handleInputChange = (nextInput) => {
+    setUserInput(nextInput);
+    if (Object.keys(validationErrors).length > 0) {
+      setValidationErrors(validateRequirements(nextInput));
+    }
+  };
+
   const handleToggleRule = (ruleId) => {
     setActiveRules((prev) =>
       prev.map((r) => (r.id === ruleId ? { ...r, enabled: !r.enabled } : r))
@@ -116,6 +125,14 @@ export default function CalculatorApp({ initialPreset, onClearInitialPreset }) {
   };
 
   const handleSubmitForm = () => {
+    const errors = validateRequirements(userInput);
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      setHasCalculated(false);
+      return;
+    }
+
+    setValidationErrors({});
     setIsCalculating(true);
     setHasCalculated(false);
 
@@ -132,6 +149,7 @@ export default function CalculatorApp({ initialPreset, onClearInitialPreset }) {
     setUserInput(INITIAL_INPUT);
     setHasCalculated(false);
     setIsCalculating(false);
+    setValidationErrors({});
   };
 
   return (
@@ -211,9 +229,10 @@ export default function CalculatorApp({ initialPreset, onClearInitialPreset }) {
               <div className="space-y-10">
                 <RequirementForm
                   input={userInput}
-                  onChange={setUserInput}
+                  onChange={handleInputChange}
                   onSubmit={handleSubmitForm}
                   onReset={handleResetForm}
+                  validationErrors={validationErrors}
                 />
 
                 <div ref={resultRef}>
