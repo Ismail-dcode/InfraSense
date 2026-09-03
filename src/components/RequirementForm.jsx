@@ -2,7 +2,7 @@ import React from 'react';
 import { WORKLOAD_PROFILES } from '../data/cloudDatabase';
 import { Cpu, HardDrive, Zap, DollarSign, Cloud, Sparkles, RefreshCw, CheckCircle2, MapPin, ShieldCheck, Bell, Network, Lock, Activity, Server, Layers, Info } from 'lucide-react';
 
-export default function RequirementForm({ input, onChange, onSubmit, onReset }) {
+export default function RequirementForm({ input, onChange, onSubmit, onReset, validationErrors = {} }) {
   const instanceCount = input.instanceCount || 1;
 
   const handleWorkloadSelect = (profileId) => {
@@ -277,6 +277,8 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                   min="1"
                   max="64"
                   value={input.vcpu}
+                  aria-invalid={Boolean(validationErrors.vcpu)}
+                  aria-describedby={validationErrors.vcpu ? 'vcpu-error' : undefined}
                   onChange={(e) => onChange({ ...input, vcpu: Math.max(1, parseInt(e.target.value) || 1) })}
                   className="w-16 px-2 py-1 bg-white border border-slate-300 rounded-xl text-center text-xs sm:text-sm font-mono font-bold text-blue-700 focus:outline-none focus:border-blue-500"
                 />
@@ -315,6 +317,8 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
                   min="0.5"
                   max="512"
                   value={input.ram}
+                  aria-invalid={Boolean(validationErrors.ram)}
+                  aria-describedby={validationErrors.ram ? 'ram-error' : undefined}
                   onChange={(e) => onChange({ ...input, ram: Math.max(0.5, parseFloat(e.target.value) || 0.5) })}
                   className="w-16 px-2 py-1 bg-white border border-slate-300 rounded-xl text-center text-xs sm:text-sm font-mono font-bold text-indigo-700 focus:outline-none focus:border-indigo-500"
                 />
@@ -526,6 +530,22 @@ export default function RequirementForm({ input, onChange, onSubmit, onReset }) 
 
       {/* Generate Action Button */}
       <div className="pt-2 pb-4">
+        {Object.keys(validationErrors).length > 0 && (
+          <div
+            role="alert"
+            aria-live="polite"
+            className="mb-4 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-800"
+          >
+            <p className="font-bold">Please fix the highlighted inputs before continuing.</p>
+            <ul className="mt-2 list-disc space-y-1 pl-5">
+              {Object.entries(validationErrors).map(([field, message]) => (
+                <li key={field} id={field === 'vcpu' ? 'vcpu-error' : field === 'ram' ? 'ram-error' : undefined}>
+                  {message}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <button
           type="button"
           onClick={onSubmit}
