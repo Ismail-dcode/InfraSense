@@ -45,6 +45,56 @@ body {
   background-attachment: fixed;
 }
 
+html.dark body {
+  background-color: #0f172a;
+  color: #e2e8f0;
+  background-image: linear-gradient(to bottom, #0f172a, #111827);
+}
+
+html.dark .bg-white,
+html.dark .bg-white\/85,
+html.dark .bg-white\/90,
+html.dark .bg-white\/95 {
+  background-color: #172033 !important;
+}
+
+html.dark .bg-slate-50,
+html.dark .bg-slate-50\/50,
+html.dark .bg-slate-100,
+html.dark .bg-slate-100\/80,
+html.dark .bg-slate-100\/70 {
+  background-color: #1e293b !important;
+}
+
+html.dark .text-slate-900 { color: #f1f5f9 !important; }
+html.dark .text-slate-700 { color: #cbd5e1 !important; }
+html.dark .text-slate-600 { color: #cbd5e1 !important; }
+html.dark .text-slate-500 { color: #94a3b8 !important; }
+html.dark .text-slate-400 { color: #94a3b8 !important; }
+html.dark .border-slate-200,
+html.dark .border-slate-200\/80,
+html.dark .border-slate-200\/90,
+html.dark .border-slate-200\/60,
+html.dark .border-slate-100 {
+  border-color: #334155 !important;
+}
+html.dark .shadow-sm,
+html.dark .shadow-xs { box-shadow: 0 4px 20px -8px rgba(0, 0, 0, .45) !important; }
+html.dark .bg-grid-pattern {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, .08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, .08) 1px, transparent 1px);
+}
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #1e293b;
+  color: #f8fafc;
+  border-color: #475569;
+}
+html.dark ::-webkit-scrollbar-track { background: #1e293b; }
+html.dark ::-webkit-scrollbar-thumb { background: #475569; }
+
 .font-mono {
   font-family: var(--font-mono);
 }
