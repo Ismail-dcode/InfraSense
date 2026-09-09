@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Layers, Terminal, BookOpen, User, Sparkles, ArrowRight, Home } from 'lucide-react';
+import { Menu, X, Layers, Terminal, BookOpen, User, Sparkles, ArrowRight, Home, Moon, Sun } from 'lucide-react';
 import { TABS } from '../../hooks/useAppTabs';
 
 const NAV_TABS = [
@@ -9,7 +9,7 @@ const NAV_TABS = [
   { id: TABS.DEVELOPER, label: 'Developer', icon: User },
 ];
 
-export default function SiteNavbar({ activeTab, setActiveTab }) {
+export default function SiteNavbar({ activeTab, setActiveTab, isDark, onToggleTheme }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleTab = (tab) => {
@@ -71,6 +71,15 @@ export default function SiteNavbar({ activeTab, setActiveTab }) {
           {/* Right Action Button */}
           <div className="hidden sm:flex items-center gap-3">
             <button
+              type="button"
+              onClick={onToggleTheme}
+              className="p-2.5 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-transparent hover:border-slate-200 transition-colors dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800 dark:hover:border-slate-700"
+              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
+            <button
               onClick={() => handleTab(TABS.CONSOLE)}
               className="relative group inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 hover:from-blue-700 hover:to-indigo-700 shadow-md shadow-blue-500/25 transition-all hover:shadow-lg hover:shadow-blue-500/35 hover:-translate-y-0.5 active:translate-y-0"
             >
@@ -118,6 +127,15 @@ export default function SiteNavbar({ activeTab, setActiveTab }) {
             );
           })}
           <div className="pt-2 border-t border-slate-100">
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800"
+              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              {isDark ? 'Light mode' : 'Dark mode'}
+            </button>
             <button
               onClick={() => handleTab(TABS.CONSOLE)}
               className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-md shadow-blue-500/20"
