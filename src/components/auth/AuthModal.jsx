@@ -160,11 +160,10 @@ export default function AuthModal() {
                 setAuthModalMode('login');
                 setErrorMsg('');
               }}
-              className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all ${
-                isLogin
+              className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all ${isLogin
                   ? 'bg-white text-blue-600 shadow-sm border border-slate-200/60'
                   : 'text-slate-600 hover:text-slate-900'
-              }`}
+                }`}
             >
               Sign In
             </button>
@@ -174,11 +173,10 @@ export default function AuthModal() {
                 setAuthModalMode('register');
                 setErrorMsg('');
               }}
-              className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all ${
-                !isLogin
+              className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all ${!isLogin
                   ? 'bg-white text-blue-600 shadow-sm border border-slate-200/60'
                   : 'text-slate-600 hover:text-slate-900'
-              }`}
+                }`}
             >
               Create Account
             </button>
@@ -415,11 +413,7 @@ export default function AuthModal() {
             )}
           </div>
 
-          {/* MongoDB Security / Credential Badge */}
-          <div className="mt-4 flex items-center justify-center gap-1.5 text-[11px] text-slate-400 font-medium">
-            <Database className="w-3.5 h-3.5 text-blue-500" />
-            <span>Secured with MongoDB Atlas & JWT Authentication</span>
-          </div>
+
         </div>
       </div>
     </div>
