@@ -33,6 +33,25 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Middleware to ensure DB connection before handling auth requests
+app.use('/api/auth', async (req, res, next) => {
+  try {
+    const conn = await connectDB();
+    if (!conn) {
+      return res.status(503).json({
+        success: false,
+        message: 'Database connection is unavailable. Please check your .env MONGODB_URI password and MongoDB Atlas Network Access (IP whitelist 0.0.0.0/0).',
+      });
+    }
+    next();
+  } catch (err) {
+    return res.status(503).json({
+      success: false,
+      message: 'Database connection failed: ' + err.message,
+    });
+  }
+});
+
 // Auth Routes
 app.use('/api/auth', authRoutes);
 

@@ -8,13 +8,11 @@ dotenv.config();
 
 const app = express();
 
-// Connect to MongoDB
-connectDB();
-
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Health Check
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
@@ -24,6 +22,26 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Middleware to ensure DB connection before auth operations
+app.use('/api/auth', async (req, res, next) => {
+  try {
+    const conn = await connectDB();
+    if (!conn) {
+      return res.status(503).json({
+        success: false,
+        message: 'Database connection is unavailable. Please ensure MongoDB Atlas Network Access allows 0.0.0.0/0 (Anywhere) and MONGODB_URI has the valid password.',
+      });
+    }
+    next();
+  } catch (err) {
+    return res.status(503).json({
+      success: false,
+      message: 'Database connection failed: ' + (err.message || 'Check MongoDB Atlas IP Whitelist'),
+    });
+  }
+});
+
+// Auth Routes
 app.use('/api/auth', authRoutes);
 
 // Export for Vercel Serverless Function
