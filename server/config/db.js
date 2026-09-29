@@ -10,17 +10,15 @@ export async function connectDB() {
   const uri = process.env.MONGODB_URI;
 
   if (!uri) {
-    console.warn('⚠️ [MongoDB Warning]: MONGODB_URI is not set in environment variables. Database connection skipped.');
-    return null;
+    throw new Error('MONGODB_URI is not set in environment variables');
   }
 
-  // Check if placeholder password is still present
   if (uri.includes('<db_password>') || uri.includes('<password>')) {
-    console.warn('⚠️ [MongoDB Warning]: Replace <db_password> in your .env or Vercel environment variables with your actual database password.');
-    return null;
+    throw new Error('Please replace <db_password> in your environment variables with your actual database password.');
   }
 
-  if (cached.conn) {
+  // If already connected and ready
+  if (cached.conn && mongoose.connection.readyState === 1) {
     return cached.conn;
   }
 
@@ -28,18 +26,25 @@ export async function connectDB() {
     const opts = {
       bufferCommands: false,
       serverSelectionTimeoutMS: 8000,
+      connectTimeoutMS: 8000,
+      maxPoolSize: 10,
     };
 
-    cached.promise = mongoose.connect(uri, opts).then((mongooseInstance) => {
-      console.log(`✅ [MongoDB Connected]: Successfully connected to database host ${mongooseInstance.connection.host}`);
-      return mongooseInstance;
+    cached.promise = mongoose.connect(uri, opts).then((m) => {
+      console.log(`✅ [MongoDB Connected]: host ${m.connection.host}`);
+      return m;
     }).catch((err) => {
       console.error('❌ [MongoDB Connection Error]:', err.message);
       cached.promise = null;
-      return null;
+      throw err;
     });
   }
 
-  cached.conn = await cached.promise;
-  return cached.conn;
+  try {
+    cached.conn = await cached.promise;
+    return cached.conn;
+  } catch (err) {
+    cached.promise = null;
+    throw err;
+  }
 }

@@ -2,6 +2,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import { protect } from '../middleware/auth.js';
+import { connectDB } from '../config/db.js';
 
 const router = express.Router();
 
@@ -16,6 +17,9 @@ function generateToken(id) {
 // @access  Public
 router.post('/register', async (req, res) => {
   try {
+    // Ensure DB connection is active before performing queries
+    await connectDB();
+
     const { username, email, password, name } = req.body;
 
     if (!username || !email || !password) {
@@ -92,6 +96,9 @@ router.post('/register', async (req, res) => {
 // @access  Public
 router.post('/login', async (req, res) => {
   try {
+    // Ensure DB connection is active before performing queries
+    await connectDB();
+
     const { identifier, password } = req.body;
 
     if (!identifier || !password) {
@@ -149,6 +156,7 @@ router.post('/login', async (req, res) => {
 // @access  Private
 router.get('/me', protect, async (req, res) => {
   try {
+    await connectDB();
     return res.status(200).json({
       success: true,
       user: req.user,
