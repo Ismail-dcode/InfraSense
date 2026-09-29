@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Sparkles, CheckCircle2, ShieldCheck } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 
 export default function CallToAction({ onLaunchConsole }) {
@@ -23,7 +23,7 @@ export default function CallToAction({ onLaunchConsole }) {
               </h2>
 
               <p className="text-base sm:text-lg text-blue-100 max-w-xl mx-auto leading-relaxed font-normal">
-                No sign-up. No credit card. Open the calculator, define your workload, and get ranked recommendations with Terraform exports in seconds.
+                Sign in with your email or username. No credit card needed. Open the calculator, define your workload, and get ranked recommendations with Terraform exports in seconds.
               </p>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -39,8 +39,8 @@ export default function CallToAction({ onLaunchConsole }) {
 
               <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 pt-3 text-xs text-blue-100 font-medium">
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-sky-300" />
-                  No Account Required
+                  <ShieldCheck className="w-4 h-4 text-sky-300" />
+                  MongoDB-Backed Auth
                 </span>
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-sky-300" />
