@@ -193,16 +193,26 @@ sequenceDiagram
 
 ```
 infrasence/
+├── server/                                  # Express Backend & MongoDB Auth Server
+│   ├── config/db.js                         # Mongoose connection & error logging
+│   ├── models/User.js                       # User schema with bcrypt & validation
+│   ├── middleware/auth.js                   # JWT verification middleware
+│   ├── routes/auth.js                       # Register, Login (email/username), & /me routes
+│   └── index.js                             # Express server entrypoint
 ├── index.html                               # HTML5 entrypoint
 ├── package.json                             # Project dependencies & scripts
 ├── postcss.config.js                        # PostCSS configuration
 ├── tailwind.config.js                       # Tailwind styling tokens & keyframes
-├── vite.config.js                           # Vite build configuration
+├── vite.config.js                           # Vite build & API proxy configuration
+├── .env.example                             # Environment credential template & rotation guide
 └── src/
-    ├── App.jsx                              # Global layout & tab navigation router
+    ├── App.jsx                              # Gated tab router with AuthProvider
     ├── main.jsx                             # React DOM bootstrap
     ├── index.css                            # Global styles, glassmorphism & ticker keyframes
+    ├── context/
+    │   └── AuthContext.jsx                  # Authentication state & API dispatcher
     ├── hooks/
+    │   ├── useAuth.js                       # User session & auth modal hook
     │   ├── useAppTabs.js                    # Tab state management (Home, Console, Docs, Dev)
     │   └── useScrollReveal.js               # IntersectionObserver animations
     ├── pages/
@@ -211,6 +221,9 @@ infrasence/
     │   ├── DocumentationPage.jsx            # Deep-dive architecture & heuristic docs
     │   └── DeveloperPage.jsx                # Creator info, tech stack & open source
     ├── components/
+    │   ├── auth/
+    │   │   ├── AuthModal.jsx                # Glassmorphic Sign In / Sign Up dialog
+    │   │   └── AuthBarrier.jsx              # Unauthenticated console barrier view
     │   ├── BroadcastBanner.jsx              # Top announcement banner (Dev status ticker)
     │   ├── CalculatorApp.jsx                # Sizing workbench container
     │   ├── RequirementForm.jsx              # Interactive workload parameter form
@@ -229,7 +242,7 @@ infrasence/
     │   ├── SecurityAndMonitoringAdvisor.jsx # CloudWatch & IAM advisor
     │   ├── ToolNavbar.jsx                   # Sub-navigation bar for console tabs
     │   └── landing/
-    │       ├── SiteNavbar.jsx               # Top header navigation
+    │       ├── SiteNavbar.jsx               # Top header navigation with auth dropdown
     │       ├── Hero.jsx                     # Hero banner with rotating prompt typewriter
     │       ├── HowItWorks.jsx               # 4-step visual workflow
     │       ├── ProductDetails.jsx           # Tabbed feature deep-dive
@@ -254,6 +267,9 @@ infrasence/
 | :--- | :--- | :--- |
 | **UI Framework** | [React 18](https://react.dev/) | Declarative component architecture & modern hooks |
 | **Bundler & Server** | [Vite 5](https://vitejs.dev/) | Instant HMR development and optimized production bundling |
+| **Backend Engine** | [Express](https://expressjs.com/) & [Node.js](https://nodejs.org/) | REST API server for user authentication and session management |
+| **Database** | [MongoDB Atlas](https://www.mongodb.com/atlas) & [Mongoose](https://mongoosejs.com/) | Cloud database for user storage, hashed passwords, and credentials |
+| **Security** | [bcryptjs](https://www.npmjs.com/package/bcryptjs) & [jsonwebtoken](https://jwt.io/) | Salted password hashing & secure JWT token handling |
 | **Styling** | [Tailwind CSS 3](https://tailwindcss.com/) | Curated utility classes, dark-mode styling & custom keyframe animations |
 | **Icons** | [Lucide React](https://lucide.dev/) | Comprehensive vector cloud, server, and architecture icons |
 | **IaC Language** | [HashiCorp Terraform (HCL)](https://www.terraform.io/) | Standard Infrastructure as Code output format |
@@ -272,26 +288,39 @@ node -v
 npm -v
 ```
 
-### Installation & Local Run
+### Environment Setup & Credential Rotation
 
-1. **Clone the repository:**
+1. Create a `.env` file based on `.env.example`:
    ```bash
-   git clone https://github.com/Ismail-dcode/Infrasense.git
-   cd Infrasense
+   cp .env.example .env
    ```
 
-2. **Install project dependencies:**
+2. Configure your MongoDB connection string in `.env`:
+   ```env
+   MONGODB_URI=mongodb+srv://royalismail6263_db_user:<your_db_password>@my-db1.wgv0rns.mongodb.net/infrasense?retryWrites=true&w=majority&appName=My-db1
+   JWT_SECRET=your_super_secret_jwt_key
+   PORT=5000
+   ```
+
+3. **Credential Rotation Protocol**:
+   - To rotate database access: Update password in MongoDB Atlas Console, replace `<your_db_password>` in `.env`, and restart backend.
+   - To rotate JWT secrets: Generate a fresh 256-bit key in `.env` under `JWT_SECRET`.
+
+### Installation & Local Run
+
+1. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. **Start local development server:**
+2. **Start Frontend & Backend simultaneously:**
    ```bash
    npm run dev
    ```
-   Open your browser at `http://localhost:5173`.
+   - Frontend: `http://localhost:3000`
+   - Backend API: `http://localhost:5000`
 
-4. **Build for production:**
+3. **Build for production:**
    ```bash
    npm run build
    ```

@@ -7,9 +7,22 @@ import CodeSnippets from '../components/landing/CodeSnippets';
 import WhoIsItFor from '../components/landing/WhoIsItFor';
 import CallToAction from '../components/landing/CallToAction';
 import { TABS } from '../hooks/useAppTabs';
+import { useAuth } from '../hooks/useAuth';
 
 export default function LandingPage({ setActiveTab, onSelectPreset }) {
+  const { isAuthenticated, openAuthModal } = useAuth();
+
   const handleLaunchConsole = (preset) => {
+    if (!isAuthenticated) {
+      openAuthModal('login', () => {
+        if (preset && onSelectPreset) {
+          onSelectPreset(preset);
+        }
+        setActiveTab(TABS.CONSOLE);
+      });
+      return;
+    }
+
     if (preset && onSelectPreset) {
       onSelectPreset(preset);
     }
@@ -17,6 +30,12 @@ export default function LandingPage({ setActiveTab, onSelectPreset }) {
   };
 
   const handleSelectCategory = (category) => {
+    if (!isAuthenticated) {
+      openAuthModal('login', () => {
+        setActiveTab(TABS.CONSOLE);
+      });
+      return;
+    }
     setActiveTab(TABS.CONSOLE);
   };
 
