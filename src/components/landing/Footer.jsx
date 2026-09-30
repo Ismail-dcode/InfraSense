@@ -10,7 +10,8 @@ export default function Footer({ activeTab, setActiveTab }) {
 
   const navLinks = [
     { label: 'Home', tab: TABS.HOME },
-    { label: 'Console', tab: TABS.CONSOLE },
+    { label: 'Infra Services Architect', tab: TABS.SERVICES },
+    { label: 'VM Sizing Calculator', tab: TABS.CONSOLE },
     { label: 'How It Works', tab: TABS.DOCS },
     { label: 'Developer', tab: TABS.DEVELOPER },
   ];
@@ -24,7 +25,7 @@ export default function Footer({ activeTab, setActiveTab }) {
           <div className="space-y-3">
             <button
               onClick={() => setActiveTab(TABS.HOME)}
-              className="flex items-center gap-2.5"
+              className="flex items-center gap-2.5 cursor-pointer"
             >
               <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 p-[1px] shadow-sm shadow-blue-500/20">
                 <div className="w-full h-full rounded-[11px] bg-white flex items-center justify-center">
@@ -68,7 +69,7 @@ export default function Footer({ activeTab, setActiveTab }) {
                 <li key={link.label}>
                   <button
                     onClick={() => setActiveTab(link.tab)}
-                    className={`text-xs transition-colors font-medium ${
+                    className={`text-xs transition-colors font-medium cursor-pointer ${
                       activeTab === link.tab
                         ? 'text-blue-600 font-bold'
                         : 'text-slate-500 hover:text-blue-600'
@@ -110,7 +111,7 @@ export default function Footer({ activeTab, setActiveTab }) {
               <li>
                 <button
                   onClick={() => setActiveTab(TABS.DOCS)}
-                  className="text-xs text-slate-500 hover:text-blue-600 transition-colors font-medium"
+                  className="text-xs text-slate-500 hover:text-blue-600 transition-colors font-medium cursor-pointer"
                 >
                   Documentation & Workflow
                 </button>

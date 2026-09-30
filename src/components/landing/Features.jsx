@@ -10,10 +10,17 @@ import {
   Network,
   Settings2,
   Sparkles,
+  Layers,
 } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 
 const FEATURES = [
+  {
+    icon: Sparkles,
+    title: 'Full Infra Architect',
+    description: 'End-to-end cloud suite recommender with 3 strategies: Performance, Cost Efficient & Zero-Ops.',
+    tag: 'Architect',
+  },
   {
     icon: Cpu,
     title: 'Compute Sizing',
@@ -67,12 +74,6 @@ const FEATURES = [
     title: 'Instance Catalog',
     description: 'Searchable table of 50+ cloud instance specs with family, vCPU, RAM, network, and pricing data.',
     tag: 'Catalog',
-  },
-  {
-    icon: Sparkles,
-    title: 'Quick Presets',
-    description: 'Pre-configured profiles for E-Commerce, Microservice API, AI/ML Inference, and Low-Cost MVP workloads.',
-    tag: 'Presets',
   },
 ];
 

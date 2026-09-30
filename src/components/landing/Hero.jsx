@@ -11,8 +11,14 @@ import {
   ShieldCheck,
   Search,
   Code2,
+  Bookmark,
+  Layers,
+  Wrench,
+  Construction,
+  Bot,
 } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
+import { TABS } from '../../hooks/useAppTabs';
 
 const PROMPT_SUGGESTIONS = [
   {
@@ -45,7 +51,7 @@ const ROTATING_PROMPTS = [
   'Compare AWS Lambda vs ECS Fargate for background worker jobs...',
 ];
 
-export default function Hero({ onLaunchConsole }) {
+export default function Hero({ onLaunchConsole, onLaunchServices, onNavigateTab }) {
   const [promptText, setPromptText] = useState('');
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const [displayedPlaceholder, setDisplayedPlaceholder] = useState('');
@@ -75,7 +81,9 @@ export default function Hero({ onLaunchConsole }) {
   }, [placeholderIndex]);
 
   const handleLaunch = (preset) => {
-    if (onLaunchConsole) {
+    if (onLaunchServices) {
+      onLaunchServices(preset);
+    } else if (onLaunchConsole) {
       onLaunchConsole(preset);
     }
   };
@@ -89,38 +97,51 @@ export default function Hero({ onLaunchConsole }) {
         <div className="absolute inset-0 bg-grid-pattern opacity-60" />
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12 sm:space-y-16">
         
-        {/* Top Floating Pill Badge */}
-        <ScrollReveal>
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-blue-200/80 shadow-sm text-blue-700 text-xs font-semibold mb-6 backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-            <span>AI-Powered Cloud Infrastructure Decision Engine</span>
-          </div>
-        </ScrollReveal>
+        {/* Hero Top Copy */}
+        <div className="max-w-4xl mx-auto space-y-4">
+          <ScrollReveal>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-blue-200/80 shadow-sm text-blue-700 text-xs font-semibold backdrop-blur-md">
+              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              <span>AI Cloud Architecture & Services Platform</span>
+            </div>
+          </ScrollReveal>
 
-        {/* Hero Main Headline */}
-        <ScrollReveal delay={80}>
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.12] tracking-tight max-w-4xl mx-auto">
-            Let AI size your next <br className="hidden sm:block" />
-            <span className="gradient-text-blue">cloud architecture</span> with InfraSense
-          </h1>
-        </ScrollReveal>
+          <ScrollReveal delay={80}>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.12] tracking-tight">
+              Design & size your complete <br className="hidden sm:block" />
+              <span className="gradient-text-blue">cloud infrastructure</span> with InfraSense
+            </h1>
+          </ScrollReveal>
 
-        {/* Subtitle */}
-        <ScrollReveal delay={140}>
-          <p className="mt-5 text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
-            Describe your workload requirements. InfraSense evaluates vCPU, memory, database, and storage specs across AWS, Azure & GCP — returning ranked instance matches with instant Terraform IaC.
-          </p>
-        </ScrollReveal>
+          <ScrollReveal delay={140}>
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
+              From full infrastructure suites with 3 strategic blueprints to VM compute sizing calculators, InfraSense gives you instant production architectures and Terraform IaC exports.
+            </p>
+          </ScrollReveal>
+        </div>
 
-        {/* Interactive Prompt Search Card (Taplio Style) */}
+        {/* Interactive Chatbox with "UNDER DEVELOPMENT" Banner (Requirement 3) */}
         <ScrollReveal delay={200}>
-          <div className="mt-10 max-w-2xl mx-auto">
-            <div className="relative p-[2px] rounded-3xl bg-gradient-to-r from-blue-600 via-sky-400 to-indigo-600 shadow-xl shadow-blue-500/10">
-              <div className="bg-white rounded-[22px] p-4 sm:p-5 text-left space-y-4">
+          <div className="max-w-2xl mx-auto">
+            <div className="relative p-[2px] rounded-3xl bg-gradient-to-r from-blue-600 via-amber-400 to-indigo-600 shadow-xl shadow-blue-500/10">
+              <div className="bg-white rounded-[22px] p-5 sm:p-6 text-left space-y-4">
                 
+                {/* Under Development Badge */}
+                <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-semibold">
+                  <div className="flex items-center gap-2">
+                    <Construction className="w-4 h-4 text-amber-600 shrink-0" />
+                    <span>
+                      <strong>AI Natural Language Chatbox</strong> — Under Active Development
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-amber-200/70 text-amber-800 font-bold uppercase">
+                    v2.1 Preview
+                  </span>
+                </div>
+
                 {/* Input Area */}
                 <div className="relative min-h-[56px] flex items-start">
                   <textarea
@@ -138,22 +159,18 @@ export default function Hero({ onLaunchConsole }) {
                 {/* Bottom Row Controls */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-2 pt-4 sm:pt-2 border-t border-slate-100">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100/90 text-slate-600 text-xs font-semibold border border-slate-200/60">
-                      <Cpu className="w-3.5 h-3.5 text-blue-600" />
-                      <span>Workload Sizing</span>
-                    </span>
-                    <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-blue-50 text-blue-700 text-xs font-semibold border border-blue-100">
-                      <Code2 className="w-3 h-3 text-blue-600" />
-                      <span>Terraform HCL</span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 text-xs font-semibold border border-slate-200/60">
+                      <Bot className="w-3.5 h-3.5 text-blue-600" />
+                      <span>Natural Language Parser</span>
                     </span>
                   </div>
 
                   <button
                     type="button"
                     onClick={() => handleLaunch()}
-                    className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md shadow-blue-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto"
+                    className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md shadow-blue-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto cursor-pointer"
                   >
-                    <span>Generate Architecture</span>
+                    <span>Launch Dedicated Console</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -171,19 +188,220 @@ export default function Hero({ onLaunchConsole }) {
                     setPromptText(sug.text);
                     handleLaunch(sug.preset);
                   }}
-                  className="px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-600 bg-white/90 hover:bg-white hover:text-blue-600 border border-slate-200/80 shadow-sm transition-all hover:border-blue-300 hover:shadow"
+                  className="px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-600 bg-white/90 hover:bg-white hover:text-blue-600 border border-slate-200/80 shadow-xs transition-all hover:border-blue-300 hover:shadow-xs cursor-pointer"
                 >
                   {sug.label}
                 </button>
               ))}
             </div>
+          </div>
+        </ScrollReveal>
 
-            {/* Micro Trust Guarantee */}
-            <div className="flex items-center justify-center gap-2 text-xs font-medium text-slate-500 mt-6">
-              <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-              <span>100% Free & Open Source · No credit card required · Instant Terraform Export</span>
+        {/* InfraSense Provided Consoles & Services Suite (Requirement 3) */}
+        <ScrollReveal delay={240}>
+          <div className="space-y-6 pt-4 text-left">
+            <div className="text-center space-y-1 max-w-2xl mx-auto">
+              <span className="text-[11px] font-mono font-bold text-blue-600 uppercase tracking-widest block">
+                INFRASENSE PROVIDED SERVICES & CONSOLES
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Choose a Specialized Cloud Architecture Service
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-500 font-normal">
+                Click any service below to open its dedicated decision console and generate production-ready architectures:
+              </p>
             </div>
 
+            {/* Services Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              
+              {/* Service 1: Full Infra Architect */}
+              <div
+                onClick={() => (onNavigateTab ? onNavigateTab(TABS.SERVICES) : handleLaunch())}
+                className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/10 transition-all flex flex-col justify-between space-y-4 group cursor-pointer hover:-translate-y-1"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                      <Sparkles className="w-6 h-6" />
+                    </div>
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold font-mono bg-blue-100 text-blue-700">
+                      NEW · FEATURED
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="text-base font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors">
+                      Full Infra Services Architect
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mt-1">
+                      Recommends the complete cloud stack: Compute, Databases, Storage, VPC, WAF & Monitoring with <strong>Performance</strong>, <strong>Cost Efficient</strong>, and <strong>Zero-Ops</strong> blueprints.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-blue-600">
+                  <span>Open Services Architect</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              {/* Service 2: VM & Compute Sizing Console */}
+              <div
+                onClick={() => (onNavigateTab ? onNavigateTab(TABS.CONSOLE) : onLaunchConsole())}
+                className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:border-indigo-500 hover:shadow-xl hover:shadow-indigo-500/10 transition-all flex flex-col justify-between space-y-4 group cursor-pointer hover:-translate-y-1"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                      <Server className="w-6 h-6" />
+                    </div>
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold font-mono bg-indigo-100 text-indigo-700">
+                      CALCULATOR
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="text-base font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                      VM & Compute Sizing Console
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mt-1">
+                      Deterministic heuristic instance matcher for AWS EC2, Azure VMs, and GCP Compute Engine with vCPU, RAM, IOPS, and live pricing benchmarks.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-indigo-600">
+                  <span>Open VM Sizer Console</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              {/* Service 3: User Dashboard Saved Reports */}
+              <div
+                onClick={() => (onNavigateTab ? onNavigateTab(TABS.DASHBOARD) : onLaunchServices())}
+                className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:border-amber-500 hover:shadow-xl hover:shadow-amber-500/10 transition-all flex flex-col justify-between space-y-4 group cursor-pointer hover:-translate-y-1"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                      <Bookmark className="w-6 h-6" />
+                    </div>
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold font-mono bg-amber-100 text-amber-700">
+                      DASHBOARD
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="text-base font-extrabold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      Recently Saved Reports & Results
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mt-1">
+                      Review, export, and reload your saved infrastructure configurations, architecture decision records, and budget estimations in your private dashboard.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-amber-600">
+                  <span>View Saved Reports</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              {/* Service 4: Database Advisor */}
+              <div
+                onClick={() => (onNavigateTab ? onNavigateTab(TABS.CONSOLE) : onLaunchConsole())}
+                className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/10 transition-all flex flex-col justify-between space-y-4 group cursor-pointer hover:-translate-y-1"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                      <Database className="w-6 h-6" />
+                    </div>
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold font-mono bg-purple-100 text-purple-700">
+                      DATABASE
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="text-base font-extrabold text-slate-900 group-hover:text-purple-600 transition-colors">
+                      Cloud Database & Cache Sizer
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mt-1">
+                      PostgreSQL, MySQL, Amazon Aurora Serverless v2, DynamoDB, and Redis sizing based on connections, IOPS, and RAM cache ratios.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-600">
+                  <span>Explore Database Sizer</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              {/* Service 5: Storage & CDN Optimizer */}
+              <div
+                onClick={() => (onNavigateTab ? onNavigateTab(TABS.CONSOLE) : onLaunchConsole())}
+                className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:border-sky-500 hover:shadow-xl hover:shadow-sky-500/10 transition-all flex flex-col justify-between space-y-4 group cursor-pointer hover:-translate-y-1"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors">
+                      <HardDrive className="w-6 h-6" />
+                    </div>
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold font-mono bg-sky-100 text-sky-700">
+                      STORAGE
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="text-base font-extrabold text-slate-900 group-hover:text-sky-600 transition-colors">
+                      Cloud Storage & CDN Optimizer
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mt-1">
+                      Compare Amazon S3 Intelligent-Tiering, EBS SSD (gp3 vs io2), Glacier archives, and CloudFront edge delivery costs.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-600">
+                  <span>Explore Storage Sizer</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              {/* Service 6: Terraform IaC Generator */}
+              <div
+                onClick={() => (onNavigateTab ? onNavigateTab(TABS.SERVICES) : handleLaunch())}
+                className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:border-emerald-500 hover:shadow-xl hover:shadow-emerald-500/10 transition-all flex flex-col justify-between space-y-4 group cursor-pointer hover:-translate-y-1"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                      <Code2 className="w-6 h-6" />
+                    </div>
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold font-mono bg-emerald-100 text-emerald-700">
+                      TERRAFORM
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="text-base font-extrabold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                      Terraform IaC Generator Studio
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mt-1">
+                      Export 100% production-ready HashiCorp HCL files for VPC, subnets, security groups, ALB, compute clusters, and databases.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-600">
+                  <span>Generate Terraform IaC</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+            </div>
           </div>
         </ScrollReveal>
 

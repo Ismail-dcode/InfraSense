@@ -12,7 +12,24 @@ import { useAuth } from '../hooks/useAuth';
 export default function LandingPage({ setActiveTab, onSelectPreset }) {
   const { isAuthenticated, openAuthModal } = useAuth();
 
-  const handleLaunchConsole = (preset) => {
+  const handleLaunchServices = (preset) => {
+    if (!isAuthenticated) {
+      openAuthModal('login', () => {
+        if (preset && onSelectPreset) {
+          onSelectPreset(preset);
+        }
+        setActiveTab(TABS.SERVICES);
+      });
+      return;
+    }
+
+    if (preset && onSelectPreset) {
+      onSelectPreset(preset);
+    }
+    setActiveTab(TABS.SERVICES);
+  };
+
+  const handleLaunchCompute = (preset) => {
     if (!isAuthenticated) {
       openAuthModal('login', () => {
         if (preset && onSelectPreset) {
@@ -39,15 +56,29 @@ export default function LandingPage({ setActiveTab, onSelectPreset }) {
     setActiveTab(TABS.CONSOLE);
   };
 
+  const handleNavigateTab = (tab) => {
+    if ((tab === TABS.SERVICES || tab === TABS.CONSOLE || tab === TABS.DASHBOARD) && !isAuthenticated) {
+      openAuthModal('login', () => {
+        setActiveTab(tab);
+      });
+      return;
+    }
+    setActiveTab(tab);
+  };
+
   return (
     <div className="min-h-screen">
-      <Hero onLaunchConsole={handleLaunchConsole} />
+      <Hero
+        onLaunchServices={handleLaunchServices}
+        onLaunchConsole={handleLaunchCompute}
+        onNavigateTab={handleNavigateTab}
+      />
       <HowItWorks onSelectCategory={handleSelectCategory} />
-      <ProductDetails onLaunchConsole={handleLaunchConsole} />
+      <ProductDetails onLaunchConsole={handleLaunchServices} />
       <Features />
       <CodeSnippets />
       <WhoIsItFor />
-      <CallToAction onLaunchConsole={handleLaunchConsole} />
+      <CallToAction onLaunchConsole={handleLaunchServices} />
     </div>
   );
 }

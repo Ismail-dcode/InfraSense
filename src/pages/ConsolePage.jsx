@@ -1,13 +1,20 @@
 import React from 'react';
 import CalculatorApp from '../components/CalculatorApp';
+import ServicesHubNav from '../components/services/ServicesHubNav';
 import { useAuth } from '../hooks/useAuth';
 import { User, LogOut, CheckCircle2 } from 'lucide-react';
 
-export default function ConsolePage({ initialPreset, onClearInitialPreset }) {
-  const { user, logout } = useAuth();
+export default function ConsolePage({ initialPreset, onClearInitialPreset, onSwitchTab }) {
+  const { user } = useAuth();
 
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-[#f8faff]">
+      {/* Services Hub Quick Switcher */}
+      <ServicesHubNav
+        activeConsole="console"
+        onSwitchConsole={(tab) => onSwitchTab && onSwitchTab(tab)}
+      />
+
       {/* Console Header Banner */}
       <div className="border-b border-slate-200/80 bg-white shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
